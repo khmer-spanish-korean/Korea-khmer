@@ -12,7 +12,6 @@
     :root {
       --primary: #4f46e5;
       --primary-light: #6366f1;
-      --primary-dark: #3730a3;
       --gold: #f59e0b;
       --success: #10b981;
       --danger: #ef4444;
@@ -42,9 +41,7 @@
       padding: 16px;
     }
 
-    .khmer-font {
-      font-family: 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif;
-    }
+    .khmer-font { font-family: 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif; }
 
     .container {
       width: 100%;
@@ -73,12 +70,7 @@
       gap: 10px;
     }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .logo-area { display: flex; align-items: center; gap: 10px; }
     .flag-icon { font-size: 1.8rem; }
 
     .app-title {
@@ -89,11 +81,7 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
 
     .btn-pill {
       background: var(--card-sub);
@@ -110,10 +98,7 @@
       transition: all 0.2s ease;
     }
 
-    .btn-pill:hover {
-      background: var(--primary);
-      border-color: var(--primary-light);
-    }
+    .btn-pill:hover { background: var(--primary); border-color: var(--primary-light); }
 
     .tabs-row {
       display: flex;
@@ -136,10 +121,7 @@
       transition: all 0.2s;
     }
 
-    .tab-btn.active {
-      background: var(--primary);
-      color: #fff;
-    }
+    .tab-btn.active { background: var(--primary); color: #fff; }
 
     .stats-bar {
       display: grid;
@@ -152,12 +134,7 @@
       text-align: center;
     }
 
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    .stat-item { display: flex; flex-direction: column; gap: 2px; }
     .stat-label { font-size: 0.72rem; color: var(--text-muted); }
     .stat-val { font-size: 0.95rem; font-weight: 700; color: #fff; }
     .stat-val.gold { color: var(--gold); }
@@ -190,11 +167,7 @@
       position: relative;
     }
 
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .card-meta { display: flex; justify-content: space-between; align-items: center; }
 
     .category-badge {
       display: inline-flex;
@@ -238,11 +211,7 @@
       border-radius: 24px;
     }
 
-    .pron-text {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
+    .pron-text { font-size: 1.2rem; font-weight: 700; color: var(--gold); }
 
     .btn-speak-main {
       background: var(--primary);
@@ -256,15 +225,10 @@
       justify-content: center;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
     }
 
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .options-grid { display: flex; flex-direction: column; gap: 12px; }
 
     .option-btn {
       background: var(--card-sub);
@@ -293,11 +257,7 @@
       width: 100%;
     }
 
-    .option-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .option-left { display: flex; align-items: center; gap: 12px; }
 
     .option-num {
       width: 28px;
@@ -313,11 +273,7 @@
       flex-shrink: 0;
     }
 
-    .option-meaning {
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-    }
+    .option-meaning { font-size: 1.15rem; font-weight: 600; }
 
     .option-status-badge {
       font-size: 0.8rem;
@@ -343,24 +299,9 @@
       gap: 8px;
     }
 
-    .rev-word-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .rev-khmer {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1;
-    }
-
-    .rev-pron {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--gold);
-    }
+    .rev-word-group { display: flex; align-items: center; gap: 10px; }
+    .rev-khmer { font-size: 1.35rem; font-weight: 700; color: #ffffff; line-height: 1; }
+    .rev-pron { font-size: 0.95rem; font-weight: 600; color: var(--gold); }
 
     .btn-opt-tts {
       background: rgba(15, 23, 42, 0.6);
@@ -375,17 +316,11 @@
       gap: 4px;
     }
 
-    .option-btn.correct {
-      background: rgba(16, 185, 129, 0.18) !important;
-      border-color: var(--success) !important;
-    }
+    .option-btn.correct { background: rgba(16, 185, 129, 0.18) !important; border-color: var(--success) !important; }
     .option-btn.correct .option-num { background: var(--success); color: #fff; }
     .option-btn.correct .option-status-badge { display: inline-block; background: var(--success); color: #fff; }
 
-    .option-btn.wrong-chosen {
-      background: rgba(239, 68, 68, 0.18) !important;
-      border-color: var(--danger) !important;
-    }
+    .option-btn.wrong-chosen { background: rgba(239, 68, 68, 0.18) !important; border-color: var(--danger) !important; }
     .option-btn.wrong-chosen .option-num { background: var(--danger); color: #fff; }
     .option-btn.wrong-chosen .option-status-badge { display: inline-block; background: var(--danger); color: #fff; }
 
@@ -403,10 +338,7 @@
       animation: slideUp 0.3s ease;
     }
 
-    .feedback-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
+    .feedback-title { font-size: 1.05rem; font-weight: 700; }
 
     .btn-next-question {
       width: 100%;
@@ -439,12 +371,9 @@
       pointer-events: none;
     }
 
-    .toast-popup.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
+    .toast-popup.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* 단어장 모달 */
+    /* 대형 단어장 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -464,7 +393,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       width: 100%;
-      max-width: 620px;
+      max-width: 640px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
@@ -489,12 +418,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-    }
-
-    .search-filter-box {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
     }
 
     .vocab-search-input {
@@ -524,21 +447,14 @@
     .hint-chip {
       background: rgba(15, 23, 42, 0.5);
       border: 1px solid var(--border);
-      padding: 2px 8px;
+      padding: 3px 8px;
       border-radius: 10px;
       cursor: pointer;
     }
 
-    .hint-chip:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
+    .hint-chip:hover { color: var(--gold); border-color: var(--gold); }
 
-    .vocab-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .vocab-list { display: flex; flex-direction: column; gap: 8px; }
 
     .vocab-row {
       display: flex;
@@ -552,7 +468,7 @@
 
     .type-badge {
       font-size: 0.72rem;
-      padding: 1px 6px;
+      padding: 2px 6px;
       border-radius: 8px;
       border: 1px solid var(--border);
       color: #cbd5e1;
@@ -562,6 +478,35 @@
     .type-verb { background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #6ee7b7; }
     .type-adj { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #fde68a; }
     .type-expr { background: rgba(168, 85, 247, 0.2); border-color: #a855f7; color: #e9d5ff; }
+
+    /* 실시간 구글 번역 연동 박스 */
+    .google-live-card {
+      background: rgba(79, 70, 229, 0.15);
+      border: 1px solid var(--primary-light);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .btn-google-translate {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -580,7 +525,7 @@
       <div class="header-top">
         <div class="logo-area">
           <span class="flag-icon">🇰🇭</span>
-          <h1 class="app-title">크메르어 1000 퀴즈 & 실생활 대사전</h1>
+          <h1 class="app-title">크메르어 종합 퀴즈 & 대사전</h1>
         </div>
         <div class="header-actions">
           <button class="btn-pill" id="btnAudioMode" title="발음 재생 모드 변경">
@@ -592,7 +537,6 @@
         </div>
       </div>
 
-      <!-- 모드 전환 탭 -->
       <div class="tabs-row">
         <button class="tab-btn active" data-mode="all">전체 믹스</button>
         <button class="tab-btn" data-mode="verb">동사 전용</button>
@@ -600,7 +544,6 @@
         <button class="tab-btn" data-mode="wrong">오답 복습 (<span id="wrongCount">0</span>)</button>
       </div>
 
-      <!-- 진행률 바 -->
       <div class="stats-bar">
         <div class="stat-item">
           <span class="stat-label">진행도</span>
@@ -625,7 +568,6 @@
       </div>
     </header>
 
-    <!-- 퀴즈 카드 -->
     <main class="quiz-card">
       <div class="card-meta">
         <span class="category-badge" id="badgeCategory">동사 (Verb)</span>
@@ -655,20 +597,21 @@
   <div class="modal-overlay" id="vocabModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 class="modal-title">📖 크메르어 실생활 통합 사전 (<span id="totalDictCount">0</span>단어)</h3>
+        <h3 class="modal-title">📖 크메르어 실생활 대사전 (<span id="totalDictCount">0</span>단어)</h3>
         <button class="modal-close" id="btnCloseVocab">&times;</button>
       </div>
       <div class="modal-body">
         <div class="search-filter-box">
-          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="간식, 놈, 끗루이, 빽, 엇, 물 등 검색...">
+          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="발음(냠, 끗루이, 끄발, 덥), 크메르어, 한국어 뜻 검색...">
           <div class="search-tags-hint">
-            <span>추천 검색어:</span>
-            <span class="hint-chip" onclick="quickSearch('간식')">#간식/과자</span>
-            <span class="hint-chip" onclick="quickSearch('계산')">#계산(끗루이)</span>
-            <span class="hint-chip" onclick="quickSearch('얼마')">#얼마예요</span>
-            <span class="hint-chip" onclick="quickSearch('포장')">#포장(크쩝)</span>
-            <span class="hint-chip" onclick="quickSearch('빽')">#너무(빽)</span>
-            <span class="hint-chip" onclick="quickSearch('엇')">#안하다(엇)</span>
+            <span>빠른 태그:</span>
+            <span class="hint-chip" onclick="quickSearch('숫자')">#숫자(1~10,만)</span>
+            <span class="hint-chip" onclick="quickSearch('가족')">#가족/호칭</span>
+            <span class="hint-chip" onclick="quickSearch('신체')">#신체부위</span>
+            <span class="hint-chip" onclick="quickSearch('시간')">#시간/요일</span>
+            <span class="hint-chip" onclick="quickSearch('간식')">#간식/음식</span>
+            <span class="hint-chip" onclick="quickSearch('병원')">#병원/아픔</span>
+            <span class="hint-chip" onclick="quickSearch('쇼핑')">#쇼핑/가격</span>
           </div>
         </div>
         <div class="vocab-list" id="vocabList"></div>
@@ -683,7 +626,7 @@
 
   <script>
     /* ==========================================================================
-       1. 필수 동사 및 형용사 (퀴즈 출제 풀)
+       1. 퀴즈 출제용 핵심 어휘군
        ========================================================================== */
     const RAW_VOCAB = [
       { khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다 (친근한 표현)", type: "동사" },
@@ -699,7 +642,7 @@
       { khmer: "អាន", pron: "안", meaning: "읽다", type: "동사" },
       { khmer: "សរសេរ", pron: "써쎄", meaning: "쓰다 / 필기하다", type: "동사" },
       { khmer: "គេង", pron: "껭", meaning: "자다 / 잠들다", type: "동사" },
-      { khmer: "ដេក", pron: "덱", meaning: "눕다 / 잠자다", type: "동사" },
+      { khmer: "ដេក", pron: "덱", meaning: "눕다 / 취침하다", type: "동사" },
       { khmer: "ភ្ញាក់", pron: "프냑", meaning: "깨어나다 / 일어나다", type: "동사" },
       { khmer: "ដើរ", pron: "다으", meaning: "걷다 / 산책하다", type: "동사" },
       { khmer: "រត់", pron: "로옷", meaning: "달리다 / 뛰다", type: "동사" },
@@ -830,74 +773,151 @@
     ];
 
     /* ==========================================================================
-       ★ 실생활 필수 단어 (간식, 식당, 쇼핑, 교통, 일상 명사 등 대폭 추가)
+       ★ 초대형 실생활 대사전 (숫자, 가족, 신체, 시간, 가전, 길찾기, 병원 등 총망라)
        ========================================================================== */
     const EXTRA_DICTIONARY_WORDS = [
-      // [간식 / 디저트 / 과자]
-      { khmer: "នំ", pron: "놈", meaning: "간식 / 과자 / 빵 (간식 통칭)", type: "간식/명사" },
+      // 1. 숫자 & 수량 (1~10, 백, 천, 만)
+      { khmer: "មួយ", pron: "믕 (무이)", meaning: "1 (일/하나)", type: "숫자" },
+      { khmer: "ពីរ", pron: "삐", meaning: "2 (이/둘)", type: "숫자" },
+      { khmer: "បី", pron: "바이", meaning: "3 (삼/셋)", type: "숫자" },
+      { khmer: "បួន", pron: "부온", meaning: "4 (사/넷)", type: "숫자" },
+      { khmer: "ប្រាំ", pron: "쁘람", meaning: "5 (오/다섯)", type: "숫자" },
+      { khmer: "ប្រាំមួយ", pron: "쁘람믕", meaning: "6 (육/여섯)", type: "숫자" },
+      { khmer: "ប្រាំពីរ", pron: "쁘람삐", meaning: "7 (칠/일곱)", type: "숫자" },
+      { khmer: "ប្រាំបី", pron: "쁘람바이", meaning: "8 (팔/여덟)", type: "숫자" },
+      { khmer: "ប្រាំបួន", pron: "쁘람부온", meaning: "9 (구/아홉)", type: "숫자" },
+      { khmer: "ដប់", pron: "덥", meaning: "10 (십/열)", type: "숫자" },
+      { khmer: "ម្ភៃ", pron: "머파이", meaning: "20 (이십/스물)", type: "숫자" },
+      { khmer: "សាមសិប", pron: "삼썹", meaning: "30 (삼십)", type: "숫자" },
+      { khmer: "រយ", pron: "러이", meaning: "100 (백)", type: "숫자" },
+      { khmer: "ពាន់", pron: "뽀안", meaning: "1,000 (천)", type: "숫자" },
+      { khmer: "ម៉ឺន", pron: "먼", meaning: "10,000 (만)", type: "숫자" },
+      { khmer: "សែន", pron: "싸엔", meaning: "100,000 (십만)", type: "숫자" },
+      { khmer: "លាន", pron: "리언", meaning: "1,000,000 (백만)", type: "숫자" },
+
+      // 2. 가족 & 인간관계 & 호칭
+      { khmer: "ឪពុក", pron: "어으뽁 (뽀욱)", meaning: "아버지 / 아빠", type: "가족/명사" },
+      { khmer: "ម្តាយ", pron: "엠다이 (매)", meaning: "어머니 / 엄마", type: "가족/명사" },
+      { khmer: "បង", pron: "봉", meaning: "형 / 오빠 / 누나 / 언니 (연상 호칭)", type: "가족/호칭" },
+      { khmer: "ប្អូន", pron: "뿌온", meaning: "동생 (연하 호칭)", type: "가족/호칭" },
+      { khmer: "បងប្រុស", pron: "봉쁘로", meaning: "형 / 오빠", type: "가족/명사" },
+      { khmer: "បងស្រី", pron: "봉스레이", meaning: "누나 / 언니", type: "가족/명사" },
+      { khmer: "ប្អូនប្រុស", pron: "뿌온쁘로", meaning: "남동생", type: "가족/명사" },
+      { khmer: "ប្អូនស្រី", pron: "뿌온스레이", meaning: "여동생", type: "가족/명사" },
+      { khmer: "កូន", pron: "꼬온", meaning: "자식 / 아이", type: "가족/명사" },
+      { khmer: "លោកពូ", pron: "록뿌", meaning: "아저씨 / 삼촌", type: "호칭/명사" },
+      { khmer: "អ្នកមីង", pron: "네악밍", meaning: "아주머니 / 이모", type: "호칭/명사" },
+      { khmer: "លោកតា", pron: "록따", meaning: "할아버지", type: "가족/명사" },
+      { khmer: "លោកយាយ", pron: "록이에이", meaning: "할머니", type: "가족/명사" },
+      { khmer: "ប្តី", pron: "프다이", meaning: "남편", type: "가족/명사" },
+      { khmer: "ប្រពន្ធ", pron: "쁘러뽄", meaning: "아내", type: "가족/명사" },
+
+      // 3. 신체 부위
+      { khmer: "ក្បាល", pron: "끄발", meaning: "머리", type: "신체/명사" },
+      { khmer: "មុខ", pron: "목", meaning: "얼굴", type: "신체/명사" },
+      { khmer: "ភ្នែក", pron: "프나엑", meaning: "눈", type: "신체/명사" },
+      { khmer: "ច្រមុះ", pron: "츠러모", meaning: "코", type: "신체/명사" },
+      { khmer: "មាត់", pron: "모앗", meaning: "입", type: "신체/명사" },
+      { khmer: "ត្រចៀក", pron: "뜨러찌억", meaning: "귀", type: "신체/명사" },
+      { khmer: "ធ្មេញ", pron: "트멘", meaning: "이 / 치아", type: "신체/명사" },
+      { khmer: "ដៃ", pron: "다이", meaning: "손 / 팔", type: "신체/명사" },
+      { khmer: "ជើង", pron: "쯩", meaning: "발 / 다리", type: "신체/명사" },
+      { khmer: "ពោះ", pron: "뿌어", meaning: "배 (복부)", type: "신체/명사" },
+      { khmer: "ខ្នង", pron: "크넝", meaning: "등 / 뒤쪽", type: "신체/명사" },
+      { khmer: "បេះដូង", pron: "베도옹", meaning: "심장 / 마음", type: "신체/명사" },
+
+      // 4. 시간 & 날짜 & 요일
+      { khmer: "ព្រឹក", pron: "쁘럭", meaning: "아침 / 오전", type: "시간/명사" },
+      { khmer: "ថ្ងៃត្រង់", pron: "틍아이뜨렁", meaning: "정오 / 낮 / 점심시간", type: "시간/명사" },
+      { khmer: "រសៀល", pron: "로씨얼", meaning: "오후", type: "시간/명사" },
+      { khmer: "ល្ងាច", pron: "르응이어치", meaning: "저녁", type: "시간/명사" },
+      { khmer: "យប់", pron: "욥", meaning: "밤", type: "시간/명사" },
+      { khmer: "ឥឡូវ", pron: "아이러으", meaning: "지금 / 당장", type: "시간/부사" },
+      { khmer: "មុន", pron: "몬", meaning: "전 (이전) / 먼저", type: "시간/부사" },
+      { khmer: "ក្រោយ", pron: "끄라오이", meaning: "후 (이후) / 나중에", type: "시간/부사" },
+      { khmer: "ថ្ងៃចន្ទ", pron: "틍아이짠", meaning: "월요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃអង្គារ", pron: "틍아이앙기어", meaning: "화요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃពុធ", pron: "틍아이뿟", meaning: "수요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃព្រហស្បតិ៍", pron: "틍아이쁘로호아", meaning: "목요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃសុក្រ", pron: "틍아이쏙", meaning: "금요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃសៅរ៍", pron: "틍아이싸으", meaning: "토요일", type: "요일/명사" },
+      { khmer: "ថ្ងៃអាទិត្យ", pron: "틍아이아트엇", meaning: "일요일", type: "요일/명사" },
+      { khmer: "សប្តាហ៍", pron: "썹다", meaning: "주 / 일주일", type: "시간/명사" },
+      { khmer: "ខែ", pron: "카에", meaning: "월 / 달", type: "시간/명사" },
+      { khmer: "ឆ្នាំ", pron: "츠남", meaning: "년 / 해", type: "시간/명사" },
+
+      // 5. 집 & 가구 & 가전제품 & 의류
+      { khmer: "បន្ទប់", pron: "번뚝", meaning: "방 (Room)", type: "생활/명사" },
+      { khmer: "ទ្វារ", pron: "뜨위어", meaning: "문 (출입문)", type: "생활/명사" },
+      { khmer: "បង្អួច", pron: "벙우오이", meaning: "창문", type: "생활/명사" },
+      { khmer: "គ្រែ", pron: "끄래", meaning: "침대", type: "가구/명사" },
+      { khmer: "តុ", pron: "똑", meaning: "탁자 / 책상", type: "가구/명사" },
+      { khmer: "កៅអី", pron: "까으아이", meaning: "의자", type: "가구/명사" },
+      { khmer: "ទូទឹកកក", pron: "뚜뜩꺼", meaning: "냉장고", type: "가전/명사" },
+      { khmer: "ម៉ាស៊ីនត្រជាក់", pron: "마씬뜨러찌억", meaning: "에어컨", type: "가전/명사" },
+      { khmer: "កង្ហារ", pron: "껑하", meaning: "선풍기", type: "가전/명사" },
+      { khmer: "ទូរទស្សន៍", pron: "뚜어똣", meaning: "텔레비전 (TV)", type: "가전/명사" },
+      { khmer: "សម្លៀកបំពាក់", pron: "썸리억범뺰", meaning: "옷 / 의류", type: "의류/명사" },
+      { khmer: "ខោ", pron: "카오", meaning: "바지", type: "의류/명사" },
+      { khmer: "អាវ", pron: "아오", meaning: "윗옷 / 셔츠", type: "의류/명사" },
+      { khmer: "ស្បែកជើង", pron: "스바엑쯩", meaning: "신발", type: "의류/명사" },
+      { khmer: "កាបូប", pron: "까보웁", meaning: "가방 / 지갑", type: "생활/명사" },
+      { khmer: "វ៉ែនតា", pron: "왜안따", meaning: "안경", type: "생활/명사" },
+
+      // 6. 길찾기 & 위치 & 방향
+      { khmer: "ខាងលើ", pron: "캉르", meaning: "위쪽 / 위", type: "방향/명사" },
+      { khmer: "ខាងក្រោម", pron: "캉끄라옴", meaning: "아래쪽 / 아래", type: "방향/명사" },
+      { khmer: "ខាងមុខ", pron: "캉목", meaning: "앞쪽 / 앞", type: "방향/명사" },
+      { khmer: "ខាងក្រោយ", pron: "캉끄라오이", meaning: "뒤쪽 / 뒤", type: "방향/명사" },
+      { khmer: "ខាងឆ្វេង", pron: "캉츠웨잉", meaning: "왼쪽", type: "방향/명사" },
+      { khmer: "ខាងស្តាំ", pron: "캉스담", meaning: "오른쪽", type: "방향/명사" },
+      { khmer: "ខាងក្នុង", pron: "캉크농", meaning: "안쪽 / 내부", type: "방향/명사" },
+      { khmer: "ខាងក្រៅ", pron: "캉끄라오", meaning: "바깥쪽 / 외부", type: "방향/명사" },
+      { khmer: "ត្រង់", pron: "뜨렁", meaning: "똑바로 / 직진", type: "방향/부사" },
+      { khmer: "បត់", pron: "벗", meaning: "돌다 / 회전하다 (우회전/좌회전)", type: "동사" },
+      { khmer: "សាលារៀន", pron: "싸라리언", meaning: "학교", type: "장소/명사" },
+      { khmer: "វត្ត", pron: "왓", meaning: "사원 / 절", type: "장소/명사" },
+      { khmer: "ធនាគារ", pron: "터니어끼어", meaning: "은행", type: "장소/명사" },
+      { khmer: "កន្លែង", pron: "껀라엥", meaning: "장소 / 곳", type: "명사" },
+
+      // 7. 병원 & 응급 & 증상
+      { khmer: "ឈឺក្បាល", pron: "츠끄발", meaning: "두통 / 머리가 아프다", type: "증상/표현" },
+      { khmer: "ឈឺពោះ", pron: "츠뿌어", meaning: "복통 / 배가 아프다", type: "증상/표현" },
+      { khmer: "ក្តៅខ្លួន", pron: "끄다오클루언", meaning: "열이 나다 / 발열", type: "증상/표현" },
+      { khmer: "ក្អក", pron: "끄억", meaning: "기침하다", type: "증상/동사" },
+      { khmer: "ផ្តាសាយ", pron: "프다싸이", meaning: "감기 걸리다", type: "증상/동사" },
+      { khmer: "របួស", pron: "러부어", meaning: "상처 / 부상", type: "명사" },
+      { khmer: "ជួយផង", pron: "쭈오이퐁", meaning: "도와주세요! (긴급)", type: "긴급/회화" },
+
+      // 8. 간식 & 식당 & 음식 & 쇼핑
+      { khmer: "នំ", pron: "놈", meaning: "간식 / 과자 / 빵", type: "간식/명사" },
       { khmer: "អាហារសម្រន់", pron: "아하 썸란", meaning: "간식 (공식 표현)", type: "간식/명사" },
       { khmer: "ចំណី", pron: "쩜너이", meaning: "군것질거리 / 주전부리", type: "간식/명사" },
-      { khmer: "ប្រហិត", pron: "쁘러헏", meaning: "어묵 튀김 / 꼬치구이 (대표 길거리 간식)", type: "간식/명사" },
+      { khmer: "ប្រហិត", pron: "쁘러헏", meaning: "어묵/미트볼 튀김 꼬치", type: "간식/명사" },
       { khmer: "ការ៉េម", pron: "까렘", meaning: "아이스크림", type: "간식/명사" },
-      { khmer: "ស្ករគ្រាប់", pron: "스꺼 끄롭", meaning: "사탕 / 캔디", type: "간식/명사" },
-      { khmer: "សូកូឡា", pron: "쏘꼬라", meaning: "초콜릿", type: "간식/명사" },
-      { khmer: "នំប៉័ង", pron: "놈빵", meaning: "바게트 / 빵 (놈빵 샌드위치)", type: "간식/명사" },
-
-      // [식당 & 카페 주문 실생활 회화]
       { khmer: "គិតលុយ", pron: "끗루이", meaning: "계산해 주세요 / 계산하다", type: "식당/회화" },
       { khmer: "ខ្ចប់", pron: "크쩝", meaning: "포장하다 / 테이크아웃", type: "식당/회화" },
       { khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "식당/회화" },
       { khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "식당/회화" },
-      { khmer: "ស្រេកទឹក", pron: "스라엑뜩", meaning: "목마르다", type: "식당/회화" },
       { khmer: "ទឹកកក", pron: "뜩꺼", meaning: "얼음 / 아이스", type: "음식/명사" },
       { khmer: "ស្ករ", pron: "스꺼", meaning: "설탕", type: "음식/명사" },
-      { khmer: "អំបិល", pron: "엄벌", meaning: "소금", type: "음식/명사" },
       { khmer: "ទឹកត្រី", pron: "뜩뜨러이", meaning: "피시소스 (어장)", type: "음식/명사" },
-      { khmer: "ទឹកស៊ីអ៊ីវ", pron: "뜩씨이우", meaning: "간장", type: "음식/명사" },
-      { khmer: "បន្លែ", pron: "번라에", meaning: "야채 / 채소", type: "음식/명사" },
       { khmer: "គុយទាវ", pron: "꾸이띠우", meaning: "쌀국수", type: "음식/명사" },
       { khmer: "បាយឆា", pron: "바이차", meaning: "볶음밥", type: "음식/명사" },
       { khmer: "សាច់មាន់", pron: "쌋모안", meaning: "닭고기", type: "음식/명사" },
       { khmer: "សាច់ជ្រូក", pron: "쌋찌룩", meaning: "돼지고기", type: "음식/명사" },
       { khmer: "សាច់គោ", pron: "쌋꼬", meaning: "소고기", type: "음식/명사" },
-      { khmer: "ពងមាន់", pron: "뽕모안", meaning: "달걀 / 계란", type: "음식/명사" },
-      { khmer: "ត្រី", pron: "뜨러이", meaning: "생선 / 물고기", type: "음식/명사" },
-
-      // [열대 과일]
       { khmer: "ផ្លែឈើ", pron: "플라에츠", meaning: "과일", type: "과일/명사" },
       { khmer: "ស្វាយ", pron: "스와이", meaning: "망고", type: "과일/명사" },
       { khmer: "ចេក", pron: "쩩", meaning: "바나나", type: "과일/명사" },
       { khmer: "ដូង", pron: "동", meaning: "코코넛", type: "과일/명사" },
-      { khmer: "ឪឡឹក", pron: "어을럭", meaning: "수박", type: "과일/명사" },
-      { khmer: "ទុរេន", pron: "투렌", meaning: "두리안", type: "과일/명사" },
-      { khmer: "ម្នាស់", pron: "므노아", meaning: "파인애플", type: "과일/명사" },
-      { khmer: "ក្រូច", pron: "끄로오이", meaning: "오렌지 / 귤 / 라임", type: "과일/명사" },
-
-      // [쇼핑 & 시장 & 가격]
       { khmer: "ថ្លៃប៉ុន្មាន", pron: "틀라이 뽄만", meaning: "얼마예요?", type: "쇼핑/회화" },
       { khmer: "ចុះថ្លៃតិចបានទេ", pron: "쪼 틀라이 땍 반떼", meaning: "조금 깎아주실 수 있나요?", type: "쇼핑/회화" },
-      { khmer: "ថ្លៃណាស់", pron: "틀라이 나아", meaning: "너무 비싸요", type: "쇼핑/회화" },
       { khmer: "លុយអាប់", pron: "루이 압", meaning: "거스름돈", type: "쇼핑/명사" },
-      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다 / 돈을 바꾸다", type: "쇼핑/회화" },
-      { khmer: "វិក្កយបត្រ", pron: "윅까이욥빧 (봉)", meaning: "영수증", type: "쇼핑/명사" },
+      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다", type: "쇼핑/회화" },
 
-      // [교통 & 장소]
-      { khmer: "កង់បី", pron: "껑바이", meaning: "뚝뚝이 (삼륜차)", type: "교통/명사" },
-      { khmer: "ព្រលានយន្តហោះ", pron: "쁘롤리언 욘하어", meaning: "공항", type: "장소/명사" },
-      { khmer: "មន្ទីរពេទ្យ", pron: "몬띠뻭", meaning: "병원", type: "장소/명사" },
-      { khmer: "ឱសថស្ថាន", pron: "오쏫타스탄", meaning: "약국", type: "장소/명사" },
-      { khmer: "ថ្នាំ", pron: "크남", meaning: "약 (의약품)", type: "생활/명사" },
-      { khmer: "គ្រូពេទ្យ", pron: "끄루뻭", meaning: "의사 선생님", type: "인물/명사" },
-      { khmer: "ប៉ូលីស", pron: "뽈리", meaning: "경찰", type: "인물/명사" },
-      { khmer: "ស្ថានទូត", pron: "스타안뚯", meaning: "대사관", type: "장소/명사" },
-      { khmer: "សណ្ឋាគារ", pron: "썬타끼어", meaning: "호텔 / 숙소", type: "장소/명사" },
-      { khmer: "បន្ទប់ទឹក", pron: "번뚝뜩", meaning: "화장실", type: "장소/명사" },
-      { khmer: "ផ្សារ", pron: "프싸", meaning: "시장 / 마켓", type: "장소/명사" },
-      { khmer: "ហាងបាយ", pron: "하앙바이", meaning: "식당 / 밥집", type: "장소/명사" },
-      { khmer: "ហាងកាហ្វេ", pron: "하앙카페", meaning: "카페", type: "장소/명사" },
-
-      // [필수 생활 표현 & 문법 부사]
-      { khmer: "ពេក", pron: "뻭 (빽)", meaning: "너무 / 지나치게 (형용사/동사 뒤)", type: "부사/표현" },
+      // 9. 필수 문법 부사 및 구어체 표현
+      { khmer: "ពេក", pron: "뻭 (빽)", meaning: "너무 / 지나치게 (형용사 뒤)", type: "부사/표현" },
       { khmer: "ណាស់", pron: "나아", meaning: "매우 / 정말 (형용사 뒤)", type: "부사/표현" },
       { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체 대표 부정어)", type: "부사/표현" },
       { khmer: "មិន", pron: "먼", meaning: "안 ~하다 / 아니다 (표준 부정어)", type: "부사/표현" },
@@ -911,10 +931,7 @@
       { khmer: "លាហើយ", pron: "리어 하어이", meaning: "안녕히 가세요 / 잘 가", type: "인사말" },
       { khmer: "បាទ", pron: "빧", meaning: "네 (남성의 대답)", type: "대답" },
       { khmer: "ចាស", pron: "짜아", meaning: "네 (여성의 대답)", type: "대답" },
-      { khmer: "ទេ", pron: "떼", meaning: "아니오 / 문장 끝 부정·의문 어미", type: "어미" },
-      { khmer: "វ៉ាយហ្វាយ", pron: "와이파이", meaning: "와이파이 (Wi-Fi)", type: "생활/명사" },
-      { khmer: "លេខសម្ងាត់", pron: "레익 썸꽛", meaning: "비밀번호 / 패스워드", type: "생활/명사" },
-      { khmer: "លិខិតឆ្លងដែន", pron: "레킫 츨랑다엔", meaning: "여권 (Passport)", type: "생활/명사" }
+      { khmer: "ទេ", pron: "떼", meaning: "아니오 / 문장 끝 부정·의문 어미", type: "어미" }
     ];
 
     /* 유니코드 완성형 한글 음절 조합 */
@@ -990,7 +1007,7 @@
 
     const VOCAB_DATABASE = build1000QuestionBank();
 
-    // ★ 단어장 통합 사전 풀 (실생활 어휘 + 기본 어휘 + 1,000문제 전체 결합)
+    // 단어장 대사전 (중복 제거 통합)
     const MASTER_DICTIONARY = (() => {
       const map = new Map();
       [...EXTRA_DICTIONARY_WORDS, ...RAW_VOCAB, ...VOCAB_DATABASE].forEach(item => {
@@ -1099,7 +1116,7 @@
       }
     }
 
-    /* 퀴즈 상태 및 루프 */
+    /* 퀴즈 로직 */
     let currentMode = 'all'; 
     let questionPool = [];
     let currentIndex = 0;
@@ -1323,7 +1340,7 @@
       initQuizPool();
     }
 
-    /* 단어장 검색 렌더링 */
+    /* 단어장 렌더링 & 실시간 구글 번역 연동 */
     function renderVocabList(rawQuery = '') {
       const container = document.getElementById('vocabList');
       container.innerHTML = '';
@@ -1334,7 +1351,7 @@
       let filtered = [];
 
       if (!query) {
-        filtered = MASTER_DICTIONARY.slice(0, 60);
+        filtered = MASTER_DICTIONARY.slice(0, 80);
       } else {
         filtered = MASTER_DICTIONARY.filter(item => {
           const itemKhmer = item.khmer;
@@ -1351,8 +1368,22 @@
         });
       }
 
-      if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:25px; color:var(--text-muted);">검색된 단어가 없습니다.<br><span style="font-size:0.8rem; color:#64748b;">(힌트: "간식", "놈", "끗루이", "과자", "물" 등으로 검색해 보세요)</span></div>';
+      // 사전에 없을 때 구글 번역기 실시간 검색 버튼 노출
+      if (filtered.length === 0 && query) {
+        const isKhmer = /[\u1780-\u17FF]/.test(query);
+        const sl = isKhmer ? 'km' : 'ko';
+        const tl = isKhmer ? 'ko' : 'km';
+        const googleUrl = `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent(query)}&op=translate`;
+
+        container.innerHTML = `
+          <div class="google-live-card">
+            <div style="font-size: 0.95rem; font-weight: 700;">내장 사전에 없는 단어입니다</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">아래 버튼을 눌러 구글 실시간 번역으로 바로 확인하세요:</div>
+            <a href="${googleUrl}" target="_blank" class="btn-google-translate">
+              🌐 구글 번역기에서 "${query}" 실시간 검색하기 ➔
+            </a>
+          </div>
+        `;
         return;
       }
 
@@ -1361,7 +1392,7 @@
         row.className = 'vocab-row';
 
         let typeClass = 'type-badge';
-        if (item.type.includes('명사') || item.type.includes('간식') || item.type.includes('음식') || item.type.includes('과일')) typeClass += ' type-noun';
+        if (item.type.includes('명사') || item.type.includes('간식') || item.type.includes('음식') || item.type.includes('과일') || item.type.includes('숫자')) typeClass += ' type-noun';
         else if (item.type.includes('동사')) typeClass += ' type-verb';
         else if (item.type.includes('형용사')) typeClass += ' type-adj';
         else typeClass += ' type-expr';
