@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>크메르어 종합 마스터 퀴즈 & 단어장</title>
+  <title>크메르어 종합 마스터 퀴즈 & 실생활 대사전</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -54,7 +54,6 @@
       gap: 16px;
     }
 
-    /* 헤더 */
     header {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -116,7 +115,6 @@
       border-color: var(--primary-light);
     }
 
-    /* 퀴즈 필터 탭 */
     .tabs-row {
       display: flex;
       gap: 6px;
@@ -143,7 +141,6 @@
       color: #fff;
     }
 
-    /* 통계 바 */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -181,7 +178,6 @@
       transition: width 0.3s ease;
     }
 
-    /* 메인 퀴즈 카드 */
     .quiz-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -211,11 +207,6 @@
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 14px;
-    }
-
-    .audio-mode-indicator {
-      font-size: 0.75rem;
-      color: var(--text-muted);
     }
 
     .word-display {
@@ -430,7 +421,6 @@
       box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
     }
 
-    /* 토스트 알림 */
     .toast-popup {
       position: fixed;
       bottom: 24px;
@@ -454,7 +444,7 @@
       opacity: 1;
     }
 
-    /* 강화된 단어장 모달 */
+    /* 단어장 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -590,7 +580,7 @@
       <div class="header-top">
         <div class="logo-area">
           <span class="flag-icon">🇰🇭</span>
-          <h1 class="app-title">크메르어 1000 퀴즈 & 사전</h1>
+          <h1 class="app-title">크메르어 1000 퀴즈 & 실생활 대사전</h1>
         </div>
         <div class="header-actions">
           <button class="btn-pill" id="btnAudioMode" title="발음 재생 모드 변경">
@@ -610,7 +600,7 @@
         <button class="tab-btn" data-mode="wrong">오답 복습 (<span id="wrongCount">0</span>)</button>
       </div>
 
-      <!-- 점수 & 진행률 요약 -->
+      <!-- 진행률 바 -->
       <div class="stats-bar">
         <div class="stat-item">
           <span class="stat-label">진행도</span>
@@ -635,27 +625,23 @@
       </div>
     </header>
 
-    <!-- 퀴즈 문제 카드 -->
+    <!-- 퀴즈 카드 -->
     <main class="quiz-card">
       <div class="card-meta">
         <span class="category-badge" id="badgeCategory">동사 (Verb)</span>
-        <div class="audio-mode-indicator">
-          <span>단축키 [1][2][3][4] 풀기 | [Space] 다음</span>
-        </div>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">단축키 [1][2][3][4] 풀기 | [Space] 다음</span>
       </div>
 
       <div class="word-display">
         <div class="khmer-word khmer-font" id="displayKhmer">ញ៉ាំ</div>
         <div class="pronunciation-box">
           <span class="pron-text" id="displayPron">[냠]</span>
-          <button class="btn-speak-main" id="btnMainSpeak" title="크메르어 발음 듣기">🔊</button>
+          <button class="btn-speak-main" id="btnMainSpeak" title="발음 듣기">🔊</button>
         </div>
       </div>
 
-      <!-- 4지 선다형 목록 -->
       <div class="options-grid" id="optionsContainer"></div>
 
-      <!-- 피드백 바 -->
       <div class="feedback-bar" id="feedbackBar">
         <div class="feedback-title" id="feedbackTitle"></div>
         <button class="btn-next-question" id="btnNext">
@@ -669,19 +655,20 @@
   <div class="modal-overlay" id="vocabModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 class="modal-title">📖 크메르어 통합 사전 (<span id="totalDictCount">0</span>단어)</h3>
+        <h3 class="modal-title">📖 크메르어 실생활 통합 사전 (<span id="totalDictCount">0</span>단어)</h3>
         <button class="modal-close" id="btnCloseVocab">&times;</button>
       </div>
       <div class="modal-body">
         <div class="search-filter-box">
-          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="발음(빽, 엇, 냠, 루이), 크메르어, 한국어 뜻 검색...">
+          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="간식, 놈, 끗루이, 빽, 엇, 물 등 검색...">
           <div class="search-tags-hint">
             <span>추천 검색어:</span>
-            <span class="hint-chip" onclick="quickSearch('빽')">#빽 / 뻭</span>
-            <span class="hint-chip" onclick="quickSearch('엇')">#엇 / 먼</span>
-            <span class="hint-chip" onclick="quickSearch('틀로압')">#틀로압</span>
-            <span class="hint-chip" onclick="quickSearch('루이')">#루이(돈)</span>
-            <span class="hint-chip" onclick="quickSearch('뜩')">#뜩(물)</span>
+            <span class="hint-chip" onclick="quickSearch('간식')">#간식/과자</span>
+            <span class="hint-chip" onclick="quickSearch('계산')">#계산(끗루이)</span>
+            <span class="hint-chip" onclick="quickSearch('얼마')">#얼마예요</span>
+            <span class="hint-chip" onclick="quickSearch('포장')">#포장(크쩝)</span>
+            <span class="hint-chip" onclick="quickSearch('빽')">#너무(빽)</span>
+            <span class="hint-chip" onclick="quickSearch('엇')">#안하다(엇)</span>
           </div>
         </div>
         <div class="vocab-list" id="vocabList"></div>
@@ -689,7 +676,6 @@
     </div>
   </div>
 
-  <!-- 토스트 알림창 -->
   <div class="toast-popup" id="toastPopup">
     <span id="toastIcon">🔊</span>
     <span id="toastMsg">발음 재생 중...</span>
@@ -697,7 +683,7 @@
 
   <script>
     /* ==========================================================================
-       1. 필수 어휘 데이터베이스 (동사 + 형용사)
+       1. 필수 동사 및 형용사 (퀴즈 출제 풀)
        ========================================================================== */
     const RAW_VOCAB = [
       { khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다 (친근한 표현)", type: "동사" },
@@ -844,50 +830,94 @@
     ];
 
     /* ==========================================================================
-       ★ 실생활 필수 명사 & 회화 부사/조사 (단어장에 추가 등록)
+       ★ 실생활 필수 단어 (간식, 식당, 쇼핑, 교통, 일상 명사 등 대폭 추가)
        ========================================================================== */
     const EXTRA_DICTIONARY_WORDS = [
-      // 핵심 회화 표현 & 부사
+      // [간식 / 디저트 / 과자]
+      { khmer: "នំ", pron: "놈", meaning: "간식 / 과자 / 빵 (간식 통칭)", type: "간식/명사" },
+      { khmer: "អាហារសម្រន់", pron: "아하 썸란", meaning: "간식 (공식 표현)", type: "간식/명사" },
+      { khmer: "ចំណី", pron: "쩜너이", meaning: "군것질거리 / 주전부리", type: "간식/명사" },
+      { khmer: "ប្រហិត", pron: "쁘러헏", meaning: "어묵 튀김 / 꼬치구이 (대표 길거리 간식)", type: "간식/명사" },
+      { khmer: "ការ៉េម", pron: "까렘", meaning: "아이스크림", type: "간식/명사" },
+      { khmer: "ស្ករគ្រាប់", pron: "스꺼 끄롭", meaning: "사탕 / 캔디", type: "간식/명사" },
+      { khmer: "សូកូឡា", pron: "쏘꼬라", meaning: "초콜릿", type: "간식/명사" },
+      { khmer: "នំប៉័ង", pron: "놈빵", meaning: "바게트 / 빵 (놈빵 샌드위치)", type: "간식/명사" },
+
+      // [식당 & 카페 주문 실생활 회화]
+      { khmer: "គិតលុយ", pron: "끗루이", meaning: "계산해 주세요 / 계산하다", type: "식당/회화" },
+      { khmer: "ខ្ចប់", pron: "크쩝", meaning: "포장하다 / 테이크아웃", type: "식당/회화" },
+      { khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "식당/회화" },
+      { khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "식당/회화" },
+      { khmer: "ស្រេកទឹក", pron: "스라엑뜩", meaning: "목마르다", type: "식당/회화" },
+      { khmer: "ទឹកកក", pron: "뜩꺼", meaning: "얼음 / 아이스", type: "음식/명사" },
+      { khmer: "ស្ករ", pron: "스꺼", meaning: "설탕", type: "음식/명사" },
+      { khmer: "អំបិល", pron: "엄벌", meaning: "소금", type: "음식/명사" },
+      { khmer: "ទឹកត្រី", pron: "뜩뜨러이", meaning: "피시소스 (어장)", type: "음식/명사" },
+      { khmer: "ទឹកស៊ីអ៊ីវ", pron: "뜩씨이우", meaning: "간장", type: "음식/명사" },
+      { khmer: "បន្លែ", pron: "번라에", meaning: "야채 / 채소", type: "음식/명사" },
+      { khmer: "គុយទាវ", pron: "꾸이띠우", meaning: "쌀국수", type: "음식/명사" },
+      { khmer: "បាយឆា", pron: "바이차", meaning: "볶음밥", type: "음식/명사" },
+      { khmer: "សាច់មាន់", pron: "쌋모안", meaning: "닭고기", type: "음식/명사" },
+      { khmer: "សាច់ជ្រូក", pron: "쌋찌룩", meaning: "돼지고기", type: "음식/명사" },
+      { khmer: "សាច់គោ", pron: "쌋꼬", meaning: "소고기", type: "음식/명사" },
+      { khmer: "ពងមាន់", pron: "뽕모안", meaning: "달걀 / 계란", type: "음식/명사" },
+      { khmer: "ត្រី", pron: "뜨러이", meaning: "생선 / 물고기", type: "음식/명사" },
+
+      // [열대 과일]
+      { khmer: "ផ្លែឈើ", pron: "플라에츠", meaning: "과일", type: "과일/명사" },
+      { khmer: "ស្វាយ", pron: "스와이", meaning: "망고", type: "과일/명사" },
+      { khmer: "ចេក", pron: "쩩", meaning: "바나나", type: "과일/명사" },
+      { khmer: "ដូង", pron: "동", meaning: "코코넛", type: "과일/명사" },
+      { khmer: "ឪឡឹក", pron: "어을럭", meaning: "수박", type: "과일/명사" },
+      { khmer: "ទុរេន", pron: "투렌", meaning: "두리안", type: "과일/명사" },
+      { khmer: "ម្នាស់", pron: "므노아", meaning: "파인애플", type: "과일/명사" },
+      { khmer: "ក្រូច", pron: "끄로오이", meaning: "오렌지 / 귤 / 라임", type: "과일/명사" },
+
+      // [쇼핑 & 시장 & 가격]
+      { khmer: "ថ្លៃប៉ុន្មាន", pron: "틀라이 뽄만", meaning: "얼마예요?", type: "쇼핑/회화" },
+      { khmer: "ចុះថ្លៃតិចបានទេ", pron: "쪼 틀라이 땍 반떼", meaning: "조금 깎아주실 수 있나요?", type: "쇼핑/회화" },
+      { khmer: "ថ្លៃណាស់", pron: "틀라이 나아", meaning: "너무 비싸요", type: "쇼핑/회화" },
+      { khmer: "លុយអាប់", pron: "루이 압", meaning: "거스름돈", type: "쇼핑/명사" },
+      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다 / 돈을 바꾸다", type: "쇼핑/회화" },
+      { khmer: "វិក្កយបត្រ", pron: "윅까이욥빧 (봉)", meaning: "영수증", type: "쇼핑/명사" },
+
+      // [교통 & 장소]
+      { khmer: "កង់បី", pron: "껑바이", meaning: "뚝뚝이 (삼륜차)", type: "교통/명사" },
+      { khmer: "ព្រលានយន្តហោះ", pron: "쁘롤리언 욘하어", meaning: "공항", type: "장소/명사" },
+      { khmer: "មន្ទីរពេទ្យ", pron: "몬띠뻭", meaning: "병원", type: "장소/명사" },
+      { khmer: "ឱសថស្ថាន", pron: "오쏫타스탄", meaning: "약국", type: "장소/명사" },
+      { khmer: "ថ្នាំ", pron: "크남", meaning: "약 (의약품)", type: "생활/명사" },
+      { khmer: "គ្រូពេទ្យ", pron: "끄루뻭", meaning: "의사 선생님", type: "인물/명사" },
+      { khmer: "ប៉ូលីស", pron: "뽈리", meaning: "경찰", type: "인물/명사" },
+      { khmer: "ស្ថានទូត", pron: "스타안뚯", meaning: "대사관", type: "장소/명사" },
+      { khmer: "សណ្ឋាគារ", pron: "썬타끼어", meaning: "호텔 / 숙소", type: "장소/명사" },
+      { khmer: "បន្ទប់ទឹក", pron: "번뚝뜩", meaning: "화장실", type: "장소/명사" },
+      { khmer: "ផ្សារ", pron: "프싸", meaning: "시장 / 마켓", type: "장소/명사" },
+      { khmer: "ហាងបាយ", pron: "하앙바이", meaning: "식당 / 밥집", type: "장소/명사" },
+      { khmer: "ហាងកាហ្វេ", pron: "하앙카페", meaning: "카페", type: "장소/명사" },
+
+      // [필수 생활 표현 & 문법 부사]
       { khmer: "ពេក", pron: "뻭 (빽)", meaning: "너무 / 지나치게 (형용사/동사 뒤)", type: "부사/표현" },
       { khmer: "ណាស់", pron: "나아", meaning: "매우 / 정말 (형용사 뒤)", type: "부사/표현" },
-      { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체 부정어)", type: "부사/표현" },
+      { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체 대표 부정어)", type: "부사/표현" },
       { khmer: "មិន", pron: "먼", meaning: "안 ~하다 / 아니다 (표준 부정어)", type: "부사/표현" },
       { khmer: "ធ្លាប់", pron: "틀로압", meaning: "~해본 적 있다 (경험)", type: "조동사/표현" },
       { khmer: "មិនធ្លាប់", pron: "먼 틀로압", meaning: "~해본 적 없다", type: "조동사/표현" },
       { khmer: "អត់ស្រឡាញ់", pron: "엇 스라라안", meaning: "안 사랑해 (구어체)", type: "회화표현" },
       { khmer: "អត់ទៅ", pron: "엇 떠으", meaning: "안 가 (구어체)", type: "회화표현" },
       { khmer: "អត់ញ៉ាំ", pron: "엇 냠", meaning: "안 먹어 (구어체)", type: "회화표현" },
+      { khmer: "អត់ដឹង", pron: "엇 등", meaning: "몰라요 (구어체)", type: "회화표현" },
       { khmer: "សួស្តី", pron: "쑤어싸데이", meaning: "안녕하세요", type: "인사말" },
       { khmer: "លាហើយ", pron: "리어 하어이", meaning: "안녕히 가세요 / 잘 가", type: "인사말" },
-      { khmer: "បាទ", pron: "빧", meaning: "네 (남성의 대답)", type: "감탄사" },
-      { khmer: "ចាស", pron: "짜아", meaning: "네 (여성의 대답)", type: "감탄사" },
+      { khmer: "បាទ", pron: "빧", meaning: "네 (남성의 대답)", type: "대답" },
+      { khmer: "ចាស", pron: "짜아", meaning: "네 (여성의 대답)", type: "대답" },
       { khmer: "ទេ", pron: "떼", meaning: "아니오 / 문장 끝 부정·의문 어미", type: "어미" },
-
-      // 실생활 필수 명사군
-      { khmer: "ទឹក", pron: "뜩", meaning: "물 / 음료", type: "명사" },
-      { khmer: "បាយ", pron: "바이", meaning: "밥 / 식사", type: "명사" },
-      { khmer: "លុយ", pron: "루이", meaning: "돈 (화폐)", type: "명사" },
-      { khmer: "មនុស្ស", pron: "머누", meaning: "사람 / 인간", type: "명사" },
-      { khmer: "ផ្ទះ", pron: "프떼어", meaning: "집 / 주택", type: "명사" },
-      { khmer: "ផ្សារ", pron: "프싸", meaning: "시장 / 마트", type: "명사" },
-      { khmer: "បន្ទប់ទឹក", pron: "번뚝뜩", meaning: "화장실", type: "명사" },
-      { khmer: "សណ្ឋាគារ", pron: "썬타끼어", meaning: "호텔 / 숙소", type: "명사" },
-      { khmer: "ឡាន", pron: "란", meaning: "자동차 / 차", type: "명사" },
-      { khmer: "ម៉ូតូ", pron: "모토", meaning: "오토바이", type: "명사" },
-      { khmer: "មិត្តភក្តិ", pron: "믓펵", meaning: "친구", type: "명사" },
-      { khmer: "ម្ហូប", pron: "머호웁", meaning: "음식 / 반찬", type: "명사" },
-      { khmer: "ស្រាបៀរ", pron: "스라비어", meaning: "맥주", type: "명사" },
-      { khmer: "កាហ្វេ", pron: "카페", meaning: "커피", type: "명사" },
-      { khmer: "តម្លៃ", pron: "떰라이", meaning: "가격 / 값", type: "명사" },
-      { khmer: "ថ្ងៃនេះ", pron: "틍아이니", meaning: "오늘", type: "명사" },
-      { khmer: "ថ្ងៃស្អែក", pron: "틍아이싸엑", meaning: "내일", type: "명사" },
-      { khmer: "ម្សិលមិញ", pron: "머설멘", meaning: "어제", type: "명사" },
-      { khmer: "ម៉ោង", pron: "마옹", meaning: "시 / 시간", type: "명사" },
-      { khmer: "ទូរស័ព្ទ", pron: "뚜어쌉", meaning: "전화기 / 스마트폰", type: "명사" },
-      { khmer: "ផ្លូវ", pron: "플러우", meaning: "길 / 도로", type: "명사" }
+      { khmer: "វ៉ាយហ្វាយ", pron: "와이파이", meaning: "와이파이 (Wi-Fi)", type: "생활/명사" },
+      { khmer: "លេខសម្ងាត់", pron: "레익 썸꽛", meaning: "비밀번호 / 패스워드", type: "생활/명사" },
+      { khmer: "លិខិតឆ្លងដែន", pron: "레킫 츨랑다엔", meaning: "여권 (Passport)", type: "생활/명사" }
     ];
 
-    /* 유니코드 음절 완성형 결합 (한글 조합 오류 해결) */
+    /* 유니코드 완성형 한글 음절 조합 */
     function conjugateKoreanVerb(meaning, type) {
       return meaning.replace(/([가-힣]+)다/g, (match, stem) => {
         if (type === 'want') return stem + "고 싶다";
@@ -960,7 +990,7 @@
 
     const VOCAB_DATABASE = build1000QuestionBank();
 
-    // ★ 단어장 통합 검색 풀: 퀴즈 1,000개 + 일상 필수 명사/회화 표현 전체 결합 및 중복 제거
+    // ★ 단어장 통합 사전 풀 (실생활 어휘 + 기본 어휘 + 1,000문제 전체 결합)
     const MASTER_DICTIONARY = (() => {
       const map = new Map();
       [...EXTRA_DICTIONARY_WORDS, ...RAW_VOCAB, ...VOCAB_DATABASE].forEach(item => {
@@ -971,17 +1001,15 @@
       return Array.from(map.values());
     })();
 
-    /* ==========================================================================
-       ★ 한국어 발음 유연 검색 엔진 (스마트 정규화)
-       ========================================================================== */
+    /* 한국어 발음 유연 검색 정규화 엔진 */
     function normalizeSearchKey(str) {
       if (!str) return '';
       return str.toLowerCase()
-        .replace(/\s+/g, '') // 공백 제거 (먼쓰러랑 -> 먼쓰러랑)
-        .replace(/[\[\]\(\)\/]/g, '') // 기호 제거
-        .replace(/빽/g, '뻭') // 빽 -> 뻭 호환
+        .replace(/\s+/g, '')
+        .replace(/[\[\]\(\)\/]/g, '')
+        .replace(/빽/g, '뻭')
         .replace(/빼/g, '뻬')
-        .replace(/애/g, '에') // 애/에 호환
+        .replace(/애/g, '에')
         .replace(/개/g, '게')
         .replace(/배/g, '베')
         .replace(/새/g, '세')
@@ -989,15 +1017,13 @@
         .replace(/채/g, '체')
         .replace(/태/g, '테')
         .replace(/패/g, '페')
-        .replace(/쓰/g, '스') // 쓰/스 호환
-        .replace(/뜨/g, '트') // 뜨/트 호환
+        .replace(/쓰/g, '스')
+        .replace(/뜨/g, '트')
         .replace(/끄/g, '크')
         .replace(/호웁/g, '홉');
     }
 
-    /* ==========================================================================
-       2. 하이브리드 음성 엔진
-       ========================================================================== */
+    /* 하이브리드 음성 엔진 */
     let audioMode = 'khmer';
     let currentAudioObj = null;
 
@@ -1021,9 +1047,12 @@
         const audio = new Audio(url);
         currentAudioObj = audio;
 
+        let hasResolved = false;
         const timer = setTimeout(() => {
-          audio.pause();
-          reject(new Error("Audio timeout"));
+          if (!hasResolved) {
+            audio.pause();
+            reject(new Error("Audio timeout"));
+          }
         }, 3000);
 
         audio.onplay = () => clearTimeout(timer);
@@ -1070,9 +1099,7 @@
       }
     }
 
-    /* ==========================================================================
-       3. 퀴즈 게임 상태 관리
-       ========================================================================== */
+    /* 퀴즈 상태 및 루프 */
     let currentMode = 'all'; 
     let questionPool = [];
     let currentIndex = 0;
@@ -1296,9 +1323,7 @@
       initQuizPool();
     }
 
-    /* ==========================================================================
-       4. 스마트 사전 검색 렌더링 엔진 (한국어 발음 유연 매칭)
-       ========================================================================== */
+    /* 단어장 검색 렌더링 */
     function renderVocabList(rawQuery = '') {
       const container = document.getElementById('vocabList');
       container.innerHTML = '';
@@ -1309,7 +1334,6 @@
       let filtered = [];
 
       if (!query) {
-        // 검색어가 없을 때는 전체 중 상위 60개 미리 표시
         filtered = MASTER_DICTIONARY.slice(0, 60);
       } else {
         filtered = MASTER_DICTIONARY.filter(item => {
@@ -1318,16 +1342,9 @@
           const itemMeanNorm = normalizeSearchKey(item.meaning);
           const itemTypeNorm = normalizeSearchKey(item.type);
 
-          // 크메르어 원어 직접 검색
           if (itemKhmer.includes(query)) return true;
-
-          // 정규화된 한국어 발음 유연 검색 (빽/뻭, 띄어쓰기 무시 일치)
           if (itemPronNorm.includes(normQuery)) return true;
-
-          // 한국어 뜻 유연 검색
           if (itemMeanNorm.includes(normQuery)) return true;
-
-          // 품사 검색 (명사, 동사, 표현 등)
           if (itemTypeNorm.includes(normQuery)) return true;
 
           return false;
@@ -1335,7 +1352,7 @@
       }
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:25px; color:var(--text-muted);">검색된 단어가 없습니다.<br><span style="font-size:0.8rem; color:#64748b;">(힌트: "빽", "엇", "물", "바이" 등으로 검색해 보세요)</span></div>';
+        container.innerHTML = '<div style="text-align:center; padding:25px; color:var(--text-muted);">검색된 단어가 없습니다.<br><span style="font-size:0.8rem; color:#64748b;">(힌트: "간식", "놈", "끗루이", "과자", "물" 등으로 검색해 보세요)</span></div>';
         return;
       }
 
@@ -1344,7 +1361,7 @@
         row.className = 'vocab-row';
 
         let typeClass = 'type-badge';
-        if (item.type.includes('명사')) typeClass += ' type-noun';
+        if (item.type.includes('명사') || item.type.includes('간식') || item.type.includes('음식') || item.type.includes('과일')) typeClass += ' type-noun';
         else if (item.type.includes('동사')) typeClass += ' type-verb';
         else if (item.type.includes('형용사')) typeClass += ' type-adj';
         else typeClass += ' type-expr';
@@ -1373,9 +1390,6 @@
       input.focus();
     }
 
-    /* ==========================================================================
-       5. 초기화 및 이벤트 리스너
-       ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('totalDictCount').textContent = MASTER_DICTIONARY.length;
       loadSavedWrongs();
