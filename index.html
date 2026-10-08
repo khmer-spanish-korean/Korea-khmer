@@ -373,7 +373,6 @@
 
     .toast-popup.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* 대형 단어장 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -393,7 +392,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       width: 100%;
-      max-width: 640px;
+      max-width: 650px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
@@ -479,7 +478,6 @@
     .type-adj { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #fde68a; }
     .type-expr { background: rgba(168, 85, 247, 0.2); border-color: #a855f7; color: #e9d5ff; }
 
-    /* 실시간 구글 번역 연동 박스 */
     .google-live-card {
       background: rgba(79, 70, 229, 0.15);
       border: 1px solid var(--primary-light);
@@ -602,16 +600,16 @@
       </div>
       <div class="modal-body">
         <div class="search-filter-box">
-          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="발음(냠, 끗루이, 끄발, 덥), 크메르어, 한국어 뜻 검색...">
+          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="발음(머파이, 삼썹, 냠, 끗루이), 크메르어, 한국어 뜻 검색...">
           <div class="search-tags-hint">
             <span>빠른 태그:</span>
-            <span class="hint-chip" onclick="quickSearch('숫자')">#숫자(1~10,만)</span>
-            <span class="hint-chip" onclick="quickSearch('가족')">#가족/호칭</span>
-            <span class="hint-chip" onclick="quickSearch('신체')">#신체부위</span>
-            <span class="hint-chip" onclick="quickSearch('시간')">#시간/요일</span>
-            <span class="hint-chip" onclick="quickSearch('간식')">#간식/음식</span>
+            <span class="hint-chip" onclick="quickSearch('숫자')">#숫자(20~100)</span>
+            <span class="hint-chip" onclick="quickSearch('호텔')">#호텔/숙소</span>
+            <span class="hint-chip" onclick="quickSearch('식당')">#식당/음식</span>
+            <span class="hint-chip" onclick="quickSearch('간식')">#간식/디저트</span>
+            <span class="hint-chip" onclick="quickSearch('교통')">#교통/길찾기</span>
+            <span class="hint-chip" onclick="quickSearch('가족')">#가족/인물</span>
             <span class="hint-chip" onclick="quickSearch('병원')">#병원/아픔</span>
-            <span class="hint-chip" onclick="quickSearch('쇼핑')">#쇼핑/가격</span>
           </div>
         </div>
         <div class="vocab-list" id="vocabList"></div>
@@ -626,9 +624,10 @@
 
   <script>
     /* ==========================================================================
-       1. 퀴즈 출제용 핵심 어휘군
+       1. 필수 동사 및 형용사 베이스 어휘
        ========================================================================== */
     const RAW_VOCAB = [
+      // 동사군
       { khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다 (친근한 표현)", type: "동사" },
       { khmer: "ហូប", pron: "호웁", meaning: "먹다 (일반 표현)", type: "동사" },
       { khmer: "ពិសា", pron: "피싸", meaning: "드시다 / 음용하다 (존칭)", type: "동사" },
@@ -715,8 +714,15 @@
       { khmer: "ដាំ", pron: "덤", meaning: "심다 / (밥을) 짓다", type: "동사" },
       { khmer: "សន្យា", pron: "썬냐", meaning: "약속하다", type: "동사" },
       { khmer: "យល់ព្រម", pron: "욜프롬", meaning: "동의하다 / 승낙하다", type: "동사" },
+      { khmer: "លោត", pron: "로옫", meaning: "뛰다 / 점프하다", type: "동사" },
+      { khmer: "រង់ចាំ", pron: "롱짬", meaning: "기다리다 / 대기하다", type: "동사" },
+      { khmer: "ជួសជុល", pron: "쭈어쭈얼", meaning: "수리하다 / 고치다", type: "동사" },
+      { khmer: "ផ្លាស់ប្តូរ", pron: "플라바도", meaning: "교환하다 / 바꾸다", type: "동사" },
+      { khmer: "កក់", pron: "꺽", meaning: "예약하다 (호텔/식당)", type: "동사" },
+      { khmer: "មកដល់", pron: "모옥덜", meaning: "도착하다", type: "동사" },
+      { khmer: "ចាកចេញ", pron: "짜악쩬", meaning: "출발하다 / 떠나다", type: "동사" },
 
-      // 형용사
+      // 형용사군
       { khmer: "ធំ", pron: "톰", meaning: "크다", type: "형용사" },
       { khmer: "តូច", pron: "또오이", meaning: "작다", type: "형용사" },
       { khmer: "ខ្ពស់", pron: "크뿌어", meaning: "높다 / 키가 크다", type: "형용사" },
@@ -769,50 +775,176 @@
       { khmer: "គ្រោះថ្នាក់", pron: "끄루어트낙", meaning: "위험하다", type: "형용사" },
       { khmer: "សុវត្ថិភាព", pron: "쏘왓티피읍", meaning: "안전하다", type: "형용사" },
       { khmer: "ហត់", pron: "혿", meaning: "피곤하다 / 지치다", type: "형용사" },
-      { khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "형용사" }
+      { khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "형용사" },
+      { khmer: "ងងុយ", pron: "응어응오이", meaning: "졸리다", type: "형용사" },
+      { khmer: "ស្រួល", pron: "스루얼", meaning: "편하다 / 편리하다", type: "형용사" },
+      { khmer: "ពិបាក", pron: "피바악", meaning: "불편하다 / 힘들다", type: "형용사" },
+      { khmer: "កក់ក្តៅ", pron: "꺽끄다오", meaning: "따뜻하다", type: "형용사" },
+      { khmer: "ស្អាតបាត", pron: "스앗빧", meaning: "단정하다 / 깔끔하다", type: "형용사" },
+      { khmer: "កខ្វក់", pron: "꺼쿼억", meaning: "더럽다 / 지저분하다", type: "형용사" }
     ];
 
     /* ==========================================================================
-       ★ 초대형 실생활 대사전 (숫자, 가족, 신체, 시간, 가전, 길찾기, 병원 등 총망라)
+       ★ 실생활 대사전 (숫자 10단위 100까지 완벽 수록 + 실생활 필수 어휘 300+개)
        ========================================================================== */
     const EXTRA_DICTIONARY_WORDS = [
-      // 1. 숫자 & 수량 (1~10, 백, 천, 만)
-      { khmer: "មួយ", pron: "믕 (무이)", meaning: "1 (일/하나)", type: "숫자" },
-      { khmer: "ពីរ", pron: "삐", meaning: "2 (이/둘)", type: "숫자" },
-      { khmer: "បី", pron: "바이", meaning: "3 (삼/셋)", type: "숫자" },
-      { khmer: "បួន", pron: "부온", meaning: "4 (사/넷)", type: "숫자" },
-      { khmer: "ប្រាំ", pron: "쁘람", meaning: "5 (오/다섯)", type: "숫자" },
-      { khmer: "ប្រាំមួយ", pron: "쁘람믕", meaning: "6 (육/여섯)", type: "숫자" },
-      { khmer: "ប្រាំពីរ", pron: "쁘람삐", meaning: "7 (칠/일곱)", type: "숫자" },
-      { khmer: "ប្រាំបី", pron: "쁘람바이", meaning: "8 (팔/여덟)", type: "숫자" },
-      { khmer: "ប្រាំបួន", pron: "쁘람부온", meaning: "9 (구/아홉)", type: "숫자" },
-      { khmer: "ដប់", pron: "덥", meaning: "10 (십/열)", type: "숫자" },
-      { khmer: "ម្ភៃ", pron: "머파이", meaning: "20 (이십/스물)", type: "숫자" },
-      { khmer: "សាមសិប", pron: "삼썹", meaning: "30 (삼십)", type: "숫자" },
-      { khmer: "រយ", pron: "러이", meaning: "100 (백)", type: "숫자" },
-      { khmer: "ពាន់", pron: "뽀안", meaning: "1,000 (천)", type: "숫자" },
-      { khmer: "ម៉ឺន", pron: "먼", meaning: "10,000 (만)", type: "숫자" },
-      { khmer: "សែន", pron: "싸엔", meaning: "100,000 (십만)", type: "숫자" },
-      { khmer: "លាន", pron: "리언", meaning: "1,000,000 (백만)", type: "숫자" },
+      // 1. 숫자 (1~19 및 ★ 20부터 10단위 100까지 완벽 추가)
+      { khmer: "មួយ", pron: "믕 (무이)", meaning: "1 (하나)", type: "숫자" },
+      { khmer: "ពីរ", pron: "삐", meaning: "2 (둘)", type: "숫자" },
+      { khmer: "បី", pron: "바이", meaning: "3 (셋)", type: "숫자" },
+      { khmer: "បួន", pron: "부온", meaning: "4 (넷)", type: "숫자" },
+      { khmer: "ប្រាំ", pron: "쁘람", meaning: "5 (다섯)", type: "숫자" },
+      { khmer: "ប្រាំមួយ", pron: "쁘람믕", meaning: "6 (여섯)", type: "숫자" },
+      { khmer: "ប្រាំពីរ", pron: "쁘람삐", meaning: "7 (일곱)", type: "숫자" },
+      { khmer: "ប្រាំបី", pron: "쁘람바이", meaning: "8 (여덟)", type: "숫자" },
+      { khmer: "ប្រាំបួន", pron: "쁘람부온", meaning: "9 (아홉)", type: "숫자" },
+      { khmer: "ដប់", pron: "덥", meaning: "10 (열)", type: "숫자" },
+      { khmer: "ដប់មួយ", pron: "덥믕", meaning: "11 (열하나)", type: "숫자" },
+      { khmer: "ដប់ពីរ", pron: "덥삐", meaning: "12 (열둘)", type: "숫자" },
+      { khmer: "ម្ភៃ", pron: "머파이", meaning: "20 (스물 / 이십)", type: "숫자" },
+      { khmer: "សាមសិប", pron: "삼썹", meaning: "30 (서른 / 삼십)", type: "숫자" },
+      { khmer: "សែសិប", pron: "싸에썹", meaning: "40 (마흔 / 사십)", type: "숫자" },
+      { khmer: "ហាសិប", pron: "하썹", meaning: "50 (쉰 / 오십)", type: "숫자" },
+      { khmer: "ហុកសិប", pron: "혹썹", meaning: "60 (예순 / 육십)", type: "숫자" },
+      { khmer: "ចិតសិប", pron: "쩟썹", meaning: "70 (일흔 / 칠십)", type: "숫자" },
+      { khmer: "ប៉ែតសិប", pron: "빠엣썹", meaning: "80 (여든 / 팔십)", type: "숫자" },
+      { khmer: "កៅសិប", pron: "까우썹", meaning: "90 (아흔 / 구십)", type: "숫자" },
+      { khmer: "មួយរយ", pron: "믕러이 (러이)", meaning: "100 (백 / 일백)", type: "숫자" },
+      { khmer: "ពីររយ", pron: "삐러이", meaning: "200 (이백)", type: "숫자" },
+      { khmer: "ប្រាំរយ", pron: "쁘람러이", meaning: "500 (오백)", type: "숫자" },
+      { khmer: "មួយពាន់", pron: "믕뽀안", meaning: "1,000 (천 / 일천)", type: "숫자" },
+      { khmer: "មួយម៉ឺน", pron: "믕먼", meaning: "10,000 (만 / 일만)", type: "숫자" },
+      { khmer: "មួយសែន", pron: "믕싸엔", meaning: "100,000 (십만)", type: "숫자" },
+      { khmer: "មួយលាន", pron: "믕리언", meaning: "1,000,000 (백만)", type: "숫자" },
 
-      // 2. 가족 & 인간관계 & 호칭
-      { khmer: "ឪពុក", pron: "어으뽁 (뽀욱)", meaning: "아버지 / 아빠", type: "가족/명사" },
-      { khmer: "ម្តាយ", pron: "엠다이 (매)", meaning: "어머니 / 엄마", type: "가족/명사" },
-      { khmer: "បង", pron: "봉", meaning: "형 / 오빠 / 누나 / 언니 (연상 호칭)", type: "가족/호칭" },
-      { khmer: "ប្អូន", pron: "뿌온", meaning: "동생 (연하 호칭)", type: "가족/호칭" },
+      // 2. 호텔 & 숙소 필수 단어
+      { khmer: "សណ្ឋាគារ", pron: "썬타끼어", meaning: "호텔", type: "호텔/숙소" },
+      { khmer: "បន្ទប់", pron: "번뚝", meaning: "방 (호실)", type: "호텔/숙소" },
+      { khmer: "កូនសោ", pron: "꼬온싸오", meaning: "열쇠 / 키", type: "호텔/숙소" },
+      { khmer: "កាត", pron: "깟", meaning: "카드키 / 카드", type: "호텔/숙소" },
+      { khmer: "កន្សែង", pron: "껀싸엥", meaning: "수건 / 타월", type: "호텔/숙소" },
+      { khmer: "ច្រាសដុសធ្មេញ", pron: "찌라 도 트멘", meaning: "칫솔", type: "호텔/숙소" },
+      { khmer: "ថ្នាំដុសធ្មេញ", pron: "크남 도 트멘", meaning: "치약", type: "호텔/숙소" },
+      { khmer: "សាប៊ូ", pron: "싸부", meaning: "비누", type: "호텔/숙소" },
+      { khmer: "សាប៊ូកក់សក់", pron: "싸부 꺽 쏙", meaning: "샴푸", type: "호텔/숙소" },
+      { khmer: "ភួយ", pron: "푸오이", meaning: "이불", type: "호텔/숙소" },
+      { khmer: "ខ្នើយ", pron: "크나오이", meaning: "베개", type: "호텔/숙소" },
+      { khmer: "គ្រែ", pron: "끄래", meaning: "침대", type: "호텔/숙소" },
+      { khmer: "ម៉ាស៊ីនត្រជាក់", pron: "마씬뜨러찌억", meaning: "에어컨", type: "호텔/가전" },
+      { khmer: "ទូទឹកកក", pron: "뚜뜩꺼", meaning: "냉장고", type: "호텔/가전" },
+      { khmer: "កង្ហារ", pron: "껑하", meaning: "선풍기", type: "호텔/가전" },
+      { khmer: "ទឹកក្តៅ", pron: "뜩끄다오", meaning: "온수 / 뜨거운 물", type: "호텔/숙소" },
+      { khmer: "លុយកក់", pron: "루이 꺽", meaning: "보증금 / 예약금", type: "호텔/숙소" },
+
+      // 3. 식당 & 카페 & 간식 & 조미료
+      { khmer: "នំ", pron: "놈", meaning: "간식 / 과자 / 빵", type: "간식/명사" },
+      { khmer: "អាហារសម្រន់", pron: "아하 썸란", meaning: "간식 (공식 표기)", type: "간식/명사" },
+      { khmer: "ចំណី", pron: "쩜너이", meaning: "주전부리 / 군것질", type: "간식/명사" },
+      { khmer: "ប្រហិត", pron: "쁘러헏", meaning: "어묵/미트볼 튀김 꼬치", type: "간식/명사" },
+      { khmer: "ការ៉េម", pron: "까렘", meaning: "아이스크림", type: "간식/명사" },
+      { khmer: "ស្ករគ្រាប់", pron: "스꺼 끄롭", meaning: "사탕", type: "간식/명사" },
+      { khmer: "សូកូឡា", pron: "쏘꼬라", meaning: "초콜릿", type: "간식/명사" },
+      { khmer: "នំប៉័ង", pron: "놈빵", meaning: "바게트 / 빵", type: "간식/명사" },
+      { khmer: "គិតលុយ", pron: "끗루이", meaning: "계산해 주세요 / 계산하다", type: "식당/회화" },
+      { khmer: "ខ្ចប់", pron: "크쩝", meaning: "포장하다 / 테이크아웃", type: "식당/회화" },
+      { khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "식당/회화" },
+      { khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "식당/회화" },
+      { khmer: "ស្រេកទឹក", pron: "스라엑뜩", meaning: "목마르다", type: "식당/회화" },
+      { khmer: "ទឹកកក", pron: "뜩꺼", meaning: "얼음 / 아이스", type: "식당/음료" },
+      { khmer: "ស្ករ", pron: "스꺼", meaning: "설탕", type: "식당/조미료" },
+      { khmer: "អំបិល", pron: "엄벌", meaning: "소금", type: "식당/조미료" },
+      { khmer: "ទឹកត្រី", pron: "뜩뜨러이", meaning: "피시소스", type: "식당/조미료" },
+      { khmer: "ទឹកស៊ីអ៊ីវ", pron: "뜩씨이우", meaning: "간장", type: "식당/조미료" },
+      { khmer: "បន្លែ", pron: "번라에", meaning: "야채 / 채소", type: "식당/재료" },
+      { khmer: "ត្រកួន", pron: "뜨러꾼", meaning: "모닝글로리 (공심채)", type: "식당/재료" },
+      { khmer: "គុយទាវ", pron: "꾸이띠우", meaning: "쌀국수", type: "식당/음식" },
+      { khmer: "មីឆា", pron: "미차", meaning: "볶음라면 / 볶음면", type: "식당/음식" },
+      { khmer: "បាយឆា", pron: "바이차", meaning: "볶음밥", type: "식당/음식" },
+      { khmer: "បាយស", pron: "바이써", meaning: "흰쌀밥 / 공깃밥", type: "식당/음식" },
+      { khmer: "ស៊ុប", pron: "쏩", meaning: "국 / 찌개 / 수프", type: "식당/음식" },
+      { khmer: "សាច់មាន់", pron: "쌋모안", meaning: "닭고기", type: "식당/재료" },
+      { khmer: "សាច់ជ្រូក", pron: "쌋찌룩", meaning: "돼지고기", type: "식당/재료" },
+      { khmer: "សាច់គោ", pron: "쌋꼬", meaning: "소고기", type: "식당/재료" },
+      { khmer: "ពងមាន់", pron: "뽕모안", meaning: "달걀 / 계란", type: "식당/재료" },
+      { khmer: "ត្រី", pron: "뜨러이", meaning: "생선 / 물고기", type: "식당/재료" },
+      { khmer: "បង្គា", pron: "벙기어", meaning: "새우", type: "식당/재료" },
+      { khmer: "មឹក", pron: "먹", meaning: "오징어", type: "식당/재료" },
+      { khmer: "ស្លាបព្រា", pron: "슬랍쁘리어", meaning: "숟가락 / 스푼", type: "식당/도구" },
+      { khmer: "ចង្កឹះ", pron: "쩡꺼", meaning: "젓가락", type: "식당/도구" },
+      { khmer: "សម", pron: "써옴", meaning: "포크", type: "식당/도구" },
+      { khmer: "កែវ", pron: "까에우", meaning: "컵 / 유리잔", type: "식당/도구" },
+      { khmer: "ចាន", pron: "짜안", meaning: "그릇 / 접시", type: "식당/도구" },
+      { khmer: "កាហ្វេ", pron: "카페", meaning: "커피", type: "식당/음료" },
+      { khmer: "តែ", pron: "따에", meaning: "차 (Tea)", type: "식당/음료" },
+      { khmer: "ទឹកដោះគោ", pron: "뜩더꼬", meaning: "우유", type: "식당/음료" },
+      { khmer: "ស្រាបៀរ", pron: "스라비어", meaning: "맥주", type: "식당/음료" },
+
+      // 4. 과일
+      { khmer: "ផ្លែឈើ", pron: "플라에츠", meaning: "과일", type: "과일/명사" },
+      { khmer: "ស្វាយ", pron: "스와이", meaning: "망고", type: "과일/명사" },
+      { khmer: "ចេក", pron: "쩩", meaning: "바나나", type: "과일/명사" },
+      { khmer: "ដូង", pron: "동", meaning: "코코넛", type: "과일/명사" },
+      { khmer: "ឪឡឹក", pron: "어을럭", meaning: "수박", type: "과일/명사" },
+      { khmer: "ទុរេន", pron: "투렌", meaning: "두리안", type: "과일/명사" },
+      { khmer: "ម្នាស់", pron: "므노아", meaning: "파인애플", type: "과일/명사" },
+      { khmer: "ក្រូច", pron: "끄로오이", meaning: "오렌지 / 감귤", type: "과일/명사" },
+      { khmer: "ក្រូចឆ្មា", pron: "끄로오이츠마", meaning: "라임 / 레몬", type: "과일/명사" },
+      { khmer: "ល្ហុង", pron: "르홍", meaning: "파파야", type: "과일/명사" },
+
+      // 5. 쇼핑 & 시장
+      { khmer: "ថ្លៃប៉ុន្មាន", pron: "틀라이 뽄만", meaning: "얼마예요?", type: "쇼핑/회화" },
+      { khmer: "ចុះថ្លៃតិចបានទេ", pron: "쪼 틀라이 땍 반떼", meaning: "좀 깎아주실 수 있나요?", type: "쇼핑/회화" },
+      { khmer: "ថ្លៃណាស់", pron: "틀라이 나아", meaning: "너무 비싸요", type: "쇼핑/회화" },
+      { khmer: "លុយអាប់", pron: "루이 압", meaning: "거스름돈", type: "쇼핑/명사" },
+      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다", type: "쇼핑/회화" },
+      { khmer: "វិក្កយបត្រ", pron: "윅까이욥빧", meaning: "영수증", type: "쇼핑/명사" },
+      { khmer: "ថង់", pron: "텅", meaning: "비닐봉지 / 백", type: "쇼핑/명사" },
+      { khmer: "ទំហំ", pron: "뚬홈", meaning: "사이즈 / 크기", type: "쇼핑/명사" },
+
+      // 6. 교통 & 길찾기
+      { khmer: "កង់បី", pron: "껑바이", meaning: "뚝뚝이 (삼륜차)", type: "교통/명사" },
+      { khmer: "ម៉ូតូឌុប", pron: "모토돕", meaning: "오토바이 택시", type: "교통/명사" },
+      { khmer: "ឡានឈ្នួល", pron: "란츠누얼", meaning: "택시", type: "교통/명사" },
+      { khmer: "ឡានក្រុង", pron: "란끄롱", meaning: "버스", type: "교통/명사" },
+      { khmer: "កង់", pron: "껑", meaning: "자전거", type: "교통/명사" },
+      { khmer: "ព្រលានយន្តហោះ", pron: "쁘롤리언 욘하어", meaning: "공항", type: "장소/교통" },
+      { khmer: "ផ្លូវ", pron: "플러우", meaning: "길 / 도로", type: "장소/교통" },
+      { khmer: "ភ្លើងស្តុប", pron: "플릉스똡", meaning: "신호등", type: "교통/명사" },
+      { khmer: "ផ្លូវបំបែក", pron: "플러우 범바엑", meaning: "교차로 / 사거리", type: "교통/명사" },
+      { khmer: "ការ៉ាសសាំង", pron: "까라쌍", meaning: "주유소", type: "장소/교통" },
+      { khmer: "ត្រង់", pron: "뜨렁", meaning: "직진 / 똑바로", type: "방향/길찾기" },
+      { khmer: "បត់ឆ្វេង", pron: "벗 츠웨잉", meaning: "좌회전하다", type: "방향/길찾기" },
+      { khmer: "បត់ស្តាំ", pron: "벗 스담", meaning: "우회전하다", type: "방향/길찾기" },
+      { khmer: "ត្រឡប់ក្រោយ", pron: "뜨럴랍 끄라오이", meaning: "유턴하다 / 되돌아가다", type: "방향/길찾기" },
+      { khmer: "ឈប់ទីនេះ", pron: "촛 띠니", meaning: "여기서 세워주세요", type: "교통/회화" },
+
+      // 7. 가족 & 호칭 & 인물
+      { khmer: "ឪពុក", pron: "어으뽁", meaning: "아버지 / 아빠", type: "가족/명사" },
+      { khmer: "ម្តាយ", pron: "엠다이", meaning: "어머니 / 엄마", type: "가족/명사" },
+      { khmer: "បង", pron: "봉", meaning: "형/오빠/누나/언니 (손위 호칭)", type: "가족/호칭" },
+      { khmer: "ប្អូន", pron: "뿌온", meaning: "동생 (손아래 호칭)", type: "가족/호칭" },
       { khmer: "បងប្រុស", pron: "봉쁘로", meaning: "형 / 오빠", type: "가족/명사" },
       { khmer: "បងស្រី", pron: "봉스레이", meaning: "누나 / 언니", type: "가족/명사" },
       { khmer: "ប្អូនប្រុស", pron: "뿌온쁘로", meaning: "남동생", type: "가족/명사" },
       { khmer: "ប្អូនស្រី", pron: "뿌온스레이", meaning: "여동생", type: "가족/명사" },
-      { khmer: "កូន", pron: "꼬온", meaning: "자식 / 아이", type: "가족/명사" },
-      { khmer: "លោកពូ", pron: "록뿌", meaning: "아저씨 / 삼촌", type: "호칭/명사" },
-      { khmer: "អ្នកមីង", pron: "네악밍", meaning: "아주머니 / 이모", type: "호칭/명사" },
-      { khmer: "លោកតា", pron: "록따", meaning: "할아버지", type: "가족/명사" },
-      { khmer: "លោកយាយ", pron: "록이에이", meaning: "할머니", type: "가족/명사" },
+      { khmer: "កូន", pron: "꼬온", meaning: "자식 / 자녀", type: "가족/명사" },
       { khmer: "ប្តី", pron: "프다이", meaning: "남편", type: "가족/명사" },
       { khmer: "ប្រពន្ធ", pron: "쁘러뽄", meaning: "아내", type: "가족/명사" },
+      { khmer: "លោកពូ", pron: "록뿌", meaning: "삼촌 / 아저씨", type: "호칭/명사" },
+      { khmer: "អ្នកមីង", pron: "네악밍", meaning: "이모 / 숙모 / 아주머니", type: "호칭/명사" },
+      { khmer: "លោកតា", pron: "록따", meaning: "할아버지", type: "가족/명사" },
+      { khmer: "លោកយាយ", pron: "록이에이", meaning: "할머니", type: "가족/명사" },
+      { khmer: "មិត្តភក្តិ", pron: "믓펵", meaning: "친구", type: "인물/명사" },
+      { khmer: "អ្នកជិតខាង", pron: "네악 찟캉", meaning: "이웃", type: "인물/명사" },
+      { khmer: "ថៅកែ", pron: "타으까에", meaning: "사장님", type: "직업/호칭" },
+      { khmer: "បុគ្គលិក", pron: "복꼬릭", meaning: "직원 / 회사원", type: "직업/명사" },
+      { khmer: "ភ្ញៀ우", pron: "프냐우", meaning: "손님 / 고객", type: "인물/명사" },
+      { khmer: "គ្រូពេទ្យ", pron: "끄루뻭", meaning: "의사", type: "직업/명사" },
+      { khmer: "គិលានុបដ្ឋាយិកា", pron: "끼리어누빧타이까", meaning: "간호사", type: "직업/명사" },
+      { khmer: "ប៉ូលីស", pron: "뽈리", meaning: "경찰", type: "직업/명사" },
+      { khmer: "អ្នកបើកបរ", pron: "네악 바억버", meaning: "운전기사", type: "직업/명사" },
 
-      // 3. 신체 부위
+      // 8. 신체 부위 & 병원 & 증상
       { khmer: "ក្បាល", pron: "끄발", meaning: "머리", type: "신체/명사" },
       { khmer: "មុខ", pron: "목", meaning: "얼굴", type: "신체/명사" },
       { khmer: "ភ្នែក", pron: "프나엑", meaning: "눈", type: "신체/명사" },
@@ -824,17 +956,31 @@
       { khmer: "ជើង", pron: "쯩", meaning: "발 / 다리", type: "신체/명사" },
       { khmer: "ពោះ", pron: "뿌어", meaning: "배 (복부)", type: "신체/명사" },
       { khmer: "ខ្នង", pron: "크넝", meaning: "등 / 뒤쪽", type: "신체/명사" },
-      { khmer: "បេះដូង", pron: "베도옹", meaning: "심장 / 마음", type: "신체/명사" },
+      { khmer: "បេះដូង", pron: "베도옹", meaning: "심장", type: "신체/명사" },
+      { khmer: "ឈឺក្បាល", pron: "츠끄발", meaning: "두통 / 머리가 아프다", type: "증상/표현" },
+      { khmer: "ឈឺពោះ", pron: "츠뿌어", meaning: "복통 / 배가 아프다", type: "증상/표현" },
+      { khmer: "ក្តៅខ្លួន", pron: "끄다오클루언", meaning: "열이 나다 / 발열", type: "증상/표현" },
+      { khmer: "ក្អក", pron: "끄억", meaning: "기침하다", type: "증상/동사" },
+      { khmer: "ផ្តាសាយ", pron: "프다싸이", meaning: "감기 걸리다", type: "증상/동사" },
+      { khmer: "រាគ", pron: "리어윽", meaning: "설사하다", type: "증상/동사" },
+      { khmer: "វិលមុខ", pron: "월목", meaning: "어지럽다", type: "증상/동사" },
+      { khmer: "មន្ទីរពេទ្យ", pron: "몬띠뻭", meaning: "병원", type: "장소/의료" },
+      { khmer: "ឱសថស្ថាន", pron: "오쏫타스탄", meaning: "약국", type: "장소/의료" },
+      { khmer: "ថ្នាំ", pron: "크남", meaning: "약", type: "의료/명사" },
+      { khmer: "ជួយផង", pron: "쭈오이퐁", meaning: "도와주세요! (긴급)", type: "긴급/회화" },
 
-      // 4. 시간 & 날짜 & 요일
+      // 9. 시간 & 날짜 & 요일
+      { khmer: "ថ្ងៃនេះ", pron: "틍아이니", meaning: "오늘", type: "시간/명사" },
+      { khmer: "ថ្ងៃស្អែក", pron: "틍아이싸엑", meaning: "내일", type: "시간/명사" },
+      { khmer: "ម្សិលមិញ", pron: "머설멘", meaning: "어제", type: "시간/명사" },
+      { khmer: "ឥឡូវនេះ", pron: "아이러으니", meaning: "지금 / 현재", type: "시간/부사" },
       { khmer: "ព្រឹក", pron: "쁘럭", meaning: "아침 / 오전", type: "시간/명사" },
-      { khmer: "ថ្ងៃត្រង់", pron: "틍아이뜨렁", meaning: "정오 / 낮 / 점심시간", type: "시간/명사" },
+      { khmer: "ថ្ងៃត្រង់", pron: "틍아이뜨렁", meaning: "점심 / 낮", type: "시간/명사" },
       { khmer: "រសៀល", pron: "로씨얼", meaning: "오후", type: "시간/명사" },
       { khmer: "ល្ងាច", pron: "르응이어치", meaning: "저녁", type: "시간/명사" },
       { khmer: "យប់", pron: "욥", meaning: "밤", type: "시간/명사" },
-      { khmer: "ឥឡូវ", pron: "아이러으", meaning: "지금 / 당장", type: "시간/부사" },
-      { khmer: "មុន", pron: "몬", meaning: "전 (이전) / 먼저", type: "시간/부사" },
-      { khmer: "ក្រោយ", pron: "끄라오이", meaning: "후 (이후) / 나중에", type: "시간/부사" },
+      { khmer: "ម៉ោង", pron: "마옹", meaning: "시 / 시간", type: "시간/명사" },
+      { khmer: "នាទី", pron: "涅띠 (니어띠)", meaning: "분", type: "시간/명사" },
       { khmer: "ថ្ងៃចន្ទ", pron: "틍아이짠", meaning: "월요일", type: "요일/명사" },
       { khmer: "ថ្ងៃអង្គារ", pron: "틍아이앙기어", meaning: "화요일", type: "요일/명사" },
       { khmer: "ថ្ងៃពុធ", pron: "틍아이뿟", meaning: "수요일", type: "요일/명사" },
@@ -842,96 +988,29 @@
       { khmer: "ថ្ងៃសុក្រ", pron: "틍아이쏙", meaning: "금요일", type: "요일/명사" },
       { khmer: "ថ្ងៃសៅរ៍", pron: "틍아이싸으", meaning: "토요일", type: "요일/명사" },
       { khmer: "ថ្ងៃអាទិត្យ", pron: "틍아이아트엇", meaning: "일요일", type: "요일/명사" },
-      { khmer: "សប្តាហ៍", pron: "썹다", meaning: "주 / 일주일", type: "시간/명사" },
-      { khmer: "ខែ", pron: "카에", meaning: "월 / 달", type: "시간/명사" },
-      { khmer: "ឆ្នាំ", pron: "츠남", meaning: "년 / 해", type: "시간/명사" },
 
-      // 5. 집 & 가구 & 가전제품 & 의류
-      { khmer: "បន្ទប់", pron: "번뚝", meaning: "방 (Room)", type: "생활/명사" },
-      { khmer: "ទ្វារ", pron: "뜨위어", meaning: "문 (출입문)", type: "생활/명사" },
-      { khmer: "បង្អួច", pron: "벙우오이", meaning: "창문", type: "생활/명사" },
-      { khmer: "គ្រែ", pron: "끄래", meaning: "침대", type: "가구/명사" },
-      { khmer: "តុ", pron: "똑", meaning: "탁자 / 책상", type: "가구/명사" },
-      { khmer: "កៅអី", pron: "까으아이", meaning: "의자", type: "가구/명사" },
-      { khmer: "ទូទឹកកក", pron: "뚜뜩꺼", meaning: "냉장고", type: "가전/명사" },
-      { khmer: "ម៉ាស៊ីនត្រជាក់", pron: "마씬뜨러찌억", meaning: "에어컨", type: "가전/명사" },
-      { khmer: "កង្ហារ", pron: "껑하", meaning: "선풍기", type: "가전/명사" },
-      { khmer: "ទូរទស្សន៍", pron: "뚜어똣", meaning: "텔레비전 (TV)", type: "가전/명사" },
-      { khmer: "សម្លៀកបំពាក់", pron: "썸리억범뺰", meaning: "옷 / 의류", type: "의류/명사" },
-      { khmer: "ខោ", pron: "카오", meaning: "바지", type: "의류/명사" },
-      { khmer: "អាវ", pron: "아오", meaning: "윗옷 / 셔츠", type: "의류/명사" },
-      { khmer: "ស្បែកជើង", pron: "스바엑쯩", meaning: "신발", type: "의류/명사" },
-      { khmer: "កាបូប", pron: "까보웁", meaning: "가방 / 지갑", type: "생활/명사" },
-      { khmer: "វ៉ែនតា", pron: "왜안따", meaning: "안경", type: "생활/명사" },
-
-      // 6. 길찾기 & 위치 & 방향
-      { khmer: "ខាងលើ", pron: "캉르", meaning: "위쪽 / 위", type: "방향/명사" },
-      { khmer: "ខាងក្រោម", pron: "캉끄라옴", meaning: "아래쪽 / 아래", type: "방향/명사" },
-      { khmer: "ខាងមុខ", pron: "캉목", meaning: "앞쪽 / 앞", type: "방향/명사" },
-      { khmer: "ខាងក្រោយ", pron: "캉끄라오이", meaning: "뒤쪽 / 뒤", type: "방향/명사" },
-      { khmer: "ខាងឆ្វេង", pron: "캉츠웨잉", meaning: "왼쪽", type: "방향/명사" },
-      { khmer: "ខាងស្តាំ", pron: "캉스담", meaning: "오른쪽", type: "방향/명사" },
-      { khmer: "ខាងក្នុង", pron: "캉크농", meaning: "안쪽 / 내부", type: "방향/명사" },
-      { khmer: "ខាងក្រៅ", pron: "캉끄라오", meaning: "바깥쪽 / 외부", type: "방향/명사" },
-      { khmer: "ត្រង់", pron: "뜨렁", meaning: "똑바로 / 직진", type: "방향/부사" },
-      { khmer: "បត់", pron: "벗", meaning: "돌다 / 회전하다 (우회전/좌회전)", type: "동사" },
-      { khmer: "សាលារៀន", pron: "싸라리언", meaning: "학교", type: "장소/명사" },
-      { khmer: "វត្ត", pron: "왓", meaning: "사원 / 절", type: "장소/명사" },
-      { khmer: "ធនាគារ", pron: "터니어끼어", meaning: "은행", type: "장소/명사" },
-      { khmer: "កន្លែង", pron: "껀라엥", meaning: "장소 / 곳", type: "명사" },
-
-      // 7. 병원 & 응급 & 증상
-      { khmer: "ឈឺក្បាល", pron: "츠끄발", meaning: "두통 / 머리가 아프다", type: "증상/표현" },
-      { khmer: "ឈឺពោះ", pron: "츠뿌어", meaning: "복통 / 배가 아프다", type: "증상/표현" },
-      { khmer: "ក្តៅខ្លួន", pron: "끄다오클루언", meaning: "열이 나다 / 발열", type: "증상/표현" },
-      { khmer: "ក្អក", pron: "끄억", meaning: "기침하다", type: "증상/동사" },
-      { khmer: "ផ្តាសាយ", pron: "프다싸이", meaning: "감기 걸리다", type: "증상/동사" },
-      { khmer: "របួស", pron: "러부어", meaning: "상처 / 부상", type: "명사" },
-      { khmer: "ជួយផង", pron: "쭈오이퐁", meaning: "도와주세요! (긴급)", type: "긴급/회화" },
-
-      // 8. 간식 & 식당 & 음식 & 쇼핑
-      { khmer: "នំ", pron: "놈", meaning: "간식 / 과자 / 빵", type: "간식/명사" },
-      { khmer: "អាហារសម្រន់", pron: "아하 썸란", meaning: "간식 (공식 표현)", type: "간식/명사" },
-      { khmer: "ចំណី", pron: "쩜너이", meaning: "군것질거리 / 주전부리", type: "간식/명사" },
-      { khmer: "ប្រហិត", pron: "쁘러헏", meaning: "어묵/미트볼 튀김 꼬치", type: "간식/명사" },
-      { khmer: "ការ៉េម", pron: "까렘", meaning: "아이스크림", type: "간식/명사" },
-      { khmer: "គិតលុយ", pron: "끗루이", meaning: "계산해 주세요 / 계산하다", type: "식당/회화" },
-      { khmer: "ខ្ចប់", pron: "크쩝", meaning: "포장하다 / 테이크아웃", type: "식당/회화" },
-      { khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "식당/회화" },
-      { khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "식당/회화" },
-      { khmer: "ទឹកកក", pron: "뜩꺼", meaning: "얼음 / 아이스", type: "음식/명사" },
-      { khmer: "ស្ករ", pron: "스꺼", meaning: "설탕", type: "음식/명사" },
-      { khmer: "ទឹកត្រី", pron: "뜩뜨러이", meaning: "피시소스 (어장)", type: "음식/명사" },
-      { khmer: "គុយទាវ", pron: "꾸이띠우", meaning: "쌀국수", type: "음식/명사" },
-      { khmer: "បាយឆា", pron: "바이차", meaning: "볶음밥", type: "음식/명사" },
-      { khmer: "សាច់មាន់", pron: "쌋모안", meaning: "닭고기", type: "음식/명사" },
-      { khmer: "សាច់ជ្រូក", pron: "쌋찌룩", meaning: "돼지고기", type: "음식/명사" },
-      { khmer: "សាច់គោ", pron: "쌋꼬", meaning: "소고기", type: "음식/명사" },
-      { khmer: "ផ្លែឈើ", pron: "플라에츠", meaning: "과일", type: "과일/명사" },
-      { khmer: "ស្វាយ", pron: "스와이", meaning: "망고", type: "과일/명사" },
-      { khmer: "ចេក", pron: "쩩", meaning: "바나나", type: "과일/명사" },
-      { khmer: "ដូង", pron: "동", meaning: "코코넛", type: "과일/명사" },
-      { khmer: "ថ្លៃប៉ុន្មាន", pron: "틀라이 뽄만", meaning: "얼마예요?", type: "쇼핑/회화" },
-      { khmer: "ចុះថ្លៃតិចបានទេ", pron: "쪼 틀라이 땍 반떼", meaning: "조금 깎아주실 수 있나요?", type: "쇼핑/회화" },
-      { khmer: "លុយអាប់", pron: "루이 압", meaning: "거스름돈", type: "쇼핑/명사" },
-      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다", type: "쇼핑/회화" },
-
-      // 9. 필수 문법 부사 및 구어체 표현
+      // 10. 일상 필수 표현 및 대화
+      { khmer: "សួស្តី", pron: "쑤어싸데이", meaning: "안녕하세요", type: "인사말" },
+      { khmer: "លាហើយ", pron: "리어 하어이", meaning: "안녕히 가세요 / 잘 가", type: "인사말" },
+      { khmer: "បាទ", pron: "빧", meaning: "네 (남성)", type: "대답" },
+      { khmer: "ចាស", pron: "짜아", meaning: "네 (여성)", type: "대답" },
+      { khmer: "ទេ", pron: "떼", meaning: "아니오 / 부정·의문 어미", type: "대답/어미" },
+      { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체)", type: "부사/표현" },
+      { khmer: "មិន", pron: "먼", meaning: "안 ~하다 / 아니다 (표준어)", type: "부사/표현" },
       { khmer: "ពេក", pron: "뻭 (빽)", meaning: "너무 / 지나치게 (형용사 뒤)", type: "부사/표현" },
-      { khmer: "ណាស់", pron: "나아", meaning: "매우 / 정말 (형용사 뒤)", type: "부사/표현" },
-      { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체 대표 부정어)", type: "부사/표현" },
-      { khmer: "មិន", pron: "먼", meaning: "안 ~하다 / 아니다 (표준 부정어)", type: "부사/표현" },
+      { khmer: "ណាស់", pron: "나아", meaning: "매우 / 아주 (형용사 뒤)", type: "부사/표현" },
+      { khmer: "បន្តិច", pron: "본땍", meaning: "조금 / 약간", type: "부사/표현" },
       { khmer: "ធ្លាប់", pron: "틀로압", meaning: "~해본 적 있다 (경험)", type: "조동사/표현" },
       { khmer: "មិនធ្លាប់", pron: "먼 틀로압", meaning: "~해본 적 없다", type: "조동사/표현" },
+      { khmer: "អាច", pron: "아앗", meaning: "~할 수 있다 (가능)", type: "조동사/표현" },
       { khmer: "អត់ស្រឡាញ់", pron: "엇 스라라안", meaning: "안 사랑해 (구어체)", type: "회화표현" },
       { khmer: "អត់ទៅ", pron: "엇 떠으", meaning: "안 가 (구어체)", type: "회화표현" },
       { khmer: "អត់ញ៉ាំ", pron: "엇 냠", meaning: "안 먹어 (구어체)", type: "회화표현" },
       { khmer: "អត់ដឹង", pron: "엇 등", meaning: "몰라요 (구어체)", type: "회화표현" },
-      { khmer: "សួស្តី", pron: "쑤어싸데이", meaning: "안녕하세요", type: "인사말" },
-      { khmer: "លាហើយ", pron: "리어 하어이", meaning: "안녕히 가세요 / 잘 가", type: "인사말" },
-      { khmer: "បាទ", pron: "빧", meaning: "네 (남성의 대답)", type: "대답" },
-      { khmer: "ចាស", pron: "짜아", meaning: "네 (여성의 대답)", type: "대답" },
-      { khmer: "ទេ", pron: "떼", meaning: "아니오 / 문장 끝 부정·의문 어미", type: "어미" }
+      { khmer: "វ៉ាយហ្វាយ", pron: "와이파이", meaning: "와이파이 (Wi-Fi)", type: "생활/명사" },
+      { khmer: "លេខសម្ងាត់", pron: "레익 썸꽛", meaning: "비밀번호", type: "생활/명사" },
+      { khmer: "លិខិតឆ្លងដែន", pron: "레킫 츨랑다엔", meaning: "여권", type: "생활/명사" },
+      { khmer: "ទូរស័ព្ទ", pron: "뚜어쌉", meaning: "휴대폰 / 전화기", type: "생활/명사" }
     ];
 
     /* 유니코드 완성형 한글 음절 조합 */
@@ -956,50 +1035,61 @@
           }
           return stem + "은 적 있다";
         }
+        if (type === 'can') return stem + "ㄹ 수 있다";
+        if (type === 'done') return "이미 " + stem + "었다";
         return match;
       });
     }
 
-    /* 1,000문제 자동 생성기 */
+    /* ★ 뻭 도배 버그가 해결된 1,000문제 자동 생성기 (다양한 문법 분산) */
     function build1000QuestionBank() {
       const bank = [];
-      const prefixes = [
-        { kh: "ចង់", pr: "쩡" },
-        { kh: "មិន", pr: "먼" },
-        { kh: "កំពុង", pr: "껌뽕" },
-        { kh: "ធ្លាប់", pr: "틀로압" },
-        { kh: "ណាស់", pr: "나아" },
-        { kh: "ពេក", pr: "뻭" }
-      ];
 
+      // 1. 순수 기본 어휘 먼저 모두 등록
       RAW_VOCAB.forEach(item => {
         bank.push({ khmer: item.khmer, pron: item.pron, meaning: item.meaning, type: item.type });
       });
 
-      let seed = 0;
-      while (bank.length < 1000) {
-        const base = RAW_VOCAB[seed % RAW_VOCAB.length];
-        const p = prefixes[Math.floor(bank.length / RAW_VOCAB.length) % prefixes.length];
-        let k, pr, m;
+      // 2. 동사용 문법 패턴 (6가지 다변화)
+      const verbPatterns = [
+        { khPre: "ចង់", prPre: "쩡 ", koType: "want" },
+        { khPre: "អត់", prPre: "엇 ", koPrefix: "안 " },
+        { khPre: "កំពុង", prPre: "껌뽕 ", koType: "ing" },
+        { khPre: "ធ្លាប់", prPre: "틀로압 ", koType: "past" },
+        { khPre: "អាច", prPre: "아앗 ", koType: "can" },
+        { khPre: "នឹង", prPre: "넝 ", koPrefix: "~할 것이다 (" }
+      ];
 
-        if (base.type === "동사") {
-          if (p.kh === "ចង់") {
-            k = "ចង់" + base.khmer; pr = "쩡 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'want');
-          } else if (p.kh === "មិន") {
-            k = "មិន" + base.khmer; pr = "먼 " + base.pron; m = "안 " + base.meaning;
-          } else if (p.kh === "កំពុង") {
-            k = "កំពុង" + base.khmer; pr = "껌뽕 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'ing');
-          } else {
-            k = "ធ្លាប់" + base.khmer; pr = "틀로압 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'past');
-          }
-        } else {
-          if (seed % 2 === 0) {
-            k = base.khmer + "ណាស់"; pr = base.pron + " 나아"; m = "매우 " + base.meaning;
-          } else {
-            k = base.khmer + "ពេក"; pr = base.pron + " 뻭"; m = "너무 " + base.meaning;
-          }
+      // 3. 형용사용 패턴 ('뻭' 독점 방지: 원형, 나아, 뻭, 본땍 등 분산)
+      const adjPatterns = [
+        { khPost: "ណាស់", prPost: " 나아", koPre: "매우 " },
+        { khPost: "បន្តិច", prPost: " 본땍", koPre: "조금 " },
+        { khPost: "ពេក", prPost: " 뻭", koPre: "너무 " },
+        { khPost: "", prPost: "", koPre: "정말 " }
+      ];
+
+      let vIdx = 0, aIdx = 0, seed = 0;
+      const verbs = RAW_VOCAB.filter(v => v.type === "동사");
+      const adjs = RAW_VOCAB.filter(v => v.type === "형용사");
+
+      while (bank.length < 1000) {
+        if (seed % 2 === 0 && verbs.length > 0) {
+          const base = verbs[vIdx % verbs.length];
+          const pat = verbPatterns[seed % verbPatterns.length];
+          let k = pat.khPre + base.khmer;
+          let pr = pat.prPre + base.pron;
+          let m = pat.koPrefix ? pat.koPrefix + base.meaning : conjugateKoreanVerb(base.meaning, pat.koType);
+          bank.push({ khmer: k, pron: pr, meaning: m, type: "동사" });
+          vIdx++;
+        } else if (adjs.length > 0) {
+          const base = adjs[aIdx % adjs.length];
+          const pat = adjPatterns[seed % adjPatterns.length];
+          let k = base.khmer + (pat.khPost ? pat.khPost : "");
+          let pr = base.pron + (pat.prPost ? pat.prPost : "");
+          let m = pat.koPre + base.meaning;
+          bank.push({ khmer: k, pron: pr, meaning: m, type: "형용사" });
+          aIdx++;
         }
-        bank.push({ khmer: k, pron: pr, meaning: m, type: base.type });
         seed++;
       }
       return bank;
@@ -1064,12 +1154,9 @@
         const audio = new Audio(url);
         currentAudioObj = audio;
 
-        let hasResolved = false;
         const timer = setTimeout(() => {
-          if (!hasResolved) {
-            audio.pause();
-            reject(new Error("Audio timeout"));
-          }
+          audio.pause();
+          reject(new Error("Audio timeout"));
         }, 3000);
 
         audio.onplay = () => clearTimeout(timer);
@@ -1260,6 +1347,7 @@
       updateStats();
     }
 
+    /* ★ 정답 시 자동 음성 재생 삭제: 내가 직접 스피커 버튼을 눌렀을 때만 재생됨 */
     function checkAnswer(chosenIndex, chosenOption) {
       if (isAnswered) return;
       isAnswered = true;
@@ -1304,7 +1392,7 @@
 
       if (isCorrect) {
         feedbackTitle.innerHTML = `<span style="color:var(--success);">🎉 정답입니다! (+1점, 연속 ${comboCount}회 달성)</span>`;
-        playSmartSpeech(currentQuestion.target.khmer, currentQuestion.target.pron);
+        // ★ 요청에 따라 자동 오디오 재생 코드 제거 완료 (내가 버튼 누를 때만 소리 남)
       } else {
         feedbackTitle.innerHTML = `<span style="color:var(--danger);">😢 아쉽습니다! 정답은 [${currentQuestion.target.meaning}] 입니다.</span>`;
       }
@@ -1368,7 +1456,6 @@
         });
       }
 
-      // 사전에 없을 때 구글 번역기 실시간 검색 버튼 노출
       if (filtered.length === 0 && query) {
         const isKhmer = /[\u1780-\u17FF]/.test(query);
         const sl = isKhmer ? 'km' : 'ko';
@@ -1392,7 +1479,7 @@
         row.className = 'vocab-row';
 
         let typeClass = 'type-badge';
-        if (item.type.includes('명사') || item.type.includes('간식') || item.type.includes('음식') || item.type.includes('과일') || item.type.includes('숫자')) typeClass += ' type-noun';
+        if (item.type.includes('명사') || item.type.includes('간식') || item.type.includes('음식') || item.type.includes('과일') || item.type.includes('숫자') || item.type.includes('호텔')) typeClass += ' type-noun';
         else if (item.type.includes('동사')) typeClass += ' type-verb';
         else if (item.type.includes('형용사')) typeClass += ' type-adj';
         else typeClass += ' type-expr';
