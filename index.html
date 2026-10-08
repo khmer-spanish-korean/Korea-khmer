@@ -778,7 +778,6 @@
       { khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "형용사" },
       { khmer: "ងងុយ", pron: "응어응오이", meaning: "졸리다", type: "형용사" },
       { khmer: "ស្រួល", pron: "스루얼", meaning: "편하다 / 편리하다", type: "형용사" },
-      { khmer: "ពិបាក", pron: "피바악", meaning: "불편하다 / 힘들다", type: "형용사" },
       { khmer: "កក់ក្តៅ", pron: "꺽끄다오", meaning: "따뜻하다", type: "형용사" },
       { khmer: "ស្អាតបាត", pron: "스앗빧", meaning: "단정하다 / 깔끔하다", type: "형용사" },
       { khmer: "កខ្វក់", pron: "꺼쿼억", meaning: "더럽다 / 지저분하다", type: "형용사" }
@@ -788,7 +787,7 @@
        ★ 실생활 대사전 (숫자 10단위 100까지 완벽 수록 + 실생활 필수 어휘 300+개)
        ========================================================================== */
     const EXTRA_DICTIONARY_WORDS = [
-      // 1. 숫자 (1~19 및 ★ 20부터 10단위 100까지 완벽 추가)
+      // 1. 숫자 (1~19 및 20부터 10단위 100까지)
       { khmer: "មួយ", pron: "믕 (무이)", meaning: "1 (하나)", type: "숫자" },
       { khmer: "ពីរ", pron: "삐", meaning: "2 (둘)", type: "숫자" },
       { khmer: "បី", pron: "바이", meaning: "3 (셋)", type: "숫자" },
@@ -813,7 +812,7 @@
       { khmer: "ពីររយ", pron: "삐러이", meaning: "200 (이백)", type: "숫자" },
       { khmer: "ប្រាំរយ", pron: "쁘람러이", meaning: "500 (오백)", type: "숫자" },
       { khmer: "មួយពាន់", pron: "믕뽀안", meaning: "1,000 (천 / 일천)", type: "숫자" },
-      { khmer: "មួយម៉ឺน", pron: "믕먼", meaning: "10,000 (만 / 일만)", type: "숫자" },
+      { khmer: "មួយម៉ឺន", pron: "믕먼", meaning: "10,000 (만 / 일만)", type: "숫자" },
       { khmer: "មួយសែន", pron: "믕싸엔", meaning: "100,000 (십만)", type: "숫자" },
       { khmer: "មួយលាន", pron: "믕리언", meaning: "1,000,000 (백만)", type: "숫자" },
 
@@ -938,7 +937,7 @@
       { khmer: "អ្នកជិតខាង", pron: "네악 찟캉", meaning: "이웃", type: "인물/명사" },
       { khmer: "ថៅកែ", pron: "타으까에", meaning: "사장님", type: "직업/호칭" },
       { khmer: "បុគ្គលិក", pron: "복꼬릭", meaning: "직원 / 회사원", type: "직업/명사" },
-      { khmer: "ភ្ញៀ우", pron: "프냐우", meaning: "손님 / 고객", type: "인물/명사" },
+      { khmer: "ភ្ញៀវ", pron: "프냐우", meaning: "손님 / 고객", type: "인물/명사" },
       { khmer: "គ្រូពេទ្យ", pron: "끄루뻭", meaning: "의사", type: "직업/명사" },
       { khmer: "គិលានុបដ្ឋាយិកា", pron: "끼리어누빧타이까", meaning: "간호사", type: "직업/명사" },
       { khmer: "ប៉ូលីស", pron: "뽈리", meaning: "경찰", type: "직업/명사" },
@@ -980,7 +979,7 @@
       { khmer: "ល្ងាច", pron: "르응이어치", meaning: "저녁", type: "시간/명사" },
       { khmer: "យប់", pron: "욥", meaning: "밤", type: "시간/명사" },
       { khmer: "ម៉ោង", pron: "마옹", meaning: "시 / 시간", type: "시간/명사" },
-      { khmer: "នាទី", pron: "涅띠 (니어띠)", meaning: "분", type: "시간/명사" },
+      { khmer: "នាទី", pron: "니어띠", meaning: "분", type: "시간/명사" },
       { khmer: "ថ្ងៃចន្ទ", pron: "틍아이짠", meaning: "월요일", type: "요일/명사" },
       { khmer: "ថ្ងៃអង្គារ", pron: "틍아이앙기어", meaning: "화요일", type: "요일/명사" },
       { khmer: "ថ្ងៃពុធ", pron: "틍아이뿟", meaning: "수요일", type: "요일/명사" },
@@ -1041,16 +1040,16 @@
       });
     }
 
-    /* ★ 뻭 도배 버그가 해결된 1,000문제 자동 생성기 (다양한 문법 분산) */
+    /* ★ 버그 수정: 모든 패턴이 차례대로 골고루 적용되는 1,000문제 자동 생성기 */
     function build1000QuestionBank() {
       const bank = [];
 
-      // 1. 순수 기본 어휘 먼저 모두 등록
+      // 1. 기본 어휘 등록
       RAW_VOCAB.forEach(item => {
         bank.push({ khmer: item.khmer, pron: item.pron, meaning: item.meaning, type: item.type });
       });
 
-      // 2. 동사용 문법 패턴 (6가지 다변화)
+      // 2. 동사용 문법 패턴 (6개 전체 활성화)
       const verbPatterns = [
         { khPre: "ចង់", prPre: "쩡 ", koType: "want" },
         { khPre: "អត់", prPre: "엇 ", koPrefix: "안 " },
@@ -1060,37 +1059,43 @@
         { khPre: "នឹង", prPre: "넝 ", koPrefix: "~할 것이다 (" }
       ];
 
-      // 3. 형용사용 패턴 ('뻭' 독점 방지: 원형, 나아, 뻭, 본땍 등 분산)
+      // 3. 형용사용 패턴 (고른 분산)
       const adjPatterns = [
         { khPost: "ណាស់", prPost: " 나아", koPre: "매우 " },
         { khPost: "បន្តិច", prPost: " 본땍", koPre: "조금 " },
         { khPost: "ពេក", prPost: " 뻭", koPre: "너무 " },
-        { khPost: "", prPost: "", koPre: "정말 " }
+        { khPost: "ខ្លាំង", prPost: " 클랑", koPre: "굉장히 " }
       ];
 
-      let vIdx = 0, aIdx = 0, seed = 0;
       const verbs = RAW_VOCAB.filter(v => v.type === "동사");
       const adjs = RAW_VOCAB.filter(v => v.type === "형용사");
 
+      // 독립 카운터를 두어 어떤 패턴도 누락되지 않고 100% 순환 생성
+      let vIdx = 0, aIdx = 0;
+      let vPatIdx = 0, aPatIdx = 0;
+      let toggle = 0;
+
       while (bank.length < 1000) {
-        if (seed % 2 === 0 && verbs.length > 0) {
+        if (toggle % 2 === 0 && verbs.length > 0) {
           const base = verbs[vIdx % verbs.length];
-          const pat = verbPatterns[seed % verbPatterns.length];
+          const pat = verbPatterns[vPatIdx % verbPatterns.length];
           let k = pat.khPre + base.khmer;
           let pr = pat.prPre + base.pron;
           let m = pat.koPrefix ? pat.koPrefix + base.meaning : conjugateKoreanVerb(base.meaning, pat.koType);
           bank.push({ khmer: k, pron: pr, meaning: m, type: "동사" });
           vIdx++;
+          vPatIdx++;
         } else if (adjs.length > 0) {
           const base = adjs[aIdx % adjs.length];
-          const pat = adjPatterns[seed % adjPatterns.length];
-          let k = base.khmer + (pat.khPost ? pat.khPost : "");
-          let pr = base.pron + (pat.prPost ? pat.prPost : "");
+          const pat = adjPatterns[aPatIdx % adjPatterns.length];
+          let k = base.khmer + pat.khPost;
+          let pr = base.pron + pat.prPost;
           let m = pat.koPre + base.meaning;
           bank.push({ khmer: k, pron: pr, meaning: m, type: "형용사" });
           aIdx++;
+          aPatIdx++;
         }
-        seed++;
+        toggle++;
       }
       return bank;
     }
@@ -1347,7 +1352,7 @@
       updateStats();
     }
 
-    /* ★ 정답 시 자동 음성 재생 삭제: 내가 직접 스피커 버튼을 눌렀을 때만 재생됨 */
+    /* 정답 시 자동 음성 재생 없음: 사용자가 스피커를 눌렀을 때만 재생 */
     function checkAnswer(chosenIndex, chosenOption) {
       if (isAnswered) return;
       isAnswered = true;
@@ -1392,7 +1397,6 @@
 
       if (isCorrect) {
         feedbackTitle.innerHTML = `<span style="color:var(--success);">🎉 정답입니다! (+1점, 연속 ${comboCount}회 달성)</span>`;
-        // ★ 요청에 따라 자동 오디오 재생 코드 제거 완료 (내가 버튼 누를 때만 소리 남)
       } else {
         feedbackTitle.innerHTML = `<span style="color:var(--danger);">😢 아쉽습니다! 정답은 [${currentQuestion.target.meaning}] 입니다.</span>`;
       }
