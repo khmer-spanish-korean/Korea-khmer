@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 구글 TTS 오디오 차단 방지를 위한 no-referrer 설정 -->
   <meta name="referrer" content="no-referrer">
-  <title>크메르어 동사·형용사 1,000 마스터 퀴즈</title>
+  <title>크메르어 종합 마스터 퀴즈 & 단어장</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -15,11 +14,8 @@
       --primary-light: #6366f1;
       --primary-dark: #3730a3;
       --gold: #f59e0b;
-      --gold-dark: #d97706;
       --success: #10b981;
-      --success-bg: #ecfdf5;
       --danger: #ef4444;
-      --danger-bg: #fef2f2;
       --bg: #0f172a;
       --card-bg: #1e293b;
       --card-sub: #334155;
@@ -58,7 +54,7 @@
       gap: 16px;
     }
 
-    /* 상단 헤더 & 컨트롤 */
+    /* 헤더 */
     header {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -84,9 +80,7 @@
       gap: 10px;
     }
 
-    .flag-icon {
-      font-size: 1.8rem;
-    }
+    .flag-icon { font-size: 1.8rem; }
 
     .app-title {
       font-size: 1.25rem;
@@ -122,13 +116,7 @@
       border-color: var(--primary-light);
     }
 
-    .btn-pill.active {
-      background: var(--primary);
-      border-color: var(--primary-light);
-      box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
-    }
-
-    /* 필터 탭 (전체, 동사, 형용사, 오답) */
+    /* 퀴즈 필터 탭 */
     .tabs-row {
       display: flex;
       gap: 6px;
@@ -173,21 +161,11 @@
       gap: 2px;
     }
 
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .stat-val {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); }
+    .stat-val { font-size: 0.95rem; font-weight: 700; color: #fff; }
     .stat-val.gold { color: var(--gold); }
     .stat-val.green { color: var(--success); }
 
-    /* 진행도 게이지 */
     .progress-container {
       width: 100%;
       height: 6px;
@@ -238,12 +216,8 @@
     .audio-mode-indicator {
       font-size: 0.75rem;
       color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 5px;
     }
 
-    /* 단어 표시부 */
     .word-display {
       text-align: center;
       padding: 15px 10px;
@@ -258,7 +232,6 @@
     .khmer-word {
       font-size: 3.2rem;
       font-weight: 700;
-      letter-spacing: 1px;
       color: #ffffff;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       line-height: 1.25;
@@ -296,16 +269,6 @@
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
     }
 
-    .btn-speak-main:hover {
-      background: var(--primary-light);
-      transform: scale(1.08);
-    }
-
-    .btn-speak-main:active {
-      transform: scale(0.95);
-    }
-
-    /* 4지 선다형 선택지 목록 */
     .options-grid {
       display: flex;
       flex-direction: column;
@@ -324,7 +287,6 @@
       flex-direction: column;
       gap: 6px;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
     }
 
     .option-btn:hover:not(.locked) {
@@ -374,7 +336,6 @@
       display: none;
     }
 
-    /* 정답 확인 시 나타나는 다른 모든 선지의 크메르어 & 발음 영역 */
     .option-revealed-area {
       display: none;
       padding-top: 8px;
@@ -421,57 +382,25 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: all 0.2s;
     }
 
-    .btn-opt-tts:hover {
-      background: var(--primary);
-      border-color: var(--primary-light);
-    }
-
-    /* 상태별 스타일 (정답 / 오답) */
     .option-btn.correct {
       background: rgba(16, 185, 129, 0.18) !important;
       border-color: var(--success) !important;
     }
-
-    .option-btn.correct .option-num {
-      background: var(--success);
-      color: #fff;
-    }
-
-    .option-btn.correct .option-status-badge {
-      display: inline-block;
-      background: var(--success);
-      color: #fff;
-    }
+    .option-btn.correct .option-num { background: var(--success); color: #fff; }
+    .option-btn.correct .option-status-badge { display: inline-block; background: var(--success); color: #fff; }
 
     .option-btn.wrong-chosen {
       background: rgba(239, 68, 68, 0.18) !important;
       border-color: var(--danger) !important;
     }
+    .option-btn.wrong-chosen .option-num { background: var(--danger); color: #fff; }
+    .option-btn.wrong-chosen .option-status-badge { display: inline-block; background: var(--danger); color: #fff; }
 
-    .option-btn.wrong-chosen .option-num {
-      background: var(--danger);
-      color: #fff;
-    }
+    .option-btn.distractor { opacity: 0.85; border-color: #475569; }
+    .option-btn.locked { cursor: default; }
 
-    .option-btn.wrong-chosen .option-status-badge {
-      display: inline-block;
-      background: var(--danger);
-      color: #fff;
-    }
-
-    .option-btn.distractor {
-      opacity: 0.85;
-      border-color: #475569;
-    }
-
-    .option-btn.locked {
-      cursor: default;
-    }
-
-    /* 결과 피드백 & 다음 문제 버튼 바 */
     .feedback-bar {
       display: none;
       flex-direction: column;
@@ -483,18 +412,9 @@
       animation: slideUp 0.3s ease;
     }
 
-    .feedback-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     .feedback-title {
       font-size: 1.05rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .btn-next-question {
@@ -507,20 +427,10 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
       box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-      transition: all 0.2s;
     }
 
-    .btn-next-question:hover {
-      background: linear-gradient(135deg, var(--primary-light), #818cf8);
-      transform: translateY(-2px);
-    }
-
-    /* 토스트 알림 (소리 재생 상태 등) */
+    /* 토스트 알림 */
     .toast-popup {
       position: fixed;
       bottom: 24px;
@@ -533,13 +443,9 @@
       border-radius: 30px;
       font-size: 0.88rem;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      gap: 8px;
       z-index: 1000;
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       pointer-events: none;
     }
 
@@ -548,7 +454,7 @@
       opacity: 1;
     }
 
-    /* 단어장 모달 창 */
+    /* 강화된 단어장 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -561,16 +467,14 @@
       z-index: 900;
     }
 
-    .modal-overlay.open {
-      display: flex;
-    }
+    .modal-overlay.open { display: flex; }
 
     .modal-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
       width: 100%;
-      max-width: 600px;
+      max-width: 620px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
@@ -586,33 +490,29 @@
       align-items: center;
     }
 
-    .modal-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
+    .modal-title { font-size: 1.1rem; font-weight: 700; }
+    .modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; }
 
     .modal-body {
       padding: 16px 20px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+    }
+
+    .search-filter-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .vocab-search-input {
       width: 100%;
       background: var(--card-sub);
       border: 1px solid var(--border);
-      padding: 10px 14px;
-      border-radius: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
       color: #fff;
       font-size: 0.95rem;
     }
@@ -620,6 +520,28 @@
     .vocab-search-input:focus {
       outline: none;
       border-color: var(--primary-light);
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    }
+
+    .search-tags-hint {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hint-chip {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .hint-chip:hover {
+      color: var(--gold);
+      border-color: var(--gold);
     }
 
     .vocab-list {
@@ -638,52 +560,45 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
+    .type-badge {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: #cbd5e1;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .type-noun { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; color: #93c5fd; }
+    .type-verb { background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #6ee7b7; }
+    .type-adj { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #fde68a; }
+    .type-expr { background: rgba(168, 85, 247, 0.2); border-color: #a855f7; color: #e9d5ff; }
 
-    /* 반응형 모바일 최적화 */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
     @media (max-width: 480px) {
       .khmer-word { font-size: 2.5rem; }
       .pron-text { font-size: 1.05rem; }
       .option-meaning { font-size: 1.02rem; }
-      .rev-khmer { font-size: 1.15rem; }
-      .header-actions { width: 100%; justify-content: flex-end; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- 헤더 영역 -->
     <header>
       <div class="header-top">
         <div class="logo-area">
           <span class="flag-icon">🇰🇭</span>
-          <div>
-            <h1 class="app-title">크메르어 1000 퀴즈</h1>
-          </div>
+          <h1 class="app-title">크메르어 1000 퀴즈 & 사전</h1>
         </div>
         <div class="header-actions">
-          <!-- 음성 모드 토글 버튼 -->
           <button class="btn-pill" id="btnAudioMode" title="발음 재생 모드 변경">
             <span id="audioModeIcon">🇰🇭</span>
             <span id="audioModeText">원어 발음</span>
           </button>
-          <!-- 오디오 테스트 버튼 -->
-          <button class="btn-pill" id="btnTestSound" title="소리가 정상 작동하는지 확인">
-            🔊 테스트
-          </button>
-          <!-- 전체 단어장 모달 버튼 -->
-          <button class="btn-pill" id="btnOpenVocab">
-            📖 단어장
-          </button>
+          <button class="btn-pill" id="btnTestSound">🔊 테스트</button>
+          <button class="btn-pill" id="btnOpenVocab">📖 통합 사전</button>
         </div>
       </div>
 
@@ -715,7 +630,6 @@
         </div>
       </div>
 
-      <!-- 진행 바 -->
       <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -730,30 +644,20 @@
         </div>
       </div>
 
-      <!-- 단어 메인 표시부 -->
       <div class="word-display">
         <div class="khmer-word khmer-font" id="displayKhmer">ញ៉ាំ</div>
         <div class="pronunciation-box">
           <span class="pron-text" id="displayPron">[냠]</span>
-          <button class="btn-speak-main" id="btnMainSpeak" title="크메르어 발음 듣기">
-            🔊
-          </button>
+          <button class="btn-speak-main" id="btnMainSpeak" title="크메르어 발음 듣기">🔊</button>
         </div>
       </div>
 
-      <!-- 4지 선다형 보기 목록 -->
-      <div class="options-grid" id="optionsContainer">
-        <!-- 4개 선택지가 JS로 렌더링됩니다 -->
-      </div>
+      <!-- 4지 선다형 목록 -->
+      <div class="options-grid" id="optionsContainer"></div>
 
-      <!-- 정답 확인 후 하단 피드백 및 다음 문제 버튼 바 -->
+      <!-- 피드백 바 -->
       <div class="feedback-bar" id="feedbackBar">
-        <div class="feedback-header">
-          <div class="feedback-title" id="feedbackTitle">
-            <!-- 정답 / 오답 메시지 -->
-          </div>
-        </div>
-
+        <div class="feedback-title" id="feedbackTitle"></div>
         <button class="btn-next-question" id="btnNext">
           다음 문제로 이동 ➔ (Enter / Space)
         </button>
@@ -761,15 +665,25 @@
     </main>
   </div>
 
-  <!-- 전체 단어장 모달 -->
+  <!-- 통합 사전 모달 -->
   <div class="modal-overlay" id="vocabModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 class="modal-title">📖 수록 어휘 사전 (검색 가능)</h3>
+        <h3 class="modal-title">📖 크메르어 통합 사전 (<span id="totalDictCount">0</span>단어)</h3>
         <button class="modal-close" id="btnCloseVocab">&times;</button>
       </div>
       <div class="modal-body">
-        <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="크메르어, 한글 발음, 한국어 뜻 검색...">
+        <div class="search-filter-box">
+          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="발음(빽, 엇, 냠, 루이), 크메르어, 한국어 뜻 검색...">
+          <div class="search-tags-hint">
+            <span>추천 검색어:</span>
+            <span class="hint-chip" onclick="quickSearch('빽')">#빽 / 뻭</span>
+            <span class="hint-chip" onclick="quickSearch('엇')">#엇 / 먼</span>
+            <span class="hint-chip" onclick="quickSearch('틀로압')">#틀로압</span>
+            <span class="hint-chip" onclick="quickSearch('루이')">#루이(돈)</span>
+            <span class="hint-chip" onclick="quickSearch('뜩')">#뜩(물)</span>
+          </div>
+        </div>
         <div class="vocab-list" id="vocabList"></div>
       </div>
     </div>
@@ -783,14 +697,13 @@
 
   <script>
     /* ==========================================================================
-       1. 필수 동사 및 형용사 어휘 데이터베이스
+       1. 필수 어휘 데이터베이스 (동사 + 형용사)
        ========================================================================== */
     const RAW_VOCAB = [
-      // === [핵심 동사군] ===
       { khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다 (친근한 표현)", type: "동사" },
       { khmer: "ហូប", pron: "호웁", meaning: "먹다 (일반 표현)", type: "동사" },
       { khmer: "ពិសា", pron: "피싸", meaning: "드시다 / 음용하다 (존칭)", type: "동사" },
-      { khmer: "ផឹក", pron: "팍 / 퍼익", meaning: "마시다", type: "동사" },
+      { khmer: "ផឹក", pron: "팍", meaning: "마시다", type: "동사" },
       { khmer: "ទៅ", pron: "떠으", meaning: "가다", type: "동사" },
       { khmer: "មក", pron: "모옥", meaning: "오다", type: "동사" },
       { khmer: "ធ្វើ", pron: "트워", meaning: "하다 / 만들다", type: "동사" },
@@ -874,7 +787,7 @@
       { khmer: "សន្យា", pron: "썬냐", meaning: "약속하다", type: "동사" },
       { khmer: "យល់ព្រម", pron: "욜프롬", meaning: "동의하다 / 승낙하다", type: "동사" },
 
-      // === [핵심 형용사군] ===
+      // 형용사
       { khmer: "ធំ", pron: "톰", meaning: "크다", type: "형용사" },
       { khmer: "តូច", pron: "또오이", meaning: "작다", type: "형용사" },
       { khmer: "ខ្ពស់", pron: "크뿌어", meaning: "높다 / 키가 크다", type: "형용사" },
@@ -922,72 +835,77 @@
       { khmer: "រវល់", pron: "러월", meaning: "바쁘다", type: "형용사" },
       { khmer: "ទំនេរ", pron: "뚬네", meaning: "한가하다 / 비어있다", type: "형용사" },
       { khmer: "ស្ងប់ស្ងាត់", pron: "스응옵스응앗", meaning: "조용하다 / 한적하다", type: "형용사" },
-      { khmer: "អ៊ូអរ", pron: "우어", meaning: "시끄럽다 / 번화하다", type: "형용사" },
-      { khmer: "ស្ងួត", pron: "스응우엇", meaning: "마르다 / 건조하다", type: "형용사" },
-      { khmer: "សើម", pron: "싸엄", meaning: "젖다 / 축축하다", type: "형용사" },
-      { khmer: "ភ្លឺ", pron: "플르", meaning: "밝다 / 환하다", type: "형용사" },
-      { khmer: "ងងឹត", pron: "응응엇", meaning: "어둡다 / 캄캄하다", type: "형용사" },
-      { khmer: "ទន់", pron: "똔", meaning: "부드럽다", type: "형용사" },
-      { khmer: "រឹង", pron: "렁", meaning: "딱딱하다 / 굳다", type: "형용사" },
-      { khmer: "ក្លាហាន", pron: "클라한", meaning: "용감하다 / 씩씩하다", type: "형용사" },
-      { khmer: "ខ្មាស", pron: "크마아", meaning: "부끄럽다 / 수줍다", type: "형용사" },
-      { khmer: "ឧស្សាហ៍", pron: "오싸", meaning: "부지런하다 / 성실하다", type: "형용사" },
-      { khmer: "ខ្ជិល", pron: "크찔", meaning: "게으르다", type: "형용사" },
       { khmer: "ស្រស់", pron: "스러오", meaning: "싱싱하다 / 상쾌하다", type: "형용사" },
-      { khmer: "ជ្រៅ", pron: "찌러우", meaning: "깊다", type: "형용사" },
-      { khmer: "រាក់", pron: "략", meaning: "얕다", type: "형용사" },
-      { khmer: "ទូលាយ", pron: "툴리어이", meaning: "넓다 / 널찍하다", type: "형용사" },
-      { khmer: "ចង្អៀត", pron: "쩡이엇", meaning: "좁다 / 비좁다", type: "형용사" },
-      { khmer: "ត្រឹមត្រូវ", pron: "뜨럼뜨러우", meaning: "정확하다 / 맞다", type: "형용사" },
-      { khmer: "ខុស", pron: "코오", meaning: "틀리다 / 잘못되다", type: "형용사" },
       { khmer: "សំខាន់", pron: "쌈칸", meaning: "중요하다", type: "형용사" },
       { khmer: "គ្រោះថ្នាក់", pron: "끄루어트낙", meaning: "위험하다", type: "형용사" },
       { khmer: "សុវត្ថិភាព", pron: "쏘왓티피읍", meaning: "안전하다", type: "형용사" },
-      { khmer: "កក់ក្តៅ", pron: "꺽끄다오", meaning: "따뜻하다", type: "형용사" },
-      { khmer: "ស្រួល", pron: "스루얼", meaning: "편하다 / 수월하다", type: "형용사" },
-      { khmer: "សាមញ្ញ", pron: "싸만", meaning: "단순하다 / 소박하다", type: "형용사" },
-      { khmer: "ស្មុគស្មាញ", pron: "스목스마안", meaning: "복잡하다 / 난해하다", type: "형용사" },
-      { khmer: "ឃ្លាន", pron: "클리언", meaning: "배고프다", type: "형용사" },
-      { khmer: "ស្រេក", pron: "스라엑", meaning: "목마르다", type: "형용사" },
       { khmer: "ហត់", pron: "혿", meaning: "피곤하다 / 지치다", type: "형용사" },
-      { khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "형용사" },
-      { khmer: "ជា", pron: "찌어", meaning: "낫다 / 건강을 되찾다", type: "형용사" }
+      { khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "형용사" }
     ];
 
     /* ==========================================================================
-       ★ 한글 음절 완성형 자동 조합 함수 (유니코드 연산 기반)
-       분리된 자모('아 ㄴ', '가 ㄴ')가 생성되지 않도록 정확한 받침 음절 합성
+       ★ 실생활 필수 명사 & 회화 부사/조사 (단어장에 추가 등록)
        ========================================================================== */
+    const EXTRA_DICTIONARY_WORDS = [
+      // 핵심 회화 표현 & 부사
+      { khmer: "ពេក", pron: "뻭 (빽)", meaning: "너무 / 지나치게 (형용사/동사 뒤)", type: "부사/표현" },
+      { khmer: "ណាស់", pron: "나아", meaning: "매우 / 정말 (형용사 뒤)", type: "부사/표현" },
+      { khmer: "អត់", pron: "엇", meaning: "안 / 없다 (구어체 부정어)", type: "부사/표현" },
+      { khmer: "មិន", pron: "먼", meaning: "안 ~하다 / 아니다 (표준 부정어)", type: "부사/표현" },
+      { khmer: "ធ្លាប់", pron: "틀로압", meaning: "~해본 적 있다 (경험)", type: "조동사/표현" },
+      { khmer: "មិនធ្លាប់", pron: "먼 틀로압", meaning: "~해본 적 없다", type: "조동사/표현" },
+      { khmer: "អត់ស្រឡាញ់", pron: "엇 스라라안", meaning: "안 사랑해 (구어체)", type: "회화표현" },
+      { khmer: "អត់ទៅ", pron: "엇 떠으", meaning: "안 가 (구어체)", type: "회화표현" },
+      { khmer: "អត់ញ៉ាំ", pron: "엇 냠", meaning: "안 먹어 (구어체)", type: "회화표현" },
+      { khmer: "សួស្តី", pron: "쑤어싸데이", meaning: "안녕하세요", type: "인사말" },
+      { khmer: "លាហើយ", pron: "리어 하어이", meaning: "안녕히 가세요 / 잘 가", type: "인사말" },
+      { khmer: "បាទ", pron: "빧", meaning: "네 (남성의 대답)", type: "감탄사" },
+      { khmer: "ចាស", pron: "짜아", meaning: "네 (여성의 대답)", type: "감탄사" },
+      { khmer: "ទេ", pron: "떼", meaning: "아니오 / 문장 끝 부정·의문 어미", type: "어미" },
+
+      // 실생활 필수 명사군
+      { khmer: "ទឹក", pron: "뜩", meaning: "물 / 음료", type: "명사" },
+      { khmer: "បាយ", pron: "바이", meaning: "밥 / 식사", type: "명사" },
+      { khmer: "លុយ", pron: "루이", meaning: "돈 (화폐)", type: "명사" },
+      { khmer: "មនុស្ស", pron: "머누", meaning: "사람 / 인간", type: "명사" },
+      { khmer: "ផ្ទះ", pron: "프떼어", meaning: "집 / 주택", type: "명사" },
+      { khmer: "ផ្សារ", pron: "프싸", meaning: "시장 / 마트", type: "명사" },
+      { khmer: "បន្ទប់ទឹក", pron: "번뚝뜩", meaning: "화장실", type: "명사" },
+      { khmer: "សណ្ឋាគារ", pron: "썬타끼어", meaning: "호텔 / 숙소", type: "명사" },
+      { khmer: "ឡាន", pron: "란", meaning: "자동차 / 차", type: "명사" },
+      { khmer: "ម៉ូតូ", pron: "모토", meaning: "오토바이", type: "명사" },
+      { khmer: "មិត្តភក្តិ", pron: "믓펵", meaning: "친구", type: "명사" },
+      { khmer: "ម្ហូប", pron: "머호웁", meaning: "음식 / 반찬", type: "명사" },
+      { khmer: "ស្រាបៀរ", pron: "스라비어", meaning: "맥주", type: "명사" },
+      { khmer: "កាហ្វេ", pron: "카페", meaning: "커피", type: "명사" },
+      { khmer: "តម្លៃ", pron: "떰라이", meaning: "가격 / 값", type: "명사" },
+      { khmer: "ថ្ងៃនេះ", pron: "틍아이니", meaning: "오늘", type: "명사" },
+      { khmer: "ថ្ងៃស្អែក", pron: "틍아이싸엑", meaning: "내일", type: "명사" },
+      { khmer: "ម្សិលមិញ", pron: "머설멘", meaning: "어제", type: "명사" },
+      { khmer: "ម៉ោង", pron: "마옹", meaning: "시 / 시간", type: "명사" },
+      { khmer: "ទូរស័ព្ទ", pron: "뚜어쌉", meaning: "전화기 / 스마트폰", type: "명사" },
+      { khmer: "ផ្លូវ", pron: "플러우", meaning: "길 / 도로", type: "명사" }
+    ];
+
+    /* 유니코드 음절 완성형 결합 (한글 조합 오류 해결) */
     function conjugateKoreanVerb(meaning, type) {
       return meaning.replace(/([가-힣]+)다/g, (match, stem) => {
-        if (type === 'want') {
-          // ~고 싶다
-          return stem + "고 싶다";
-        } else if (type === 'ing') {
-          // ~는 중이다 (ㄹ 받침 탈락 반영)
-          const lastCode = stem.charCodeAt(stem.length - 1);
-          if (lastCode >= 0xAC00 && lastCode <= 0xD7A3 && (lastCode - 0xAC00) % 28 === 8) {
-            return stem.slice(0, -1) + String.fromCharCode(lastCode - 8) + "는 중이다";
+        if (type === 'want') return stem + "고 싶다";
+        if (type === 'ing') {
+          const code = stem.charCodeAt(stem.length - 1);
+          if (code >= 0xAC00 && code <= 0xD7A3 && (code - 0xAC00) % 28 === 8) {
+            return stem.slice(0, -1) + String.fromCharCode(code - 8) + "는 중이다";
           }
           return stem + "는 중이다";
-        } else if (type === 'past') {
-          // ~한 적 있다 / ~ㄴ/은 적 있다 (완성형 유니코드 결합)
-          if (stem.endsWith("하")) {
-            return stem.slice(0, -1) + "해본 적 있다";
-          }
-          const lastCode = stem.charCodeAt(stem.length - 1);
-          if (lastCode >= 0xAC00 && lastCode <= 0xD7A3) {
-            const jong = (lastCode - 0xAC00) % 28;
-            if (jong === 0) {
-              // 받침 없는 모음 뒤: 'ㄴ' 받침(종성 인덱스 4) 합성 ('가' -> '간')
-              return stem.slice(0, -1) + String.fromCharCode(lastCode + 4) + " 적 있다";
-            } else if (jong === 8) {
-              // 'ㄹ' 받침: 'ㄹ' 탈락 후 'ㄴ' 받침 교체 ('알' -> '안', '만들' -> '만든')
-              return stem.slice(0, -1) + String.fromCharCode(lastCode - 8 + 4) + " 적 있다";
-            } else {
-              // 받침 있는 자음 뒤: '은 적 있다' 결합 ('먹' -> '먹은')
-              return stem + "은 적 있다";
-            }
+        }
+        if (type === 'past') {
+          if (stem.endsWith("하")) return stem.slice(0, -1) + "해본 적 있다";
+          const code = stem.charCodeAt(stem.length - 1);
+          if (code >= 0xAC00 && code <= 0xD7A3) {
+            const jong = (code - 0xAC00) % 28;
+            if (jong === 0) return stem.slice(0, -1) + String.fromCharCode(code + 4) + " 적 있다";
+            if (jong === 8) return stem.slice(0, -1) + String.fromCharCode(code - 8 + 4) + " 적 있다";
+            return stem + "은 적 있다";
           }
           return stem + "은 적 있다";
         }
@@ -1007,77 +925,80 @@
         { kh: "ពេក", pr: "뻭" }
       ];
 
-      // 1. 기본 원형 단어들 삽입
       RAW_VOCAB.forEach(item => {
-        bank.push({
-          khmer: item.khmer,
-          pron: item.pron,
-          meaning: item.meaning,
-          type: item.type
-        });
+        bank.push({ khmer: item.khmer, pron: item.pron, meaning: item.meaning, type: item.type });
       });
 
-      // 2. 체계적 어휘 합성으로 실전 1,000단어 확장
-      let seedIndex = 0;
+      let seed = 0;
       while (bank.length < 1000) {
-        const base = RAW_VOCAB[seedIndex % RAW_VOCAB.length];
-        const pIndex = Math.floor(bank.length / RAW_VOCAB.length) % prefixes.length;
-        const prefix = prefixes[pIndex];
-
-        let combinedKhmer = "";
-        let combinedPron = "";
-        let combinedMeaning = "";
+        const base = RAW_VOCAB[seed % RAW_VOCAB.length];
+        const p = prefixes[Math.floor(bank.length / RAW_VOCAB.length) % prefixes.length];
+        let k, pr, m;
 
         if (base.type === "동사") {
-          if (prefix.kh === "ចង់") {
-            combinedKhmer = "ចង់" + base.khmer;
-            combinedPron = "쩡 " + base.pron;
-            combinedMeaning = conjugateKoreanVerb(base.meaning, 'want');
-          } else if (prefix.kh === "មិន") {
-            combinedKhmer = "មិន" + base.khmer;
-            combinedPron = "먼 " + base.pron;
-            combinedMeaning = "안 " + base.meaning;
-          } else if (prefix.kh === "កំពុង") {
-            combinedKhmer = "កំពុង" + base.khmer;
-            combinedPron = "껌뽕 " + base.pron;
-            combinedMeaning = conjugateKoreanVerb(base.meaning, 'ing');
+          if (p.kh === "ចង់") {
+            k = "ចង់" + base.khmer; pr = "쩡 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'want');
+          } else if (p.kh === "មិន") {
+            k = "មិន" + base.khmer; pr = "먼 " + base.pron; m = "안 " + base.meaning;
+          } else if (p.kh === "កំពុង") {
+            k = "កំពុង" + base.khmer; pr = "껌뽕 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'ing');
           } else {
-            combinedKhmer = "ធ្លាប់" + base.khmer;
-            combinedPron = "틀로압 " + base.pron;
-            // 완성형 한글 음절 조합으로 치환
-            combinedMeaning = conjugateKoreanVerb(base.meaning, 'past');
+            k = "ធ្លាប់" + base.khmer; pr = "틀로압 " + base.pron; m = conjugateKoreanVerb(base.meaning, 'past');
           }
         } else {
-          // 형용사
-          if (pIndex % 2 === 0) {
-            combinedKhmer = base.khmer + "ណាស់";
-            combinedPron = base.pron + " 나아";
-            combinedMeaning = "매우 " + base.meaning;
+          if (seed % 2 === 0) {
+            k = base.khmer + "ណាស់"; pr = base.pron + " 나아"; m = "매우 " + base.meaning;
           } else {
-            combinedKhmer = base.khmer + "ពេក";
-            combinedPron = base.pron + " 뻭";
-            combinedMeaning = "너무 " + base.meaning;
+            k = base.khmer + "ពេក"; pr = base.pron + " 뻭"; m = "너무 " + base.meaning;
           }
         }
-
-        bank.push({
-          khmer: combinedKhmer,
-          pron: combinedPron,
-          meaning: combinedMeaning,
-          type: base.type
-        });
-
-        seedIndex++;
+        bank.push({ khmer: k, pron: pr, meaning: m, type: base.type });
+        seed++;
       }
       return bank;
     }
 
     const VOCAB_DATABASE = build1000QuestionBank();
 
+    // ★ 단어장 통합 검색 풀: 퀴즈 1,000개 + 일상 필수 명사/회화 표현 전체 결합 및 중복 제거
+    const MASTER_DICTIONARY = (() => {
+      const map = new Map();
+      [...EXTRA_DICTIONARY_WORDS, ...RAW_VOCAB, ...VOCAB_DATABASE].forEach(item => {
+        if (!map.has(item.khmer)) {
+          map.set(item.khmer, item);
+        }
+      });
+      return Array.from(map.values());
+    })();
+
+    /* ==========================================================================
+       ★ 한국어 발음 유연 검색 엔진 (스마트 정규화)
+       ========================================================================== */
+    function normalizeSearchKey(str) {
+      if (!str) return '';
+      return str.toLowerCase()
+        .replace(/\s+/g, '') // 공백 제거 (먼쓰러랑 -> 먼쓰러랑)
+        .replace(/[\[\]\(\)\/]/g, '') // 기호 제거
+        .replace(/빽/g, '뻭') // 빽 -> 뻭 호환
+        .replace(/빼/g, '뻬')
+        .replace(/애/g, '에') // 애/에 호환
+        .replace(/개/g, '게')
+        .replace(/배/g, '베')
+        .replace(/새/g, '세')
+        .replace(/재/g, '제')
+        .replace(/채/g, '체')
+        .replace(/태/g, '테')
+        .replace(/패/g, '페')
+        .replace(/쓰/g, '스') // 쓰/스 호환
+        .replace(/뜨/g, '트') // 뜨/트 호환
+        .replace(/끄/g, '크')
+        .replace(/호웁/g, '홉');
+    }
+
     /* ==========================================================================
        2. 하이브리드 음성 엔진
        ========================================================================== */
-    let audioMode = 'khmer'; 
+    let audioMode = 'khmer';
     let currentAudioObj = null;
 
     function showToast(icon, text) {
@@ -1086,9 +1007,7 @@
       document.getElementById('toastMsg').textContent = text;
       toast.classList.add('show');
       clearTimeout(toast.timer);
-      toast.timer = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2200);
+      toast.timer = setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
     function playGoogleKhmerAudio(text) {
@@ -1097,48 +1016,26 @@
           currentAudioObj.pause();
           currentAudioObj = null;
         }
-
         const encoded = encodeURIComponent(text);
         const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=km&q=${encoded}`;
         const audio = new Audio(url);
         currentAudioObj = audio;
 
-        let hasResolved = false;
         const timer = setTimeout(() => {
-          if (!hasResolved) {
-            audio.pause();
-            reject(new Error("Audio timeout"));
-          }
+          audio.pause();
+          reject(new Error("Audio timeout"));
         }, 3000);
 
-        audio.onplay = () => {
-          hasResolved = true;
-          clearTimeout(timer);
-          resolve();
-        };
-
+        audio.onplay = () => clearTimeout(timer);
         audio.onended = () => resolve();
-        audio.onerror = (e) => {
-          clearTimeout(timer);
-          reject(e);
-        };
-
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(err => {
-            clearTimeout(timer);
-            reject(err);
-          });
-        }
+        audio.onerror = (e) => { clearTimeout(timer); reject(e); };
+        audio.play().catch(err => { clearTimeout(timer); reject(err); });
       });
     }
 
     function playKoreanSpeech(pronText) {
       return new Promise((resolve) => {
-        if (!('speechSynthesis' in window)) {
-          resolve();
-          return;
-        }
+        if (!('speechSynthesis' in window)) return resolve();
         window.speechSynthesis.cancel();
         const clean = pronText.replace(/[\[\]\(\)\/]/g, ' ').trim();
         const utt = new SpeechSynthesisUtterance(clean);
@@ -1159,11 +1056,7 @@
       }
 
       if (audioMode === 'both') {
-        try {
-          await playGoogleKhmerAudio(khmerText);
-        } catch (e) {
-          console.warn("Khmer TTS fallback", e);
-        }
+        try { await playGoogleKhmerAudio(khmerText); } catch (e) {}
         await new Promise(r => setTimeout(r, 200));
         await playKoreanSpeech(pronText);
         return;
@@ -1178,7 +1071,7 @@
     }
 
     /* ==========================================================================
-       3. 퀴즈 상태 관리 & 1000문제 엔진
+       3. 퀴즈 게임 상태 관리
        ========================================================================== */
     let currentMode = 'all'; 
     let questionPool = [];
@@ -1254,14 +1147,9 @@
       
       const shuffledDistractors = sameTypeVocab.sort(() => Math.random() - 0.5);
       const chosenDistractors = shuffledDistractors.slice(0, 3);
-
       const options = [targetWord, ...chosenDistractors].sort(() => Math.random() - 0.5);
 
-      currentQuestion = {
-        target: targetWord,
-        options: options
-      };
-
+      currentQuestion = { target: targetWord, options: options };
       renderQuestionCard();
     }
 
@@ -1409,33 +1297,64 @@
     }
 
     /* ==========================================================================
-       4. 단어장 모달 및 검색 기능
+       4. 스마트 사전 검색 렌더링 엔진 (한국어 발음 유연 매칭)
        ========================================================================== */
-    function renderVocabList(filterText = '') {
+    function renderVocabList(rawQuery = '') {
       const container = document.getElementById('vocabList');
       container.innerHTML = '';
 
-      const filtered = RAW_VOCAB.filter(item => {
-        const query = filterText.toLowerCase();
-        return item.khmer.includes(query) || 
-               item.pron.toLowerCase().includes(query) || 
-               item.meaning.toLowerCase().includes(query);
-      });
+      const query = rawQuery.trim();
+      const normQuery = normalizeSearchKey(query);
+
+      let filtered = [];
+
+      if (!query) {
+        // 검색어가 없을 때는 전체 중 상위 60개 미리 표시
+        filtered = MASTER_DICTIONARY.slice(0, 60);
+      } else {
+        filtered = MASTER_DICTIONARY.filter(item => {
+          const itemKhmer = item.khmer;
+          const itemPronNorm = normalizeSearchKey(item.pron);
+          const itemMeanNorm = normalizeSearchKey(item.meaning);
+          const itemTypeNorm = normalizeSearchKey(item.type);
+
+          // 크메르어 원어 직접 검색
+          if (itemKhmer.includes(query)) return true;
+
+          // 정규화된 한국어 발음 유연 검색 (빽/뻭, 띄어쓰기 무시 일치)
+          if (itemPronNorm.includes(normQuery)) return true;
+
+          // 한국어 뜻 유연 검색
+          if (itemMeanNorm.includes(normQuery)) return true;
+
+          // 품사 검색 (명사, 동사, 표현 등)
+          if (itemTypeNorm.includes(normQuery)) return true;
+
+          return false;
+        });
+      }
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">검색된 단어가 없습니다.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:25px; color:var(--text-muted);">검색된 단어가 없습니다.<br><span style="font-size:0.8rem; color:#64748b;">(힌트: "빽", "엇", "물", "바이" 등으로 검색해 보세요)</span></div>';
         return;
       }
 
       filtered.forEach(item => {
         const row = document.createElement('div');
         row.className = 'vocab-row';
+
+        let typeClass = 'type-badge';
+        if (item.type.includes('명사')) typeClass += ' type-noun';
+        else if (item.type.includes('동사')) typeClass += ' type-verb';
+        else if (item.type.includes('형용사')) typeClass += ' type-adj';
+        else typeClass += ' type-expr';
+
         row.innerHTML = `
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <span class="khmer-font" style="font-size:1.3rem; font-weight:700;">${item.khmer}</span>
               <span style="color:var(--gold); font-size:0.95rem; font-weight:600;">[${item.pron}]</span>
-              <span style="font-size:0.75rem; color:#94a3b8; border:1px solid #475569; padding:1px 6px; border-radius:10px;">${item.type}</span>
+              <span class="${typeClass}">${item.type}</span>
             </div>
             <div style="font-size:0.95rem; color:#f1f5f9; margin-top:3px;">${item.meaning}</div>
           </div>
@@ -1447,10 +1366,18 @@
       });
     }
 
+    function quickSearch(word) {
+      const input = document.getElementById('vocabSearch');
+      input.value = word;
+      renderVocabList(word);
+      input.focus();
+    }
+
     /* ==========================================================================
-       5. 이벤트 리스너 & 초기화
+       5. 초기화 및 이벤트 리스너
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('totalDictCount').textContent = MASTER_DICTIONARY.length;
       loadSavedWrongs();
       initQuizPool();
 
@@ -1465,17 +1392,17 @@
           audioMode = 'korean';
           document.getElementById('audioModeIcon').textContent = '🗣️';
           document.getElementById('audioModeText').textContent = '한글 독음';
-          showToast('🗣️', '한글 독음 읽기 모드로 변경되었습니다.');
+          showToast('🗣️', '한글 독음 읽기 모드');
         } else if (audioMode === 'korean') {
           audioMode = 'both';
           document.getElementById('audioModeIcon').textContent = '🔄';
           document.getElementById('audioModeText').textContent = '연속 듣기';
-          showToast('🔄', '원어 + 한글 독음 연속 재생 모드입니다.');
+          showToast('🔄', '원어 + 한글 독음 연속 재생');
         } else {
           audioMode = 'khmer';
           document.getElementById('audioModeIcon').textContent = '🇰🇭';
           document.getElementById('audioModeText').textContent = '원어 발음';
-          showToast('🇰🇭', '크메르어 원어민 음성 모드로 변경되었습니다.');
+          showToast('🇰🇭', '원어 발음 모드');
         }
       };
 
@@ -1486,7 +1413,7 @@
       const vocabModal = document.getElementById('vocabModal');
       document.getElementById('btnOpenVocab').onclick = () => {
         vocabModal.classList.add('open');
-        renderVocabList();
+        renderVocabList(document.getElementById('vocabSearch').value);
       };
       document.getElementById('btnCloseVocab').onclick = () => {
         vocabModal.classList.remove('open');
