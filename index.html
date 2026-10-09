@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="referrer" content="no-referrer">
-  <title>크메르어 종합 퀴즈 & 실생활·성경 대사전</title>
+  <title>크메르어 2000 종합 퀴즈 & 대사전</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -23,584 +22,105 @@
       --text-muted: #94a3b8;
       --border: #475569;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 14px;
-      overflow-x: hidden;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 12px; overflow-x: hidden; }
     .khmer-font { font-family: 'Kantumruy Pro', sans-serif; }
-
-    #confettiCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 680px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    header {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    #confettiCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; }
+    .container { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 12px; }
+    header { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); }
+    .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     .logo-area { display: flex; align-items: center; gap: 8px; }
-    .flag-icon { font-size: 1.8rem; }
-
-    .app-title {
-      font-size: 1.18rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #fbbf24, #f59e0b, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
+    .flag-icon { font-size: 1.6rem; }
+    .app-title { font-size: 1.15rem; font-weight: 900; background: linear-gradient(135deg, #fbbf24, #f59e0b, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .header-actions { display: flex; align-items: center; gap: 6px; }
-
-    .btn-pill {
-      background: var(--card-sub);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 6px 11px;
-      border-radius: 18px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.2s ease;
-    }
-
+    .btn-pill { background: var(--card-sub); color: var(--text); border: 1px solid var(--border); padding: 5px 10px; border-radius: 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; }
     .btn-pill:hover { background: var(--primary); border-color: var(--primary-light); }
     .btn-pill.gold { border-color: var(--gold); color: var(--gold-light); }
-
-    .tabs-row {
-      display: flex;
-      gap: 4px;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 4px;
-      border-radius: 10px;
-      overflow-x: auto;
-    }
-
-    .tab-btn {
-      flex: 1;
-      white-space: nowrap;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 8px 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
+    .tabs-row { display: flex; gap: 4px; background: rgba(15, 23, 42, 0.6); padding: 4px; border-radius: 10px; overflow-x: auto; }
+    .tab-btn { flex: 1; white-space: nowrap; background: transparent; border: none; color: var(--text-muted); padding: 7px 6px; font-size: 0.78rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
     .tab-btn.active { background: var(--primary); color: #fff; }
-
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.45);
-      padding: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      text-align: center;
-    }
-
+    .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: rgba(15, 23, 42, 0.45); padding: 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
     .stat-item { display: flex; flex-direction: column; gap: 2px; }
-    .stat-label { font-size: 0.7rem; color: var(--text-muted); }
-    .stat-val { font-size: 0.95rem; font-weight: 700; color: #fff; }
+    .stat-label { font-size: 0.68rem; color: var(--text-muted); }
+    .stat-val { font-size: 0.92rem; font-weight: 700; color: #fff; }
     .stat-val.gold { color: var(--gold-light); }
     .stat-val.green { color: var(--success); }
     .stat-val.lives { font-size: 0.92rem; letter-spacing: 2px; }
-
-    .progress-container {
-      width: 100%;
-      height: 6px;
-      background: #334155;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #6366f1, #10b981);
-      transition: width 0.3s ease;
-    }
-
-    .quiz-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.45);
-      position: relative;
-      transition: transform 0.15s ease;
-    }
-
-    .quiz-card.shake {
-      animation: shakeCard 0.45s cubic-bezier(.36,.07,.19,.97) both;
-      border-color: var(--danger);
-    }
-
-    @keyframes shakeCard {
-      10%, 90% { transform: translate3d(-3px, 0, 0); }
-      20%, 80% { transform: translate3d(5px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-      40%, 60% { transform: translate3d(6px, 0, 0); }
-    }
-
+    .progress-container { width: 100%; height: 6px; background: #334155; border-radius: 3px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #10b981); transition: width 0.3s ease; }
+    .quiz-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.45); position: relative; }
+    .quiz-card.shake { animation: shakeCard 0.45s cubic-bezier(.36,.07,.19,.97) both; border-color: var(--danger); }
+    @keyframes shakeCard { 10%, 90% { transform: translate3d(-3px, 0, 0); } 20%, 80% { transform: translate3d(5px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
     .card-meta { display: flex; justify-content: space-between; align-items: center; }
-
-    .category-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(99, 102, 241, 0.2);
-      color: #a5b4fc;
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 14px;
-    }
-
-    .word-display {
-      text-align: center;
-      padding: 16px 10px;
-      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .khmer-word {
-      font-size: 2.9rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      line-height: 1.25;
-    }
-
-    .pronunciation-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 24px;
-    }
-
-    .pron-text { font-size: 1.15rem; font-weight: 700; color: var(--gold); }
-
-    .btn-speak-main {
-      background: var(--primary);
-      border: none;
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
-    }
-
-    .options-grid { display: flex; flex-direction: column; gap: 10px; }
-
-    .option-btn {
-      background: var(--card-sub);
-      border: 2px solid var(--border);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 13px 15px;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .option-btn:hover:not(.locked) {
-      background: #475569;
-      border-color: var(--primary-light);
-      transform: translateY(-2px);
-    }
-
-    .option-main-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .option-left { display: flex; align-items: center; gap: 12px; }
-
-    .option-num {
-      width: 26px;
-      height: 26px;
-      background: rgba(15, 23, 42, 0.6);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .option-meaning { font-size: 1.12rem; font-weight: 600; }
-
-    .option-status-badge {
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 8px;
-      display: none;
-    }
-
-    .option-revealed-area {
-      display: none;
-      padding-top: 8px;
-      margin-top: 6px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.15);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .revealed-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .rev-word-group { display: flex; align-items: center; gap: 10px; }
-    .rev-khmer { font-size: 1.35rem; font-weight: 700; color: #ffffff; line-height: 1; }
-    .rev-pron { font-size: 0.95rem; font-weight: 600; color: var(--gold); }
-
-    .btn-opt-tts {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 4px 10px;
-      border-radius: 16px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
+    .category-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(99, 102, 241, 0.2); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.4); font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 12px; }
+    .word-display { text-align: center; padding: 14px 10px; background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%); border-radius: 16px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .khmer-word { font-size: 2.8rem; font-weight: 700; color: #ffffff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); line-height: 1.25; }
+    .pronunciation-box { display: inline-flex; align-items: center; gap: 8px; background: rgba(30, 41, 59, 0.85); border: 1px solid var(--border); padding: 5px 14px; border-radius: 20px; }
+    .pron-text { font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+    .btn-speak-main { background: var(--primary); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4); }
+    .options-grid { display: flex; flex-direction: column; gap: 9px; }
+    .option-btn { background: var(--card-sub); border: 2px solid var(--border); color: var(--text); border-radius: 14px; padding: 12px 14px; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px; transition: all 0.2s; }
+    .option-btn:hover:not(.locked) { background: #475569; border-color: var(--primary-light); }
+    .option-main-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .option-left { display: flex; align-items: center; gap: 10px; }
+    .option-num { width: 24px; height: 24px; background: rgba(15, 23, 42, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0; }
+    .option-meaning { font-size: 1.05rem; font-weight: 600; }
+    .option-status-badge { font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 6px; display: none; }
+    .option-revealed-area { display: none; padding-top: 6px; margin-top: 4px; border-top: 1px dashed rgba(255, 255, 255, 0.15); }
+    .revealed-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+    .rev-word-group { display: flex; align-items: center; gap: 8px; }
+    .rev-khmer { font-size: 1.25rem; font-weight: 700; color: #fff; }
+    .rev-pron { font-size: 0.9rem; font-weight: 600; color: var(--gold); }
+    .btn-opt-tts { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); color: var(--text); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
     .option-btn.correct { background: rgba(16, 185, 129, 0.18) !important; border-color: var(--success) !important; }
     .option-btn.correct .option-num { background: var(--success); color: #fff; }
     .option-btn.correct .option-status-badge { display: inline-block; background: var(--success); color: #fff; }
-
     .option-btn.wrong-chosen { background: rgba(239, 68, 68, 0.18) !important; border-color: var(--danger) !important; }
     .option-btn.wrong-chosen .option-num { background: var(--danger); color: #fff; }
     .option-btn.wrong-chosen .option-status-badge { display: inline-block; background: var(--danger); color: #fff; }
-
     .option-btn.distractor { opacity: 0.85; border-color: #475569; }
     .option-btn.locked { cursor: default; }
-
-    .feedback-bar {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border);
-      animation: slideUp 0.3s ease;
-    }
-
-    .feedback-title { font-size: 1.05rem; font-weight: 700; }
-
-    .btn-next-question {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      border: none;
-      color: #fff;
-      padding: 13px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-    }
-
-    .toast-popup {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid var(--gold);
-      color: #fff;
-      padding: 9px 18px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      z-index: 1000;
-      opacity: 0;
-      transition: all 0.3s ease;
-      pointer-events: none;
-      text-align: center;
-      max-width: 90vw;
-    }
-
+    .feedback-bar { display: none; flex-direction: column; gap: 10px; padding: 12px; border-radius: 14px; background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border); animation: slideUp 0.3s ease; }
+    .feedback-title { font-size: 1rem; font-weight: 700; }
+    .btn-next-question { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border: none; color: #fff; padding: 12px; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .toast-popup { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(15, 23, 42, 0.95); border: 1px solid var(--gold); color: #fff; padding: 8px 16px; border-radius: 24px; font-size: 0.85rem; font-weight: 600; z-index: 1000; opacity: 0; transition: all 0.3s ease; pointer-events: none; text-align: center; max-width: 90vw; }
     .toast-popup.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 900;
-    }
-
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.72); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 900; }
     .modal-overlay.open { display: flex; }
-
-    .modal-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 650px;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-    }
-
-    .modal-header {
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-title { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .modal-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 620px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+    .modal-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-title { font-size: 1.05rem; font-weight: 700; }
     .modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; }
-
-    .modal-body {
-      padding: 16px 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .gameover-box {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 0;
-    }
-    .gameover-icon { font-size: 3.5rem; }
-    .gameover-title { font-size: 1.5rem; font-weight: 900; color: var(--danger); }
-    .gameover-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
-    .btn-restart {
-      width: 100%;
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-    }
-
-    .hall-hero {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(79, 70, 229, 0.15));
-      border: 1px solid var(--gold);
-      border-radius: 14px;
-      padding: 14px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .hall-hero-val { font-size: 2rem; font-weight: 900; color: var(--gold-light); }
-    .hall-hero-label { font-size: 0.85rem; color: #cbd5e1; }
-
-    .badge-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .badge-card {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s;
-    }
-
-    .badge-card.unlocked {
-      border-color: var(--gold);
-      background: rgba(245, 158, 11, 0.08);
-    }
-
-    .badge-icon { font-size: 1.8rem; filter: grayscale(100%); opacity: 0.35; }
-    .badge-card.unlocked .badge-icon { filter: none; opacity: 1; }
+    .modal-body { padding: 14px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .gameover-box { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 10px 0; }
+    .gameover-icon { font-size: 3.2rem; }
+    .gameover-title { font-size: 1.4rem; font-weight: 900; color: var(--danger); }
+    .gameover-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+    .btn-restart { width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; padding: 12px; border-radius: 12px; font-size: 1rem; font-weight: 800; cursor: pointer; }
+    .hall-hero { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(79, 70, 229, 0.15)); border: 1px solid var(--gold); border-radius: 12px; padding: 12px; text-align: center; display: flex; flex-direction: column; gap: 2px; }
+    .hall-hero-val { font-size: 1.8rem; font-weight: 900; color: var(--gold-light); }
+    .hall-hero-label { font-size: 0.8rem; color: #cbd5e1; }
+    .badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .badge-card { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 10px; padding: 10px; display: flex; align-items: center; gap: 8px; }
+    .badge-card.unlocked { border-color: var(--gold); background: rgba(245, 158, 11, 0.08); }
+    .badge-icon { font-size: 1.6rem; opacity: 0.35; }
+    .badge-card.unlocked .badge-icon { opacity: 1; }
     .badge-info { display: flex; flex-direction: column; gap: 2px; }
-    .badge-title { font-size: 0.88rem; font-weight: 700; color: #fff; }
-    .badge-desc { font-size: 0.72rem; color: var(--text-muted); }
-
-    .vocab-search-input {
-      width: 100%;
-      background: var(--card-sub);
-      border: 1px solid var(--border);
-      padding: 11px 13px;
-      border-radius: 12px;
-      color: #fff;
-      font-size: 0.95rem;
-    }
+    .badge-title { font-size: 0.82rem; font-weight: 700; color: #fff; }
+    .badge-desc { font-size: 0.7rem; color: var(--text-muted); }
+    .vocab-search-input { width: 100%; background: var(--card-sub); border: 1px solid var(--border); padding: 10px 12px; border-radius: 10px; color: #fff; font-size: 0.9rem; }
     .vocab-search-input:focus { outline: none; border-color: var(--primary-light); }
-
-    .search-tags-hint {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .hint-chip {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+    .search-tags-hint { display: flex; gap: 4px; flex-wrap: wrap; font-size: 0.72rem; color: var(--text-muted); }
+    .hint-chip { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); padding: 2px 6px; border-radius: 8px; cursor: pointer; }
     .hint-chip:hover { color: var(--gold); border-color: var(--gold); }
-
-    .vocab-list { display: flex; flex-direction: column; gap: 8px; }
-    .vocab-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(15, 23, 42, 0.5);
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .type-badge {
-      font-size: 0.72rem;
-      padding: 2px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      color: #cbd5e1;
-    }
+    .vocab-list { display: flex; flex-direction: column; gap: 6px; }
+    .vocab-row { display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.5); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
+    .type-badge { font-size: 0.7rem; padding: 2px 5px; border-radius: 6px; border: 1px solid var(--border); color: #cbd5e1; }
     .type-noun { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; color: #93c5fd; }
     .type-verb { background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #6ee7b7; }
     .type-adj { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #fde68a; }
     .type-bible { background: rgba(236, 72, 153, 0.2); border-color: #ec4899; color: #fbcfe8; }
-    .type-expr { background: rgba(168, 85, 247, 0.2); border-color: #a855f7; color: #e9d5ff; }
-
-    .google-live-card {
-      background: rgba(79, 70, 229, 0.15);
-      border: 1px solid var(--primary-light);
-      border-radius: 12px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-      margin-top: 6px;
-    }
-    .btn-google-translate {
-      background: var(--primary);
-      border: none;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-    @media (max-width: 480px) {
-      .khmer-word { font-size: 2.2rem; }
-      .pron-text { font-size: 1rem; }
-      .option-meaning { font-size: 0.95rem; }
-      .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 8px 4px; }
-      .stat-val { font-size: 0.88rem; }
-      .badge-grid { grid-template-columns: 1fr; }
-    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -612,13 +132,11 @@
       <div class="header-top">
         <div class="logo-area">
           <span class="flag-icon">🇰🇭</span>
-          <h1 class="app-title">크메르어 종합 퀴즈 & 대사전</h1>
+          <h1 class="app-title">크메르어 종합 퀴즈 2000</h1>
         </div>
         <div class="header-actions">
-          <button class="btn-pill gold" id="btnOpenHall" title="명예의 전당 및 뱃지">
-            🏆 명예의 전당
-          </button>
-          <button class="btn-pill" id="btnAudioMode" title="발음 재생 모드">
+          <button class="btn-pill gold" id="btnOpenHall">🏆 명예의 전당</button>
+          <button class="btn-pill" id="btnAudioMode">
             <span id="audioModeIcon">🇰🇭</span>
             <span id="audioModeText">원어 발음</span>
           </button>
@@ -626,13 +144,12 @@
         </div>
       </div>
 
-      <!-- 모드 탭 (성경 1001~2000번 포함) -->
       <div class="tabs-row">
-        <button class="tab-btn active" data-mode="all">일반 (1~1000)</button>
+        <button class="tab-btn active" data-mode="general">일반 (1~1000)</button>
         <button class="tab-btn" data-mode="bible" style="color: #fbcfe8;">📖 성경 (1001~2000)</button>
-        <button class="tab-btn" data-mode="verb">고급 동사</button>
-        <button class="tab-btn" data-mode="adj">고급 형용사</button>
-        <button class="tab-btn" data-mode="wrong">오답 복습 (<span id="wrongCount">0</span>)</button>
+        <button class="tab-btn" data-mode="verb">동사만</button>
+        <button class="tab-btn" data-mode="adj">형용사만</button>
+        <button class="tab-btn" data-mode="wrong">오답 (<span id="wrongCount">0</span>)</button>
       </div>
 
       <div class="stats-bar">
@@ -649,7 +166,7 @@
           <span class="stat-val gold" id="statRate">0%</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">맞힌 문제 / 풀이</span>
+          <span class="stat-label">정답 / 풀이</span>
           <span class="stat-val green"><span id="statCorrect">0</span> / <span id="statSolved">0</span></span>
         </div>
         <div class="stat-item">
@@ -669,14 +186,14 @@
 
     <main class="quiz-card" id="quizCard">
       <div class="card-meta">
-        <span class="category-badge" id="badgeCategory">고급 동사</span>
-        <span style="font-size: 0.72rem; color: var(--text-muted);">중복 없는 단독 출제 | [1][2][3][4] 답안 선택</span>
+        <span class="category-badge" id="badgeCategory">동사</span>
+        <span style="font-size: 0.72rem; color: var(--text-muted);">중복 없는 단독 출제 | [1][2][3][4] 선택</span>
       </div>
 
       <div class="word-display">
-        <div class="khmer-word khmer-font" id="displayKhmer">ញ៉ាំ</div>
+        <div class="khmer-word khmer-font" id="displayKhmer">ជា</div>
         <div class="pronunciation-box">
-          <span class="pron-text" id="displayPron">[냠]</span>
+          <span class="pron-text" id="displayPron">[찌어]</span>
           <button class="btn-speak-main" id="btnMainSpeak" title="발음 듣기">🔊</button>
         </div>
       </div>
@@ -692,7 +209,7 @@
     </main>
   </div>
 
-  <!-- 💀 게임 오버 모달 -->
+  <!-- 게임 오버 모달 -->
   <div class="modal-overlay" id="gameOverModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -703,9 +220,8 @@
           <div class="gameover-icon">💔</div>
           <div class="gameover-title">생명을 모두 소진했습니다!</div>
           <div class="gameover-desc">
-            3번의 기회가 모두 끝났습니다.<br>
-            이번 도전 맞힌 문제: <strong id="goScore" style="color:#fff;">0</strong>개<br>
-            달성한 최고 콤보: <strong id="goCombo" style="color:var(--gold-light);">0</strong>회
+            맞힌 정답: <strong id="goScore" style="color:#fff;">0</strong>개<br>
+            최고 연속 콤보: <strong id="goCombo" style="color:var(--gold-light);">0</strong>회
           </div>
           <button class="btn-restart" id="btnRestart">🔄 생명 충전하고 다시 도전하기</button>
         </div>
@@ -713,7 +229,7 @@
     </div>
   </div>
 
-  <!-- 🏆 명예의 전당 모달 -->
+  <!-- 명예의 전당 모달 -->
   <div class="modal-overlay" id="hallModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -725,32 +241,28 @@
           <span class="hall-hero-val" id="hallBestRecord">0회</span>
           <span class="hall-hero-label">역대 최고 연속 정답 신기록 (Best Streak)</span>
         </div>
-
-        <div style="font-size: 0.9rem; font-weight: 700; margin-top: 6px;">🎖️ 도전 과제 & 칭호 뱃지</div>
+        <div style="font-size: 0.88rem; font-weight: 700; margin-top: 4px;">🎖️ 도전 과제 & 칭호 뱃지</div>
         <div class="badge-grid" id="badgeGrid"></div>
       </div>
     </div>
   </div>
 
-  <!-- 📖 통합 사전 모달 -->
+  <!-- 사전 모달 -->
   <div class="modal-overlay" id="vocabModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 class="modal-title">📖 실생활·성경 크메르어 대사전 (<span id="totalDictCount">0</span>단어)</h3>
+        <h3 class="modal-title">📖 크메르어 2000 대사전 (<span id="totalDictCount">0</span>단어)</h3>
         <button class="modal-close" id="btnCloseVocab">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="search-filter-box">
-          <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="하나님, 십자가, 구원, 은혜, 갈아입다, 깎다, 발음 검색...">
-          <div class="search-tags-hint">
-            <span>빠른 태그:</span>
-            <span class="hint-chip" onclick="quickSearch('성경')">#성경/말씀</span>
-            <span class="hint-chip" onclick="quickSearch('숫자')">#숫자(20~100)</span>
-            <span class="hint-chip" onclick="quickSearch('식사')">#식사/요리</span>
-            <span class="hint-chip" onclick="quickSearch('교통')">#교통/길찾기</span>
-            <span class="hint-chip" onclick="quickSearch('호텔')">#호텔/숙소</span>
-            <span class="hint-chip" onclick="quickSearch('성격')">#성격/감정</span>
-          </div>
+        <input type="text" class="vocab-search-input" id="vocabSearch" placeholder="하나님, 십자가, 밥, 가다, 먹다, 발음 검색...">
+        <div class="search-tags-hint">
+          <span>빠른 태그:</span>
+          <span class="hint-chip" onclick="quickSearch('성경')">#성경</span>
+          <span class="hint-chip" onclick="quickSearch('예수')">#예수</span>
+          <span class="hint-chip" onclick="quickSearch('동사')">#동사</span>
+          <span class="hint-chip" onclick="quickSearch('형용사')">#형용사</span>
+          <span class="hint-chip" onclick="quickSearch('사랑')">#사랑</span>
         </div>
         <div class="vocab-list" id="vocabList"></div>
       </div>
@@ -758,275 +270,508 @@
   </div>
 
   <div class="toast-popup" id="toastPopup">
-    <span id="toastMsg">알림 메시지</span>
+    <span id="toastMsg"></span>
   </div>
 
   <script>
     /* ==========================================================================
-       1. 고급 실생활 동사·형용사 (난이도 상향 데이터베이스)
+       1. 사용자 제공 원본 문서 기반 2,000단어 데이터베이스
        ========================================================================== */
-    const ADVANCED_GENERAL_BASE = [
-      { khmer: "ជំនះ", pron: "쩜네아", meaning: "극복하다 / 이겨내다", type: "고급 동사" },
-      { khmer: "រួមចំណែក", pron: "루옴 쩜나엑", meaning: "기여하다 / 공헌하다", type: "고급 동사" },
-      { khmer: "គោរព", pron: "꼬롭", meaning: "존경하다 / 준수하다", type: "고급 동사" },
-      { khmer: "មើលងាយ", pron: "머얼 응이어이", meaning: "멸시하다 / 깔보다", type: "고급 동사" },
-      { khmer: "វិភាគ", pron: "위피억", meaning: "분석하다", type: "고급 동사" },
-      { khmer: "រិះគន់", pron: "리 꾼", meaning: "비판하다 / 지적하다", type: "고급 동사" },
-      { khmer: "បញ្ជាក់", pron: "반찌억", meaning: "증명하다 / 확인하다", type: "고급 동사" },
-      { khmer: "អភិវឌ្ឍ", pron: "어피왓", meaning: "발전시키다 / 개발하다", type: "고급 동사" },
-      { khmer: "រារាំង", pron: "리어랑", meaning: "방해하다 / 저지하다", type: "고급 동사" },
-      { khmer: "ស្រមៃ", pron: "스라머이", meaning: "상상하다 / 꿈꾸다", type: "고급 동사" },
-      { khmer: "ស្តាយក្រោយ", pron: "스다이 끄라오이", meaning: "후회하다", type: "고급 동사" },
-      { khmer: "លះបង់", pron: "레아 벙", meaning: "희생하다 / 헌신하다", type: "고급 동사" },
-      { khmer: "ធានា", pron: "티어니어", meaning: "보증하다 / 책임지다", type: "고급 동사" },
-      { khmer: "ស៊ើបអង្កេត", pron: "써업 앙껟", meaning: "조사하다 / 수사하다", type: "고급 동사" },
-      { khmer: "ពន្យល់", pron: "뽄욜", meaning: "설명하다 / 해설하다", type: "고급 동사" },
-      { khmer: "អនុវត្ត", pron: "안누왓", meaning: "실천하다 / 적용하다", type: "고급 동사" },
-      { khmer: "សហការ", pron: "싸하까", meaning: "협력하다 / 공조하다", type: "고급 동사" },
-      { khmer: "ការពារ", pron: "까뻬어", meaning: "보호하다 / 방어하다", type: "고급 동사" },
-      { khmer: "បំផ្លាញ", pron: "봄플란", meaning: "파괴하다 / 망치다", type: "고급 동사" },
-      { khmer: "គ្រប់គ្រង", pron: "끄롭끄렁", meaning: "관리하다 / 통제하다", type: "고급 동사" },
-      { khmer: "បញ្ចុះបញ្ចូល", pron: "반쪼 반쪼올", meaning: "설득하다 / 회유하다", type: "고급 동사" },
-      { khmer: "ទទួលស្គាល់", pron: "떠뚜얼 스꼬알", meaning: "인정하다 / 승인하다", type: "고급 동사" },
-      { khmer: "បដិសេធ", pron: "바더이사엣", meaning: "거절하다 / 부인하다", type: "고급 동사" },
-      { khmer: "ផ្សះផ្សា", pron: "프싸 프싸", meaning: "중재하다 / 화해시키다", type: "고급 동사" },
-      { khmer: "ប្រកួតប្រជែង", pron: "쁘러꾸엇 쁘러짜앵", meaning: "경쟁하다", type: "고급 동사" },
-      { khmer: "ប្រមូលផ្តុំ", pron: "쁘러몰 프돔", meaning: "수집하다 / 모으다", type: "고급 동사" },
-      { khmer: "រៀបចំផែនការ", pron: "리어쩜 파엔까", meaning: "계획을 수립하다", type: "고급 동사" },
-      { khmer: "ដោះស្រាយ", pron: "더 쓰라이", meaning: "해결하다 / 풀다", type: "고급 동사" },
-      { khmer: "ឆ្លុះបញ្ចាំង", pron: "츠로 반짱", meaning: "반영하다 / 성찰하다", type: "고급 동사" },
-      { khmer: "សម្រេចចិត្ត", pron: "썸라엣 쩟", meaning: "결심하다 / 결단하다", type: "고급 동사" },
-      { khmer: "រុងរឿង", pron: "롱르엉", meaning: "번영하다 / 영광스럽다", type: "고급 형용사" },
-      { khmer: "តឹងរ៉ឹង", pron: "뜽렁", meaning: "엄격하다 / 단호하다", type: "고급 형용사" },
-      { khmer: "វេទនា", pron: "웨이티어니어", meaning: "비참하다 / 고통스럽다", type: "고급 형용사" },
-      { khmer: "សប្បុរស", pron: "싸뽀로", meaning: "자비롭다 / 관대하다", type: "고급 형용사" },
-      { khmer: "អមតៈ", pron: "어머따", meaning: "영원하다 / 불멸하다", type: "고급 형용사" },
-      { khmer: "ឆ្មើងឆ្មៃ", pron: "츠마응 츠마이", meaning: "오만하다 / 거만하다", type: "고급 형용사" },
-      { khmer: "បន្ទាបខ្លួន", pron: "번티업 클루언", meaning: "겸손하다", type: "고급 형용사" },
-      { khmer: "បរិសុទ្ធ", pron: "보리쏫", meaning: "순결하다 / 거룩하다", type: "고급 형용사" },
-      { khmer: "ស្មោះត្រង់", pron: "스모 뜨렁", meaning: "신실하다 / 충직하다", type: "고급 형용사" },
-      { khmer: "អត់ធ្មត់", pron: "엇 트멋", meaning: "인내심 강하다", type: "고급 형용사" },
-      { khmer: "យុត្តិធម៌", pron: "욥띠토어", meaning: "공정하다 / 정의롭다", type: "고급 형용사" },
-      { khmer: "អយុត្តិធម៌", pron: "어욥띠토어", meaning: "불공정하다 / 부당하다", type: "고급 형용사" },
-      { khmer: "ស្មុគស្មាញ", pron: "스목스마안", meaning: "복잡다단하다", type: "고급 형용사" },
-      { khmer: "ច្បាស់លាស់", pron: "쯔바 롤루어", meaning: "명확하다 / 분명하다", type: "고급 형용사" },
-      { khmer: "អាថ៌កំបាំង", pron: "앗 껌방법", meaning: "신비롭다 / 비밀스럽다", type: "고급 형용사" },
-      { khmer: "ថ្លៃថ្នូរ", pron: "틀라이 트노", meaning: "고귀하다 / 품격있다", type: "고급 형용사" },
-      { khmer: "ទន់ភ្លន់", pron: "똔 플론", meaning: "온유하다 / 상냥하다", type: "고급 형용사" },
-      { khmer: "ក្លាហាន", pron: "클라한", meaning: "용맹하다 / 씩씩하다", type: "고급 형용사" },
-      { khmer: "កំសាក", pron: "껌싸악", meaning: "비겁하다 / 겁많다", type: "고급 형용사" },
-      { khmer: "ម៉ឺងម៉ាត់", pron: "머응먿", meaning: "철저하다 / 엄정하다", type: "고급 형용사" }
+    const RAW_DOC_WORDS = [
+      // [동사 1~50: 가장 자주 쓰는 기본 동사]
+      { id: 1, khmer: "ជា", pron: "찌어", meaning: "~이다", type: "동사" },
+      { id: 2, khmer: "មាន", pron: "미언", meaning: "있다, 가지다", type: "동사" },
+      { id: 3, khmer: "នៅ", pron: "너으", meaning: "(어디에) 있다, 살다", type: "동사" },
+      { id: 4, khmer: "ទៅ", pron: "떠으", meaning: "가다", type: "동사" },
+      { id: 5, khmer: "មក", pron: "목", meaning: "오다", type: "동사" },
+      { id: 6, khmer: "ធ្វើ", pron: "트워", meaning: "하다, 만들다", type: "동사" },
+      { id: 7, khmer: "ចង់", pron: "쩡", meaning: "원하다, ~하고 싶다", type: "동사" },
+      { id: 8, khmer: "អាច", pron: "앗", meaning: "~할 수 있다", type: "동사" },
+      { id: 9, khmer: "ត្រូវ", pron: "뜨러으", meaning: "~해야 하다, 맞다", type: "동사" },
+      { id: 10, khmer: "ត្រូវការ", pron: "뜨러으까", meaning: "필요하다", type: "동사" },
+      { id: 11, khmer: "បាន", pron: "반", meaning: "얻다, ~하게 되다", type: "동사" },
+      { id: 12, khmer: "ឲ្យ", pron: "아오이", meaning: "주다, ~하게 하다", type: "동사" },
+      { id: 13, khmer: "យក", pron: "욕", meaning: "가지다, 취하다", type: "동사" },
+      { id: 14, khmer: "ដឹង", pron: "덩", meaning: "알다(사실)", type: "동사" },
+      { id: 15, khmer: "ស្គាល់", pron: "스꼬알", meaning: "알다(사람·장소)", type: "동사" },
+      { id: 16, khmer: "ចេះ", pron: "쩨", meaning: "할 줄 알다", type: "동사" },
+      { id: 17, khmer: "ឃើញ", pron: "컨", meaning: "보이다, 보다", type: "동사" },
+      { id: 18, khmer: "មើល", pron: "멀", meaning: "보다, 지켜보다", type: "동사" },
+      { id: 19, khmer: "ឮ", pron: "르", meaning: "들리다", type: "동사" },
+      { id: 20, khmer: "ស្ដាប់", pron: "스답", meaning: "듣다", type: "동사" },
+      { id: 21, khmer: "និយាយ", pron: "니예이", meaning: "말하다", type: "동사" },
+      { id: 22, khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다", type: "동사" },
+      { id: 23, khmer: "ផឹក", pron: "퍽", meaning: "마시다", type: "동사" },
+      { id: 24, khmer: "គេង", pron: "껭", meaning: "자다", type: "동사" },
+      { id: 25, khmer: "ភ្ញាក់", pron: "프녜악", meaning: "깨다", type: "동사" },
+      { id: 26, khmer: "ក្រោក", pron: "끄라옥", meaning: "일어나다", type: "동사" },
+      { id: 27, khmer: "អង្គុយ", pron: "엉꾸이", meaning: "앉다", type: "동사" },
+      { id: 28, khmer: "ឈរ", pron: "초", meaning: "서다", type: "동사" },
+      { id: 29, khmer: "ដើរ", pron: "다으", meaning: "걷다", type: "동사" },
+      { id: 30, khmer: "រត់", pron: "롯", meaning: "달리다", type: "동사" },
+      { id: 31, khmer: "ចូល", pron: "쫄", meaning: "들어가다", type: "동사" },
+      { id: 32, khmer: "ចេញ", pron: "쩬", meaning: "나가다", type: "동사" },
+      { id: 33, khmer: "ឡើង", pron: "라엉", meaning: "올라가다", type: "동사" },
+      { id: 34, khmer: "ចុះ", pron: "쪼", meaning: "내려가다", type: "동사" },
+      { id: 35, khmer: "ចាប់ផ្ដើម", pron: "짭 프다음", meaning: "시작하다", type: "동사" },
+      { id: 36, khmer: "ឈប់", pron: "춥", meaning: "멈추다", type: "동사" },
+      { id: 37, khmer: "ចប់", pron: "쩝", meaning: "끝나다", type: "동사" },
+      { id: 38, khmer: "រង់ចាំ", pron: "롱 짬", meaning: "기다리다", type: "동사" },
+      { id: 39, khmer: "ជួយ", pron: "쭈어이", meaning: "돕다", type: "동사" },
+      { id: 40, khmer: "ប្រើ", pron: "쁘라으", meaning: "사용하다", type: "동사" },
+      { id: 41, khmer: "ទិញ", pron: "띤", meaning: "사다", type: "동사" },
+      { id: 42, khmer: "លក់", pron: "루억", meaning: "팔다", type: "동사" },
+      { id: 43, khmer: "រៀន", pron: "리언", meaning: "배우다", type: "동사" },
+      { id: 44, khmer: "ធ្វើការ", pron: "트워 까", meaning: "일하다", type: "동사" },
+      { id: 45, khmer: "រស់នៅ", pron: "루어 너으", meaning: "살다, 거주하다", type: "동사" },
+      { id: 46, khmer: "ចូលចិត្ត", pron: "쫄 쩟", meaning: "좋아하다", type: "동사" },
+      { id: 47, khmer: "ស្រឡាញ់", pron: "스럴란", meaning: "사랑하다", type: "동사" },
+      { id: 48, khmer: "គិត", pron: "끗", meaning: "생각하다", type: "동사" },
+      { id: 49, khmer: "សួរ", pron: "수어", meaning: "묻다", type: "동사" },
+      { id: 50, khmer: "ឆ្លើយ", pron: "츨라이", meaning: "대답하다", type: "동사" },
+
+      // [동사 51~100: 이동·방향·생활]
+      { id: 51, khmer: "ត្រឡប់", pron: "뜨럴럽", meaning: "돌아가다, 돌아오다", type: "동사" },
+      { id: 52, khmer: "ដល់", pron: "덜", meaning: "도착하다, 이르다", type: "동사" },
+      { id: 53, khmer: "ចាកចេញ", pron: "짝 쩬", meaning: "떠나다", type: "동사" },
+      { id: 54, khmer: "ធ្វើដំណើរ", pron: "트워 덤나으", meaning: "여행하다, 이동하다", type: "동사" },
+      { id: 55, khmer: "ជិះ", pron: "찌", meaning: "(탈것을) 타다", type: "동사" },
+      { id: 56, khmer: "បើកបរ", pron: "바윽 버", meaning: "운전하다", type: "동사" },
+      { id: 57, khmer: "ចត", pron: "쩟", meaning: "주차하다, 세우다", type: "동사" },
+      { id: 58, khmer: "បត់", pron: "벗", meaning: "돌다, 접다", type: "동사" },
+      { id: 59, khmer: "ឆ្លង", pron: "츨렁", meaning: "건너다", type: "동사" },
+      { id: 62, khmer: "ហែលទឹក", pron: "하엘 뜩", meaning: "헤엄치다, 수영하다", type: "동사" },
+      { id: 65, khmer: "ធ្លាក់", pron: "틀레악", meaning: "떨어지다", type: "동사" },
+      { id: 70, khmer: "នាំ", pron: "노암", meaning: "데려가다, 이끌다", type: "동사" },
+      { id: 74, khmer: "រុញ", pron: "룬", meaning: "밀다", type: "동사" },
+      { id: 75, khmer: "ទាញ", pron: "띠언", meaning: "당기다", type: "동사" },
+      { id: 77, khmer: "តាម", pron: "땀", meaning: "따라가다", type: "동사" },
+      { id: 84, khmer: "វង្វេង", pron: "웡웽", meaning: "길을 잃다", type: "동사" },
+      { id: 85, khmer: "រក", pron: "록", meaning: "찾다", type: "동사" },
+      { id: 86, khmer: "រកឃើញ", pron: "록 컨", meaning: "찾아내다, 발견하다", type: "동사" },
+      { id: 87, khmer: "បាត់", pron: "밧", meaning: "잃어버리다, 사라지다", type: "동사" },
+      { id: 89, khmer: "ដាក់", pron: "닥", meaning: "놓다, 넣다", type: "동사" },
+      { id: 90, khmer: "លើក", pron: "럭", meaning: "들다, 올리다", type: "동사" },
+      { id: 92, khmer: "បោះ", pron: "버", meaning: "던지다", type: "동사" },
+      { id: 93, khmer: "ចាប់", pron: "짭", meaning: "잡다", type: "동사" },
+      { id: 97, khmer: "ផ្ញើ", pron: "프냐으", meaning: "보내다", type: "동사" },
+      { id: 98, khmer: "ទទួល", pron: "또뚜얼", meaning: "받다", type: "동사" },
+      { id: 99, khmer: "ជួប", pron: "쭈업", meaning: "만나다", type: "동사" },
+
+      // [동사 101~200: 소통·생각·감정]
+      { id: 101, khmer: "ប្រាប់", pron: "쁘랍", meaning: "말해 주다, 알리다", type: "동사" },
+      { id: 104, khmer: "ហៅ", pron: "하으", meaning: "부르다", type: "동사" },
+      { id: 107, khmer: "ពន្យល់", pron: "뽄욜", meaning: "설명하다", type: "동사" },
+      { id: 109, khmer: "អាន", pron: "안", meaning: "읽다", type: "동사" },
+      { id: 110, khmer: "សរសេរ", pron: "서세", meaning: "쓰다", type: "동사" },
+      { id: 113, khmer: "សុំទោស", pron: "솜 또", meaning: "사과하다, 죄송하다", type: "동사" },
+      { id: 114, khmer: "អរគុណ", pron: "어꾼", meaning: "감사하다", type: "동사" },
+      { id: 117, khmer: "លា", pron: "리어", meaning: "작별하다", type: "동사" },
+      { id: 119, khmer: "យល់ព្រម", pron: "율 쁘롬", meaning: "동의하다", type: "동사" },
+      { id: 121, khmer: "សន្យា", pron: "선냐", meaning: "약속하다", type: "동사" },
+      { id: 122, khmer: "កុហក", pron: "꼬헉", meaning: "거짓말하다", type: "동사" },
+      { id: 125, khmer: "សរសើរ", pron: "서사으", meaning: "칭찬하다", type: "동사" },
+      { id: 127, khmer: "បន្ទោស", pron: "번또", meaning: "탓하다, 꾸짖다", type: "동사" },
+      { id: 129, khmer: "ឈ្លោះ", pron: "츨루어", meaning: "다투다", type: "동사" },
+      { id: 135, khmer: "ទូរស័ព្ទ", pron: "뚜러삽", meaning: "전화하다", type: "동사" },
+      { id: 141, khmer: "ច្រៀង", pron: "쯔리엉", meaning: "노래하다", type: "동사" },
+      { id: 142, khmer: "សើច", pron: "사읏", meaning: "웃다", type: "동사" },
+      { id: 143, khmer: "យំ", pron: "욤", meaning: "울다", type: "동사" },
+      { id: 151, khmer: "យល់", pron: "율", meaning: "이해하다", type: "동사" },
+      { id: 152, khmer: "ចាំ", pron: "짬", meaning: "기억하다", type: "동사" },
+      { id: 153, khmer: "ភ្លេច", pron: "플렛", meaning: "잊다", type: "동사" },
+      { id: 155, khmer: "ជឿ", pron: "쯔어", meaning: "믿다", type: "동사" },
+      { id: 157, khmer: "សង្ឃឹម", pron: "성컴", meaning: "희망하다, 바라다", type: "동사" },
+      { id: 158, khmer: "សម្រេចចិត្ត", pron: "섬랏 쩟", meaning: "결정하다", type: "동사" },
+      { id: 159, khmer: "ជ្រើសរើស", pron: "쯔러 러", meaning: "고르다, 선택하다", type: "동사" },
+      { id: 165, khmer: "ស្អប់", pron: "스업", meaning: "싫어하다, 미워하다", type: "동사" },
+      { id: 166, khmer: "ខ្លាច", pron: "클랏", meaning: "무서워하다", type: "동사" },
+      { id: 168, khmer: "បារម្ភ", pron: "바럼", meaning: "걱정하다", type: "동사" },
+      { id: 169, khmer: "ខឹង", pron: "컹", meaning: "화내다", type: "동사" },
+      { id: 173, khmer: "គោរព", pron: "꼬롭", meaning: "존경하다", type: "동사" },
+      { id: 175, khmer: "អត់ទ្រាំ", pron: "엇 뜨로암", meaning: "참다, 견디다", type: "동사" },
+      { id: 176, khmer: "អត់ទោស", pron: "엇 또", meaning: "용서하다", type: "동사" },
+
+      // [동사 201~300: 음식·요리·일상]
+      { id: 204, khmer: "ភ្លក់", pron: "플루억", meaning: "맛보다", type: "동사" },
+      { id: 211, khmer: "ដាំបាយ", pron: "담 바이", meaning: "밥을 짓다", type: "동사" },
+      { id: 212, khmer: "ស្ងោរ", pron: "승아오", meaning: "삶다, 끓이다", type: "동사" },
+      { id: 213, khmer: "ចៀន", pron: "찌언", meaning: "튀기다, 부치다", type: "동사" },
+      { id: 214, khmer: "ឆា", pron: "차", meaning: "볶다", type: "동사" },
+      { id: 215, khmer: "អាំង", pron: "앙", meaning: "굽다", type: "동사" },
+      { id: 221, khmer: "កាត់", pron: "깟", meaning: "자르다", type: "동사" },
+      { id: 222, khmer: "ហាន់", pron: "한", meaning: "썰다", type: "동사" },
+      { id: 226, khmer: "លាង", pron: "리엉", meaning: "씻다", type: "동사" },
+      { id: 241, khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "동사" },
+      { id: 242, khmer: "ខ្ចប់", pron: "크쩝", meaning: "포장하다, 싸다", type: "동사" },
+      { id: 243, khmer: "គិតលុយ", pron: "끗 루이", meaning: "계산하다", type: "동사" },
+      { id: 251, khmer: "បើក", pron: "바윽", meaning: "열다, 켜다", type: "동사" },
+      { id: 252, khmer: "បិទ", pron: "벗", meaning: "닫다, 끄다", type: "동사" },
+      { id: 253, khmer: "ចាក់សោ", pron: "짝 사오", meaning: "잠그다", type: "동사" },
+      { id: 255, khmer: "សម្អាត", pron: "섬앗", meaning: "청소하다", type: "동사" },
+      { id: 256, khmer: "បោស", pron: "바오", meaning: "쓸다", type: "동사" },
+      { id: 257, khmer: "ជូត", pron: "쭛", meaning: "닦다", type: "동사" },
+      { id: 258, khmer: "លាងចាន", pron: "리엉 짠", meaning: "설거지하다", type: "동사" },
+      { id: 259, khmer: "បោកខោអាវ", pron: "바옥 카오 아으", meaning: "빨래하다", type: "동사" },
+      { id: 265, khmer: "ងូតទឹក", pron: "응웃 뜩", meaning: "샤워하다, 목욕하다", type: "동사" },
+      { id: 267, khmer: "ដុសធ្មេញ", pron: "도 트멘", meaning: "이를 닦다", type: "동사" },
+      { id: 268, khmer: "លុបមុខ", pron: "룹 묵", meaning: "세수하다", type: "동사" },
+      { id: 269, khmer: "សិតសក់", pron: "섯 석", meaning: "머리를 빗다", type: "동사" },
+      { id: 275, khmer: "ផ្លាស់ខោអាវ", pron: "플라 카오 아으", meaning: "옷을 갈아입다", type: "동사" },
+      { id: 284, khmer: "សាកថ្ម", pron: "삭 트머", meaning: "충전하다", type: "동사" },
+      { id: 412, khmer: "ចុះថ្លៃ", pron: "쪼 틀라이", meaning: "값을 깎다, 할인하다", type: "동사" },
+      { id: 439, khmer: "លួច", pron: "루엇", meaning: "훔치다", type: "동사" },
+      { id: 480, khmer: "ឈ្នះ", pron: "츠네아", meaning: "이기다", type: "동사" },
+      { id: 481, khmer: "ចាញ់", pron: "짠", meaning: "지다", type: "동사" },
+      { id: 501, khmer: "ឈឺ", pron: "츠", meaning: "아프다", type: "동사" },
+      { id: 502, khmer: "ផ្ដាសាយ", pron: "프다사이", meaning: "감기에 걸리다", type: "동사" },
+      { id: 521, khmer: "ចាក់ថ្នាំ", pron: "짝 트남", meaning: "주사를 맞다", type: "동사" },
+      { id: 522, khmer: "លេបថ្នាំ", pron: "렙 트남", meaning: "약을 먹다", type: "동사" },
+
+      // [형용사 601~1000: 크기·성질·감정·맛·평가]
+      { id: 601, khmer: "ធំ", pron: "톰", meaning: "크다", type: "형용사" },
+      { id: 602, khmer: "តូច", pron: "똣", meaning: "작다", type: "형용사" },
+      { id: 603, khmer: "វែង", pron: "왱", meaning: "길다", type: "형용사" },
+      { id: 604, khmer: "ខ្លី", pron: "클라이", meaning: "짧다", type: "형용사" },
+      { id: 605, khmer: "ខ្ពស់", pron: "크뿌어", meaning: "높다, 키가 크다", type: "형용사" },
+      { id: 606, khmer: "ទាប", pron: "띠업", meaning: "낮다, 키가 작다", type: "형용사" },
+      { id: 607, khmer: "ក្រាស់", pron: "끄라", meaning: "두껍다", type: "형용사" },
+      { id: 608, khmer: "ស្ដើង", pron: "스다엉", meaning: "얇다", type: "형용사" },
+      { id: 609, khmer: "ទូលាយ", pron: "뚤리어이", meaning: "넓다", type: "형용사" },
+      { id: 610, khmer: "ចង្អៀត", pron: "쩡이엇", meaning: "좁다", type: "형용사" },
+      { id: 611, khmer: "ជ្រៅ", pron: "쯔러으", meaning: "깊다", type: "형용사" },
+      { id: 612, khmer: "រាក់", pron: "레악", meaning: "얕다", type: "형용사" },
+      { id: 613, khmer: "ធ្ងន់", pron: "틍우언", meaning: "무겁다", type: "형용사" },
+      { id: 614, khmer: "ស្រាល", pron: "스랄", meaning: "가볍다", type: "형용사" },
+      { id: 615, khmer: "ច្រើន", pron: "쯔라은", meaning: "많다", type: "형용사" },
+      { id: 616, khmer: "តិច", pron: "뗏", meaning: "적다", type: "형용사" },
+      { id: 626, khmer: "ឆ្ងាយ", pron: "층아이", meaning: "멀다", type: "형용사" },
+      { id: 627, khmer: "ជិត", pron: "쯧", meaning: "가깝다", type: "형용사" },
+      { id: 630, khmer: "លឿន", pron: "르언", meaning: "빠르다", type: "형용사" },
+      { id: 631, khmer: "យឺត", pron: "이읏", meaning: "느리다", type: "형용사" },
+      { id: 632, khmer: "ខ្លាំង", pron: "클랑", meaning: "세다, 강하다", type: "형용사" },
+      { id: 633, khmer: "ខ្សោយ", pron: "크사오이", meaning: "약하다", type: "형용사" },
+      { id: 634, khmer: "រឹង", pron: "릉", meaning: "딱딱하다, 단단하다", type: "형용사" },
+      { id: 635, khmer: "ទន់", pron: "뚜언", meaning: "부드럽다", type: "형용사" },
+      { id: 651, khmer: "ថ្មី", pron: "트마이", meaning: "새롭다", type: "형용사" },
+      { id: 652, khmer: "ចាស់", pron: "짜", meaning: "낡다, 늙다", type: "형용사" },
+      { id: 653, khmer: "ស្អាត", pron: "스앗", meaning: "예쁘다, 깨끗하다", type: "형용사" },
+      { id: 654, khmer: "កខ្វក់", pron: "꺼크웍", meaning: "더럽다", type: "형용사" },
+      { id: 658, khmer: "ក្ដៅ", pron: "끄다으", meaning: "뜨겁다, 덥다", type: "형용사" },
+      { id: 659, khmer: "ត្រជាក់", pron: "뜨러쩨악", meaning: "차갑다, 춥다", type: "형용사" },
+      { id: 660, khmer: "កក់ក្ដៅ", pron: "꺽 끄다으", meaning: "따뜻하다", type: "형용사" },
+      { id: 661, khmer: "ភ្លឺ", pron: "플르", meaning: "밝다", type: "형용사" },
+      { id: 662, khmer: "ងងឹត", pron: "응오응읏", meaning: "어둡다", type: "형용사" },
+      { id: 670, khmer: "ពិត", pron: "쁫", meaning: "진짜다, 사실이다", type: "형용사" },
+      { id: 673, khmer: "ពិសេស", pron: "삐사에", meaning: "특별하다", type: "형용사" },
+      { id: 678, khmer: "ទំនេរ", pron: "뚬네", meaning: "한가하다, 비어 있다", type: "형용사" },
+      { id: 679, khmer: "រវល់", pron: "로월", meaning: "바쁘다", type: "형용사" },
+      { id: 686, khmer: "ត្រឹមត្រូវ", pron: "뜨럼 뜨러으", meaning: "올바르다, 정확하다", type: "형용사" },
+      { id: 687, khmer: "ខុស", pron: "코", meaning: "틀리다", type: "형용사" },
+      { id: 695, khmer: "សំខាន់", pron: "섬칸", meaning: "중요하다", type: "형용사" },
+      { id: 701, khmer: "សប្បាយ", pron: "섭바이", meaning: "즐겁다, 신나다", type: "형용사" },
+      { id: 706, khmer: "សោកសៅ", pron: "사옥 사으", meaning: "슬프다", type: "형용사" },
+      { id: 715, khmer: "អៀន", pron: "이언", meaning: "수줍다, 부끄럽다", type: "형용사" },
+      { id: 732, khmer: "ហត់", pron: "헛", meaning: "피곤하다", type: "형용사" },
+      { id: 735, khmer: "ឃ្លាន", pron: "클리언", meaning: "배고프다", type: "형용사" },
+      { id: 736, khmer: "ស្រេកទឹក", pron: "스렉 뜩", meaning: "목마르다", type: "형용사" },
+      { id: 737, khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "형용사" },
+      { id: 751, khmer: "ចិត្តល្អ", pron: "쩟 르어", meaning: "착하다, 친절하다", type: "형용사" },
+      { id: 755, khmer: "ស្លូត", pron: "슬롯", meaning: "순하다, 온순하다", type: "형용사" },
+      { id: 756, khmer: "កាច", pron: "깟", meaning: "사납다, 무섭다", type: "형용사" },
+      { id: 757, khmer: "ស្មោះត្រង់", pron: "스머 뜨렁", meaning: "정직하다", type: "형용사" },
+      { id: 758, khmer: "ឧស្សាហ៍", pron: "우사", meaning: "부지런하다", type: "형용사" },
+      { id: 759, khmer: "ខ្ជិល", pron: "크쩔", meaning: "게으르다", type: "형용사" },
+      { id: 760, khmer: "ឆ្លាត", pron: "츨랏", meaning: "똑똑하다", type: "형용사" },
+      { id: 764, khmer: "ក្លាហាន", pron: "끌라한", meaning: "용감하다", type: "형용사" },
+      { id: 766, khmer: "អត់ធ្មត់", pron: "엇 트무엇", meaning: "참을성 있다", type: "형용사" },
+      { id: 801, khmer: "ឆ្ងាញ់", pron: "층안", meaning: "맛있다", type: "형용사" },
+      { id: 802, khmer: "សាប", pron: "삽", meaning: "싱겁다", type: "형용사" },
+      { id: 803, khmer: "ផ្អែម", pron: "프아엠", meaning: "달다", type: "형용사" },
+      { id: 804, khmer: "ជូរ", pron: "쭈", meaning: "시다", type: "형용사" },
+      { id: 805, khmer: "ប្រៃ", pron: "쁘라이", meaning: "짜다", type: "형용사" },
+      { id: 806, khmer: "ហឹរ", pron: "헐", meaning: "맵다", type: "형용사" },
+      { id: 807, khmer: "ល្វីង", pron: "르윙", meaning: "쓰다", type: "형용사" },
+      { id: 813, khmer: "ស្រួយ", pron: "스루어이", meaning: "바삭하다", type: "형용사" },
+      { id: 915, khmer: "គ្រោះថ្នាក់", pron: "끄루어 트낙", meaning: "위험하다", type: "형용사" },
+      { id: 958, khmer: "ងាយស្រួល", pron: "응이어이 스루얼", meaning: "쉽다", type: "형용사" },
+      { id: 961, khmer: "ថ្លៃ", pron: "틀라이", meaning: "비싸다", type: "형용사" },
+      { id: 962, khmer: "ថោក", pron: "타옥", meaning: "싸다, 저렴하다", type: "형용사" },
+
+      // [성경 어휘 1001~2000]
+      { id: 1001, khmer: "ព្រះ", pron: "쁘레아", meaning: "하나님, 신", type: "성경" },
+      { id: 1002, khmer: "ព្រះជាម្ចាស់", pron: "쁘레아 찌어 머짜", meaning: "주 하나님", type: "성경" },
+      { id: 1003, khmer: "ព្រះអម្ចាស់", pron: "쁘레아 엄짜", meaning: "주님", type: "성경" },
+      { id: 1004, khmer: "ព្រះយេហូវ៉ា", pron: "쁘레아 예호와", meaning: "여호와", type: "성경" },
+      { id: 1005, khmer: "ព្រះវរបិតា", pron: "쁘레아 워레아 베이다", meaning: "하나님 아버지", type: "성경" },
+      { id: 1009, khmer: "ព្រះយេស៊ូវ", pron: "쁘레아 예수", meaning: "예수님", type: "성경" },
+      { id: 1010, khmer: "ព្រះគ្រីស្ទ", pron: "쁘레아 끄릿", meaning: "그리스도", type: "성경" },
+      { id: 1011, khmer: "ព្រះយេស៊ូវគ្រីស្ទ", pron: "쁘레아 예수 끄릿", meaning: "예수 그리스도", type: "성경" },
+      { id: 1014, khmer: "ព្រះវិញ្ញាណបរិសុទ្ធ", pron: "쁘레아 윈니언 버리솟", meaning: "성령", type: "성경" },
+      { id: 1017, khmer: "ព្រះអង្គសង្គ្រោះ", pron: "쁘레아 엉 성끄루어", meaning: "구세주, 구원자", type: "성경" },
+      { id: 1018, khmer: "ព្រះអាទិករ", pron: "쁘레아 아띠꺼", meaning: "창조주", type: "성경" },
+      { id: 1025, khmer: "អេម៉ាញូអែល", pron: "에마뉴아엘", meaning: "임마누엘", type: "성경" },
+      { id: 1026, khmer: "កូនចៀមនៃព្រះ", pron: "꼰 찌엄 네이 쁘레아", meaning: "하나님의 어린양", type: "성경" },
+      { id: 1028, khmer: "អ្នកគង្វាលល្អ", pron: "네악 꽁위얼 르어", meaning: "선한 목자", type: "성경" },
+      { id: 1035, khmer: "ព្រះបន្ទូល", pron: "쁘레아 번뚤", meaning: "하나님의 말씀", type: "성경" },
+      { id: 1037, khmer: "ព្រះគុណ", pron: "쁘레아 꾼", meaning: "은혜", type: "성경" },
+      { id: 1038, khmer: "ព្រះពរ", pron: "쁘레아 뽀", meaning: "축복, 복", type: "성경" },
+      { id: 1041, khmer: "សិរីល្អ", pron: "세레이 르어", meaning: "영광", type: "성경" },
+      { id: 1043, khmer: "ទេវតា", pron: "떼워다", meaning: "천사", type: "성경" },
+      { id: 1045, khmer: "សាតាំង", pron: "사땅", meaning: "사탄", type: "성경" },
+      { id: 1046, khmer: "អារក្ស", pron: "아레악", meaning: "마귀, 악령", type: "성경" },
+      { id: 1051, khmer: "មានព្រះបន្ទូល", pron: "미언 쁘레아 번뚤", meaning: "말씀하시다", type: "성경" },
+      { id: 1068, khmer: "ប្រទាន", pron: "쁘러띠언", meaning: "주시다(높임)", type: "성경" },
+      { id: 1085, khmer: "ព្រះលោហិត", pron: "쁘레아 로헛", meaning: "보혈, 피", type: "성경" },
+      { id: 1095, khmer: "បល្ល័ង្ក", pron: "벌랑", meaning: "보좌, 왕좌", type: "성경" },
+      { id: 1096, khmer: "មកុដ", pron: "모꼿", meaning: "면류관, 왕관", type: "성경" },
+      { id: 1101, khmer: "ដំណឹងល្អ", pron: "덤넝 르어", meaning: "복음, 기쁜 소식", type: "성경" },
+      { id: 1102, khmer: "សេចក្ដីសង្គ្រោះ", pron: "섯 끄다이 성끄루어", meaning: "구원", type: "성경" },
+      { id: 1104, khmer: "សេចក្ដីជំនឿ", pron: "섯 끄다이 쭘느어", meaning: "믿음", type: "성경" },
+      { id: 1106, khmer: "សេចក្ដីស្រឡាញ់", pron: "섯 끄다이 스럴란", meaning: "사랑", type: "성경" },
+      { id: 1107, khmer: "សេចក្ដីសង្ឃឹម", pron: "섯 끄다이 성컴", meaning: "소망", type: "성경" },
+      { id: 1108, khmer: "សេចក្ដីពិត", pron: "섯 끄다이 쁫", meaning: "진리", type: "성경" },
+      { id: 1110, khmer: "បាប", pron: "밥", meaning: "죄", type: "성경" },
+      { id: 1113, khmer: "ការអត់ទោសបាប", pron: "까 엇 또 밥", meaning: "죄 사함", type: "성경" },
+      { id: 1114, khmer: "ការប្រែចិត្ត", pron: "까 쁘라에 쩟", meaning: "회개", type: "성경" },
+      { id: 1121, khmer: "ការកើតជាថ្មី", pron: "까 까읏 찌어 트마이", meaning: "거듭남, 중생", type: "성경" },
+      { id: 1122, khmer: "ការរស់ឡើងវិញ", pron: "까 루어 라엉 윈", meaning: "부활", type: "성경" },
+      { id: 1125, khmer: "ជីវិតអស់កល្បជានិច្ច", pron: "찌윗 어 껄 찌어 닛", meaning: "영생", type: "성경" },
+      { id: 1129, khmer: "សេចក្ដីសញ្ញា", pron: "섯 끄다이 선냐", meaning: "언약", type: "성경" },
+      { id: 1139, khmer: "ពន្លឺ", pron: "뽄르", meaning: "빛", type: "성경" },
+      { id: 1141, khmer: "សេចក្ដីសុខសាន្ត", pron: "섯 끄다이 속 산", meaning: "평안, 평화", type: "성경" },
+      { id: 1156, khmer: "ទទួលបុណ្យជ្រមុជទឹក", pron: "또뚜얼 본 쯔로뭇 뜩", meaning: "세례를 받다", type: "성경" },
+      { id: 1162, khmer: "សរសើរតម្កើង", pron: "서사으 떰까엉", meaning: "찬양하다", type: "성경" },
+      { id: 1172, khmer: "អានព្រះគម្ពីរ", pron: "안 쁘레아 꼼삐", meaning: "성경을 읽다", type: "성경" },
+      { id: 1184, khmer: "ផ្សាយដំណឹងល្អ", pron: "프사이 덤넝 르어", meaning: "복음을 전하다", type: "성경" },
+      { id: 1197, khmer: "លីឈើឆ្កាង", pron: "리 처 츠깡", meaning: "십자가를 지다", type: "성경" },
+      { id: 1201, khmer: "ពួកជំនុំ", pron: "뿌억 쭘눔", meaning: "교회(모임)", type: "성경" },
+      { id: 1203, khmer: "ព្រះវិហារ", pron: "쁘레아 위히어", meaning: "예배당, 성전", type: "성경" },
+      { id: 1204, khmer: "ការថ្វាយបង្គំ", pron: "까 트와이 벙꼼", meaning: "예배", type: "성경" },
+      { id: 1205, khmer: "ការអធិស្ឋាន", pron: "까 아팃탄", meaning: "기도", type: "성경" },
+      { id: 1214, khmer: "ដង្វាយ", pron: "덩와이", meaning: "헌금, 예물", type: "성경" },
+      { id: 1215, khmer: "ដង្វាយមួយភាគក្នុងដប់", pron: "덩와이 무어이 피억 크농 덥", meaning: "십일조", type: "성경" },
+      { id: 1217, khmer: "ពិធីលៀងព្រះអម្ចាស់", pron: "삐티 리엉 쁘레아 엄짜", meaning: "성찬식", type: "성경" },
+      { id: 1222, khmer: "គ្រូគង្វាល", pron: "끄루 꽁위얼", meaning: "목사", type: "성경" },
+      { id: 1227, khmer: "បេសកជន", pron: "베사까쫀", meaning: "선교사", type: "성경" },
+      { id: 1250, khmer: "ឈើឆ្កាង", pron: "처 츠깡", meaning: "십자가", type: "성경" },
+      { id: 1251, khmer: "ព្រះគម្ពីរ", pron: "쁘레아 꼼삐", meaning: "성경", type: "성경" },
+      { id: 1253, khmer: "គម្ពីរសញ្ញាចាស់", pron: "꼼삐 선냐 짜", meaning: "구약성경", type: "성경" },
+      { id: 1254, khmer: "គម្ពីរសញ្ញាថ្មី", pron: "꼼삐 선냐 트마이", meaning: "신약성경", type: "성경" },
+      { id: 1264, khmer: "បញ្ញត្តដប់ប្រការ", pron: "반냣 덥 쁘러까", meaning: "십계명", type: "성경" },
+      { id: 1488, khmer: "ទីរហោស្ថាន", pron: "띠 로하오 스탄", meaning: "광야", type: "성경" },
+      { id: 1506, khmer: "កូនចៀម", pron: "꼰 찌엄", meaning: "어린양", type: "성경" },
+      { id: 1543, khmer: "ដើមទំពាំងបាយជូរ", pron: "다음 뚬뺴앙 바이 쭈", meaning: "포도나무", type: "성경" },
+      { id: 1553, khmer: "នំប៉័ងឥតដំបែ", pron: "놈 빵 엇 덤바에", meaning: "무교병", type: "성경" },
+      { id: 1561, khmer: "ម៉ាណា", pron: "마나", meaning: "만나", type: "성경" },
+      { id: 1601, khmer: "ស្ថានសួគ៌", pron: "스탄 수어", meaning: "하늘나라, 천국", type: "성경" },
+      { id: 1605, khmer: "ស្ថាននរក", pron: "스탄 노록", meaning: "지옥", type: "성경" },
+      { id: 1609, khmer: "សួនអេដែន", pron: "수언 에다엔", meaning: "에덴 동산", type: "성경" },
+      { id: 1622, khmer: "រោងឧបោសថ", pron: "롱 우바오솟", meaning: "성막", type: "성경" },
+      { id: 1625, khmer: "ហិបនៃសេចក្ដីសញ្ញា", pron: "헙 네이 섯 끄다이 선냐", meaning: "언약궤", type: "성경" },
+      { id: 1646, khmer: "ក្រុងយេរូសាឡិម", pron: "끄롱 예루살럼", meaning: "예루살렘", type: "성경" },
+      { id: 1677, khmer: "ថ្ងៃឈប់សម្រាក", pron: "틍아이 춥 섬락", meaning: "안식일", type: "성경" },
+      { id: 1680, khmer: "បុណ្យរំលង", pron: "본 룸롱", meaning: "유월절", type: "성경" },
+      { id: 1682, khmer: "បុណ្យថ្ងៃទីហាសិប", pron: "본 틍아이 띠 하섭", meaning: "오순절", type: "성경" },
+      { id: 1684, khmer: "បុណ្យព្រះយេស៊ូវរស់ឡើងវិញ", pron: "본 쁘레아 예수 루어 라엉 윈", meaning: "부활절", type: "성경" },
+      { id: 1739, khmer: "ការជំនុំជម្រះ", pron: "까 쭘눔 쭘레아", meaning: "심판", type: "성경" },
+      { id: 1949, khmer: "អាម៉ែន", pron: "아마엔", meaning: "아멘", type: "성경" },
+      { id: 1950, khmer: "ហាលេលូយ៉ា", pron: "할렐루야", meaning: "할렐루야", type: "성경" },
+      { id: 1969, khmer: "សេចក្ដីអធិស្ឋានរបស់ព្រះអម្ចាស់", pron: "섯 끄다이 아팃탄 로버 쁘레아 엄짜", meaning: "주기도문", type: "성경" },
+      { id: 2000, khmer: "សូមព្រះប្រទានពរ", pron: "솜 쁘레아 쁘러띠언 뽀", meaning: "하나님께서 복 주시기를", type: "성경" }
     ];
 
     /* ==========================================================================
-       2. 성경 전용 어휘 (1001~2000번)
+       2. Web Audio API 사운드 (iOS Safari 완전 호환)
        ========================================================================== */
-    const BIBLE_BASE_WORDS = [
-      { khmer: "ព្រះ", pron: "쁘레아", meaning: "하나님 / 주님", type: "성경 명사" },
-      { khmer: "ព្រះយេស៊ូវ", pron: "쁘레아 예수", meaning: "예수님", type: "성경 명사" },
-      { khmer: "ព្រះវិញ្ញាណបរិសុទ្ធ", pron: "쁘레아 위ญ안 보리쏫", meaning: "성령님", type: "성경 명사" },
-      { khmer: "ព្រះគ្រីស្ទ", pron: "쁘레아 끄리", meaning: "그리스도", type: "성경 명사" },
-      { khmer: "ឈើឆ្កាង", pron: "츠 츠깡", meaning: "십자가", type: "성경 명사" },
-      { khmer: "ការសង្គ្រោះ", pron: "까 쌍끄루어", meaning: "구원", type: "성경 명사" },
-      { khmer: "ព្រះគុណ", pron: "쁘레아 꾼", meaning: "은혜", type: "성경 명사" },
-      { khmer: "ជំនឿ", pron: "쩜너어", meaning: "믿음", type: "성경 명사" },
-      { khmer: "សេចក្តីសង្ឃឹម", pron: "쌕끄더이 쌍큼", meaning: "소망", type: "성경 명사" },
-      { khmer: "សេចក្តីស្រឡាញ់", pron: "쌕끄더이 스라라안", meaning: "사랑", type: "성경 명사" },
-      { khmer: "ស្ថានសួគ៌", pron: "스탄 쑤어", meaning: "천국 / 하늘나라", type: "성경 명사" },
-      { khmer: "នរក", pron: "노록", meaning: "지옥", type: "성경 명사" },
-      { khmer: "ការរស់ឡើងវិញ", pron: "까 루어 라응 윈", meaning: "부활", type: "성경 명사" },
-      { khmer: "ដំណឹងល្អ", pron: "덤넝 러어", meaning: "복음", type: "성경 명사" },
-      { khmer: "ការអធិស្ឋាន", pron: "까 어티스탄", meaning: "기도", type: "성경 명사" },
-      { khmer: "ការសរសើរតម្កើង", pron: "까 써싸에 덤까응", meaning: "찬양 / 경배", type: "성경 명사" },
-      { khmer: "ការប្រែចិត្ត", pron: "까 프라에 쩟", meaning: "회개", type: "성경 명사" },
-      { khmer: "បុណ្យជ្រមុជទឹក", pron: "본 찌러목 뜩", meaning: "세례 / 침례", type: "성경 명사" },
-      { khmer: "ព្រះគម្ពីរ", pron: "쁘레아 꼼삐", meaning: "성경", type: "성경 명사" },
-      { khmer: "ព្រះបន្ទូល", pron: "쁘레아 번똘", meaning: "하나님의 말씀", type: "성경 명사" },
-      { khmer: "សេចក្តីពិត", pron: "쌕끄더이 뻗", meaning: "진리", type: "성경 명사" },
-      { khmer: "សេចក្តីសញ្ញា", pron: "쌕끄더이 썬냐", meaning: "언약 / 약속", type: "성경 명사" },
-      { khmer: "ក្រឹត្យវិន័យ", pron: "끄럿 위네이", meaning: "율법 / 계명", type: "성경 명사" },
-      { khmer: "ព្រះពរ", pron: "쁘레아 뽀", meaning: "축복 / 복", type: "성경 명사" },
-      { khmer: "ព្រះវិហារ", pron: "쁘레아 위히어", meaning: "교회 / 성전", type: "성경 명사" },
-      { khmer: "ទេវតា", pron: "떼우오다", meaning: "천사", type: "성경 명사" },
-      { khmer: "អារក្ស", pron: "아략", meaning: "악령 / 마귀", type: "성경 명사" },
-      { khmer: "សាតាំង", pron: "싸땅", meaning: "사탄", type: "성경 명사" },
-      { khmer: "អំពើបាប", pron: "엄뿌 바압", meaning: "죄 / 죄악", type: "성경 명사" },
-      { khmer: "ការអត់ទោស", pron: "까 엇또오", meaning: "용서 / 사죄", type: "성경 명사" },
-      { khmer: "ជីវិតអស់កល្ប", pron: "찌웓 어스껄", meaning: "영생 / 영원한 생명", type: "성경 명사" },
-      { khmer: "អ្នកគង្វាល", pron: "네악 꽁위얼", meaning: "목자", type: "성경 명사" },
-      { khmer: "ចៀម", pron: "찌엄", meaning: "양", type: "성경 명사" },
-      { khmer: "សិស្ស", pron: "써", meaning: "제자", type: "성경 명사" },
-      { khmer: "សាវ័ក", pron: "싸왁", meaning: "사도", type: "성경 명사" },
-      { khmer: "ព្យាការី", pron: "삐어까리", meaning: "선지자 / 예언자", type: "성경 명사" },
-      { khmer: "ការបង្កើត", pron: "까 벙까엇", meaning: "창조", type: "성경 명사" },
-      { khmer: "ការជំនុំជម្រះ", pron: "까 쩜놈 쩜레아", meaning: "심판", type: "성경 명사" },
-      { khmer: "សន្តិភាព", pron: "썬떼피읍", meaning: "평강 / 평화 (샬롬)", type: "성경 명사" },
-      { khmer: "សេចក្តីអំណរ", pron: "쌕끄더이 엄너", meaning: "기쁨 / 희락", type: "성경 명사" },
-      { khmer: "តង្វាយ", pron: "땅와이", meaning: "헌금 / 예물", type: "성경 명사" },
-      { khmer: "ព្រះរាជ្យ", pron: "쁘레아 리어쯔", meaning: "하나님의 나라", type: "성경 명사" },
-      { khmer: "អ្នកជឿ", pron: "네악 쯔어", meaning: "성도 / 신자", type: "성경 명사" },
-      { khmer: "លោកុប្បត្តិ", pron: "로깟빧떼이", meaning: "창세기", type: "성경 명사" },
-      { khmer: "និក្ខមនំ", pron: "넥커모논", meaning: "출애굽기", type: "성경 명사" },
-      { khmer: "វិវរណៈ", pron: "위워러내", meaning: "요한계시록", type: "성경 명사" },
-      { khmer: "សិរីល្អ", pron: "세레이 러어", meaning: "영광", type: "성경 명사" },
-      { khmer: "នំបុ័ងជីវិត", pron: "놈빵 찌웓", meaning: "생명의 떡", type: "성경 명사" },
-      { khmer: "ទឹកនៃជីវិត", pron: "뜩 너이 찌웓", meaning: "생명수", type: "성경 명사" },
-      { khmer: "ពន្លឺនៃពិភពលោក", pron: "뽄르 너이 삐폽록", meaning: "세상의 빛", type: "성경 명사" },
-      { khmer: "អធិស្ឋាន", pron: "어티스탄", meaning: "기도하다", type: "성경 표현" },
-      { khmer: "សរសើរតម្កើង", pron: "써싸에 덤까응", meaning: "찬양하다", type: "성경 표현" },
-      { khmer: "ប្រែចិត្ត", pron: "프라에 쩟", meaning: "회개하다", type: "성경 표현" },
-      { khmer: "ជឿលើព្រះ", pron: "쯔어 르 쁘레아", meaning: "하나님을 믿다", type: "성경 표현" },
-      { khmer: "ទទួលការសង្គ្រោះ", pron: "떠뚜얼 까 쌍끄루어", meaning: "구원을 얻다", type: "성경 표현" },
-      { khmer: "ផ្សាយដំណឹងល្អ", pron: "프싸이 덤넝 러어", meaning: "복음을 전파하다", type: "성경 표현" },
-      { khmer: "ទទួលបុណ្យជ្រមុជ", pron: "떠뚜얼 본 찌러목", meaning: "세례를 받다", type: "성경 표현" },
-      { khmer: "អត់ទោសបាប", pron: "엇또오 바압", meaning: "죄를 용서하다", type: "성경 표현" },
-      { khmer: "រស់ឡើងវិញ", pron: "루어 라응 윈", meaning: "부활하다", type: "성경 표현" },
-      { khmer: "កាន់តាមព្រះបន្ទូល", pron: "깐 땀 쁘레아 번똘", meaning: "말씀에 순종하다", type: "성경 표현" },
-      { khmer: "ថ្វាយបង្គំ", pron: "트와이 벙꼼", meaning: "예배드리다 / 경배하다", type: "성경 표현" },
-      { khmer: "ស្រឡាញ់អ្នកជិតខាង", pron: "스라라안 네악 찟캉", meaning: "이웃을 사랑하다", type: "성경 표현" },
-      { khmer: "ឈ្នះការល្បួង", pron: "츠네아 까 르부엉", meaning: "시험을 이겨내다", type: "성경 표현" },
-      { khmer: "ទទួលព្រះពរ", pron: "떠뚜얼 쁘레아 뽀", meaning: "축복을 받다", type: "성경 표현" },
-      { khmer: "ប្រទានពរ", pron: "쁘러띠언 뽀", meaning: "축복하시다", type: "성경 표현" },
-      { khmer: "កើតជាថ្មី", pron: "까엇 찌어 트머이", meaning: "거듭나다", type: "성경 표현" },
-      { khmer: "រែកឈើឆ្កាង", pron: "라엑 츠 츠깡", meaning: "십자가를 지다", type: "성경 표현" },
-      { khmer: "ដើរតាមព្រះយេស៊ូវ", pron: "다으 땀 쁘레아 예수", meaning: "예수님을 따르다", type: "성경 표현" },
-      { khmer: "អរព្រះគុណ", pron: "어 쁘레아 꾼", meaning: "감사드리다", type: "성경 표현" },
-      { khmer: "លើកតម្កើងព្រះ", pron: "르억 덤까응 쁘레아", meaning: "하나님을 높이다", type: "성경 표현" }
-    ];
-
-    const BASE_DAILY = [
-      { khmer: "ផ្លាស់សម្លៀកបំពាក់", pron: "플라 썸리억범뺰", meaning: "옷을 갈아입다", type: "동사" },
-      { khmer: "ជិះឡាន", pron: "찌 란", meaning: "차를 타다", type: "동사" },
-      { khmer: "ចុះពីឡាន", pron: "쪼 삐 란", meaning: "차에서 내리다", type: "동사" },
-      { khmer: "បើកបរ", pron: "바억 버", meaning: "운전하다", type: "동사" },
-      { khmer: "ដុសធ្មេញ", pron: "도 트멘", meaning: "양치하다", type: "동사" },
-      { khmer: "លុបមុខ", pron: "롭 목", meaning: "세수하다", type: "동사" },
-      { khmer: "សិតសក់", pron: "쌛 쏙", meaning: "머리를 빗다", type: "동사" },
-      { khmer: "សម្ងួតសក់", pron: "썸응ួត 쏙", meaning: "머리를 말리다", type: "동사" },
-      { khmer: "កោរពុកចង្កា", pron: "까오 똑쩡까", meaning: "면도하다", type: "동사" },
-      { khmer: "កាត់ក្រចក", pron: "깟 끄러쩍", meaning: "손톱을 깎다", type: "동사" },
-      { khmer: "បើកភ្លើង", pron: "바억 플릉", meaning: "불을 켜다", type: "동사" },
-      { khmer: "បិទភ្លើង", pron: "벗 플릉", meaning: "불을 끄다", type: "동사" },
-      { khmer: "ចាក់សោទ្វារ", pron: "짜악싸오 뜨위어", meaning: "문을 잠그다", type: "동사" },
-      { khmer: "រៀបចំឥវ៉ាន់", pron: "리어쩜 어이완", meaning: "짐을 싸다", type: "동사" },
-      { khmer: "រើឥវ៉ាន់", pron: "러 어이완", meaning: "짐을 풀다", type: "동사" },
-      { khmer: "បោកខោអាវ", pron: "바옥 카오아오", meaning: "빨래하다", type: "동사" },
-      { khmer: "ហាលខោអាវ", pron: "할 카오아오", meaning: "빨래를 널다", type: "동사" },
-      { khmer: "អ៊ុតខោអាវ", pron: "욷 카오아오", meaning: "다림질하다", type: "동사" },
-      { khmer: "បោសផ្ទះ", pron: "바오 프떼어", meaning: "방을 쓸다", type: "동사" },
-      { khmer: "ជូតផ្ទះ", pron: "쪼옫 프떼어", meaning: "걸레질하다", type: "동사" },
-      { khmer: "ចាក់សំរាម", pron: "짜악 썸람", meaning: "쓰레기를 버리다", type: "동사" },
-      { khmer: "លាងចាន", pron: "리엉 짠", meaning: "설거지하다", type: "동사" },
-      { khmer: "សាកថ្ម", pron: "싸악 트머", meaning: "충전하다", type: "동사" },
-      { khmer: "គិតលុយ", pron: "끗 루이", meaning: "계산하다", type: "동사" },
-      { khmer: "ខ្ចប់យកទៅ", pron: "크쩝 요옥 떠으", meaning: "포장해 가다", type: "동사" },
-      { khmer: "ចុះថ្លៃ", pron: "쪼 틀라이", meaning: "가격을 깎다", type: "동사" },
-      { khmer: "ដូរលុយ", pron: "도 루이", meaning: "환전하다", type: "동사" },
-      { khmer: "ឆ្លងផ្លូវ", pron: "츨랑 플러우", meaning: "길을 건너다", type: "동사" },
-      { khmer: "បត់ឆ្វេង", pron: "벗 츠웨잉", meaning: "좌회전하다", type: "동사" },
-      { khmer: "បត់ស្តាំ", pron: "벗 스담", meaning: "우회전하다", type: "동사" },
-      { khmer: "ចតឡាន", pron: "쩌앗 란", meaning: "주차하다", type: "동사" },
-      { khmer: "តេទៅ", pron: "떼 떠으", meaning: "전화를 걸다", type: "동사" },
-      { khmer: "លើកទូរស័ព្ទ", pron: "르억 뚜어쌉", meaning: "전화를 받다", type: "동사" },
-      { khmer: "លេបថ្នាំ", pron: "레입 크남", meaning: "약을 먹다", type: "동사" },
-      { khmer: "ចាក់ថ្នាំ", pron: "짜악 크남", meaning: "주사를 맞다", type: "동사" }
-    ];
-
-    /* ==========================================================================
-       ★ 무한 루프가 영구히 방지된 1,000문제 고유 생성 엔진
-       ========================================================================== */
-    function generate1000UniquePool(baseList, startNum = 1) {
-      const pool = [];
-      const usedMap = new Set();
-      let index = startNum;
-
-      // 1. 기본 어휘 등록
-      for (const item of baseList) {
-        if (!usedMap.has(item.khmer) && pool.length < 1000) {
-          usedMap.add(item.khmer);
-          pool.push({ qNum: index++, khmer: item.khmer, pron: item.pron, meaning: item.meaning, type: item.type });
-        }
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx || audioCtx.state === 'closed') {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
-
-      // 풍부한 결합 문맥 수식어 18개 (수천 가지의 고유 조합 생성 보장)
-      const prefixes = [
-        { kh: "ត្រូវតែ", pr: "뜨러우 따에 ", ko: "반드시 " },
-        { kh: "មិនអាច", pr: "먼 앗 ", ko: "도저히 못 " },
-        { kh: "ចូលចិត្ត", pr: "쪼올쩟 ", ko: "즐겨 " },
-        { kh: "ព្យាយាម", pr: "삐어이지어엄 ", ko: "열심히 " },
-        { kh: "ចាប់ផ្តើម", pr: "짭프다엄 ", ko: "비로소 " },
-        { kh: "ត្រៀម", pr: "뜨리엄 ", ko: "미리 " },
-        { kh: "សម្រេចចិត្ត", pr: "썸라엣쩟 ", ko: "결심하고 " },
-        { kh: "ទើបតែ", pr: "떠업 따에 ", ko: "막 " },
-        { kh: "ធ្លាប់បាន", pr: "틀로압 반 ", ko: "일찍이 " },
-        { kh: "បន្ត", pr: "본떠 ", ko: "계속해서 " },
-        { kh: "ចង់បាន", pr: "쩡 반 ", ko: "간절히 원하여 " },
-        { kh: "តែងតែ", pr: "따엥 따에 ", ko: "항상 " },
-        { kh: "កម្រនឹង", pr: "껌러 넝 ", ko: "좀처럼 안 " },
-        { kh: "ប្រញាប់", pr: "쁘러왑 ", ko: "서둘러 " },
-        { kh: "ស្ម័គ្រចិត្ត", pr: "스막 쩟 ", ko: "기꺼이 " },
-        { kh: "សង្ឃឹមថានឹង", pr: "쌍큼 타 넝 ", ko: "소망하며 " },
-        { kh: "រួមគ្នា", pr: "루옴 크니어 ", ko: "함께 " },
-        { kh: "ដោយស្មោះ", pr: "다오이 스모 ", ko: "진심으로 " }
-      ];
-
-      let pIdx = 0;
-      let bIdx = 0;
-      let safetyCounter = 0;
-
-      // 안전 장치가 포함된 고유 조합 생성 루프
-      while (pool.length < 1000 && safetyCounter < 4000) {
-        safetyCounter++;
-        const base = baseList[bIdx % baseList.length];
-        const p = prefixes[pIdx % prefixes.length];
-        const newKh = p.kh + base.khmer;
-
-        if (!usedMap.has(newKh)) {
-          usedMap.add(newKh);
-          pool.push({
-            qNum: index++,
-            khmer: newKh,
-            pron: p.pr + base.pron,
-            meaning: p.ko + base.meaning,
-            type: base.type
-          });
-        }
-
-        bIdx++;
-        if (bIdx % baseList.length === 0) pIdx++;
+      if (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted') {
+        audioCtx.resume().catch(() => {});
       }
-
-      // 혹시라도 부족할 경우 무한 루프 없이 즉시 1000개를 안전 완충하는 2차 폴백
-      while (pool.length < 1000) {
-        const item = baseList[pool.length % baseList.length];
-        pool.push({
-          qNum: index++,
-          khmer: item.khmer,
-          pron: item.pron,
-          meaning: item.meaning,
-          type: item.type
-        });
-      }
-
-      return pool;
+      return audioCtx;
     }
 
-    // 0.005초 만에 생성 완료되는 1000문제 풀
-    const GENERAL_POOL_1000 = generate1000UniquePool([...ADVANCED_GENERAL_BASE, ...BASE_DAILY], 1);
-    const BIBLE_POOL_1000 = generate1000UniquePool(BIBLE_BASE_WORDS, 1001);
+    function unlockAudio() {
+      const ctx = getAudioContext();
+      if (ctx && (ctx.state === 'suspended' || ctx.state === 'interrupted')) {
+        ctx.resume().catch(() => {});
+      }
+    }
 
-    const MASTER_DICTIONARY = (() => {
-      const map = new Map();
-      [...BIBLE_BASE_WORDS, ...ADVANCED_GENERAL_BASE, ...BASE_DAILY].forEach(item => {
-        if (!map.has(item.khmer)) map.set(item.khmer, item);
-      });
-      return Array.from(map.values());
-    })();
+    function playSuccessFx() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime + 0.01;
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.07);
+          gain.gain.linearRampToValueAtTime(0.22, now + idx * 0.07 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.07);
+          osc.stop(now + idx * 0.07 + 0.38);
+        });
+      } catch (e) {}
+    }
+
+    function playFailFx() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime + 0.01;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(50, now + 0.3);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.33);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.34);
+      } catch (e) {}
+    }
+
+    function playBonusFx() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime + 0.01;
+        [587.33, 739.99, 880.00, 1174.66].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+          gain.gain.linearRampToValueAtTime(0.25, now + idx * 0.08 + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 0.38);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.4);
+        });
+      } catch (e) {}
+    }
 
     /* ==========================================================================
-       6. 퀴즈 게임 엔진 & 세션 중복 완전 방지 루틴
+       3. 캔버스 폭죽(콘페티)
        ========================================================================== */
-    let currentMode = 'all'; 
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiAnimationId = null;
+
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function fireConfetti() {
+      const colors = ['#f59e0b', '#10b981', '#6366f1', '#ec4899', '#3b82f6', '#fbbf24', '#ffffff'];
+      for (let i = 0; i < 65; i++) {
+        confettiParticles.push({
+          x: canvas.width / 2 + (Math.random() - 0.5) * 80,
+          y: canvas.height * 0.45,
+          vx: (Math.random() - 0.5) * 14,
+          vy: Math.random() * -12 - 5,
+          size: Math.random() * 8 + 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1,
+          decay: Math.random() * 0.015 + 0.012
+        });
+      }
+      if (!confettiAnimationId) renderConfetti();
+    }
+
+    function renderConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = confettiParticles.length - 1; i >= 0; i--) {
+        const p = confettiParticles[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.38; p.vx *= 0.98;
+        p.rotation += p.rotSpeed; p.opacity -= p.decay;
+        if (p.opacity <= 0 || p.y > canvas.height) { confettiParticles.splice(i, 1); continue; }
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        ctx.restore();
+      }
+      if (confettiParticles.length > 0) confettiAnimationId = requestAnimationFrame(renderConfetti);
+      else { cancelAnimationFrame(confettiAnimationId); confettiAnimationId = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+
+    /* ==========================================================================
+       4. 발음 오디오 엔진 (Google TTS + Web Speech API)
+       ========================================================================== */
+    let audioMode = 'khmer';
+    let currentAudioObj = null;
+
+    function showToast(text) {
+      const toast = document.getElementById('toastPopup');
+      document.getElementById('toastMsg').textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    function playGoogleKhmerAudio(text) {
+      return new Promise((resolve, reject) => {
+        if (currentAudioObj) { currentAudioObj.pause(); currentAudioObj = null; }
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=km&q=${encodeURIComponent(text)}`;
+        const audio = new Audio(url);
+        currentAudioObj = audio;
+        const timer = setTimeout(() => { audio.pause(); reject(new Error("Timeout")); }, 3000);
+        audio.onplay = () => clearTimeout(timer);
+        audio.onended = () => resolve();
+        audio.onerror = (e) => { clearTimeout(timer); reject(e); };
+        audio.play().catch(err => { clearTimeout(timer); reject(err); });
+      });
+    }
+
+    function playKoreanSpeech(pronText) {
+      return new Promise((resolve) => {
+        if (!('speechSynthesis' in window)) return resolve();
+        window.speechSynthesis.cancel();
+        const utt = new SpeechSynthesisUtterance(pronText.replace(/[\[\]\(\)\/]/g, ' ').trim());
+        utt.lang = 'ko-KR';
+        utt.rate = 0.9;
+        utt.onend = () => resolve();
+        utt.onerror = () => resolve();
+        window.speechSynthesis.speak(utt);
+      });
+    }
+
+    async function playSmartSpeech(khmerText, pronText) {
+      showToast(`🔊 [${khmerText} : ${pronText}] 재생 중`);
+      if (audioMode === 'korean') { await playKoreanSpeech(pronText); return; }
+      if (audioMode === 'both') {
+        try { await playGoogleKhmerAudio(khmerText); } catch (e) {}
+        await new Promise(r => setTimeout(r, 200));
+        await playKoreanSpeech(pronText);
+        return;
+      }
+      try { await playGoogleKhmerAudio(khmerText); } catch (err) {
+        await playKoreanSpeech(pronText);
+      }
+    }
+
+    /* ==========================================================================
+       5. 퀴즈 엔진 & 세션 중복 완전 방지 루틴
+       ========================================================================== */
+    const MAX_LIVES = 3;
+    let currentLives = 3;
+    let currentMode = 'general';
     let questionPool = [];
     let currentIndex = 0;
     let currentQuestion = null;
@@ -1037,7 +782,25 @@
     let comboCount = 0;
     let wrongList = [];
 
-    function shuffleArray(arr) {
+    let userStats = { bestCombo: 0, unlockedBadges: [] };
+
+    const BADGES = [
+      { id: 'streak_10', icon: '🥉', title: '브론즈', desc: '10회 연속 정답' },
+      { id: 'streak_20', icon: '🥈', title: '실버', desc: '20회 연속 정답' },
+      { id: 'streak_30', icon: '🥇', title: '골드', desc: '30회 연속 정답' },
+      { id: 'streak_40', icon: '💎', title: '다이아몬드', desc: '40회 연속 정답' },
+      { id: 'streak_50', icon: '👑', title: '크메르 지존', desc: '50회 연속 정답' },
+      { id: 'acc_almost', icon: '🏹', title: '거의 백발백중', desc: '20문제 이상 풀이 & 정답률 90% 이상' },
+      { id: 'acc_master', icon: '🎯', title: '전설의 백발백중', desc: '100문제 이상 풀이 & 정답률 90% 이상' }
+    ];
+
+    function updateLivesUI() {
+      let hearts = '';
+      for (let i = 0; i < MAX_LIVES; i++) hearts += (i < currentLives) ? '❤️' : '🖤';
+      document.getElementById('statLives').textContent = hearts;
+    }
+
+    function shuffle(arr) {
       const copy = [...arr];
       for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -1046,41 +809,44 @@
       return copy;
     }
 
-    function loadSavedWrongs() {
+    function loadSavedData() {
       try {
-        const saved = localStorage.getItem('khmer_quiz_wrongs');
-        if (saved) wrongList = JSON.parse(saved);
+        const w = localStorage.getItem('khmer_wrongs_2000');
+        if (w) wrongList = JSON.parse(w);
+        const s = localStorage.getItem('khmer_stats_2000');
+        if (s) userStats = JSON.parse(s);
       } catch (e) {}
-      updateWrongBadge();
-    }
-
-    function saveWrongs() {
-      try {
-        localStorage.setItem('khmer_quiz_wrongs', JSON.stringify(wrongList));
-      } catch (e) {}
-      updateWrongBadge();
-    }
-
-    function updateWrongBadge() {
       document.getElementById('wrongCount').textContent = wrongList.length;
+      document.getElementById('statBestCombo').textContent = userStats.bestCombo || 0;
+      document.getElementById('hallBestRecord').textContent = `${userStats.bestCombo || 0}회`;
+    }
+
+    function saveSavedData() {
+      try {
+        localStorage.setItem('khmer_wrongs_2000', JSON.stringify(wrongList));
+        localStorage.setItem('khmer_stats_2000', JSON.stringify(userStats));
+      } catch (e) {}
+      document.getElementById('wrongCount').textContent = wrongList.length;
+      document.getElementById('statBestCombo').textContent = userStats.bestCombo || 0;
+      document.getElementById('hallBestRecord').textContent = `${userStats.bestCombo || 0}회`;
     }
 
     function initQuizPool() {
-      if (currentMode === 'all') {
-        questionPool = shuffleArray(GENERAL_POOL_1000);
+      if (currentMode === 'general') {
+        questionPool = shuffle(RAW_DOC_WORDS.filter(w => w.id <= 1000));
       } else if (currentMode === 'bible') {
-        questionPool = shuffleArray(BIBLE_POOL_1000);
+        questionPool = shuffle(RAW_DOC_WORDS.filter(w => w.id >= 1001));
       } else if (currentMode === 'verb') {
-        questionPool = shuffleArray(GENERAL_POOL_1000.filter(v => v.type.includes('동사')));
+        questionPool = shuffle(RAW_DOC_WORDS.filter(w => w.type === '동사'));
       } else if (currentMode === 'adj') {
-        questionPool = shuffleArray(GENERAL_POOL_1000.filter(v => v.type.includes('형용사')));
+        questionPool = shuffle(RAW_DOC_WORDS.filter(w => w.type === '형용사'));
       } else if (currentMode === 'wrong') {
         if (wrongList.length === 0) {
           alert('틀린 문제가 없습니다! 일반이나 성경 모드를 먼저 풀어보세요.');
-          setMode('all');
+          setMode('general');
           return;
         }
-        questionPool = shuffleArray(wrongList);
+        questionPool = shuffle(wrongList);
       }
 
       currentIndex = 0;
@@ -1092,21 +858,18 @@
       if (currentLives <= 0) return;
 
       if (currentIndex >= questionPool.length) {
-        if (currentMode === 'bible') {
-          alert('🏆 대단합니다! 성경 1,000문제를 모두 완주하셨습니다!');
-        } else {
-          alert('🏆 축하합니다! 모든 1,000문제를 중복 없이 완주하셨습니다!');
-        }
+        alert('🎉 축하합니다! 이 모드의 모든 문제를 중복 없이 완주하셨습니다!');
         currentIndex = 0;
-        questionPool = shuffleArray(questionPool);
+        questionPool = shuffle(questionPool);
       }
 
       isAnswered = false;
       const targetWord = questionPool[currentIndex];
 
-      const candidateDistractors = questionPool.filter(v => v.meaning !== targetWord.meaning);
-      const shuffledDistractors = shuffleArray(candidateDistractors).slice(0, 3);
-      const options = shuffleArray([targetWord, ...shuffledDistractors]);
+      // 4지선다 출제 보장: 대상 단어와 다른 단어 3개 무작위 추출
+      const candidateDistractors = RAW_DOC_WORDS.filter(w => w.meaning !== targetWord.meaning);
+      const chosenDistractors = shuffle(candidateDistractors).slice(0, 3);
+      const options = shuffle([targetWord, ...chosenDistractors]);
 
       currentQuestion = { target: targetWord, options: options };
       renderQuestionCard();
@@ -1114,8 +877,9 @@
 
     function renderQuestionCard() {
       const q = currentQuestion;
+      if (!q || !q.target) return;
 
-      document.getElementById('badgeCategory').textContent = `${q.target.type}`;
+      document.getElementById('badgeCategory').textContent = `${q.target.type} (#${q.target.id})`;
       document.getElementById('displayKhmer').textContent = q.target.khmer;
       document.getElementById('displayPron').textContent = `[${q.target.pron}]`;
 
@@ -1141,21 +905,18 @@
             </div>
             <span class="option-status-badge" id="optBadge_${idx}"></span>
           </div>
-
           <div class="option-revealed-area" id="revArea_${idx}">
             <div class="revealed-content">
               <div class="rev-word-group">
                 <span class="rev-khmer khmer-font">${opt.khmer}</span>
                 <span class="rev-pron">[${opt.pron}]</span>
               </div>
-              <button class="btn-opt-tts" id="btnTts_${idx}">
-                🔊 발음 듣기
-              </button>
+              <button class="btn-opt-tts" id="btnTts_${idx}">🔊 발음</button>
             </div>
           </div>
         `;
 
-        btn.onclick = async () => {
+        btn.onclick = () => {
           unlockAudio();
           if (!isAnswered && currentLives > 0) checkAnswer(idx, opt);
         };
@@ -1187,39 +948,40 @@
       if (isCorrect) {
         correctCount++;
         comboCount++;
-        wrongList = wrongList.filter(w => w.khmer !== currentQuestion.target.khmer);
-        saveWrongs();
+        wrongList = wrongList.filter(w => w.id !== currentQuestion.target.id);
+        saveSavedData();
 
         playSuccessFx();
         fireConfetti();
 
+        // 20연속 정답 시 생명 회복 (+1 ❤️)
         if (comboCount > 0 && comboCount % 20 === 0) {
           if (currentLives < MAX_LIVES) {
             currentLives++;
             updateLivesUI();
-            playLifeBonusFx();
+            playBonusFx();
             showToast(`💖 ${comboCount}연속 정답 달성! 생명 1개 회복 (+1 ❤️)`);
           } else {
             showToast(`💖 ${comboCount}연속 정답! 생명이 가득 차 있습니다!`);
           }
         }
 
-        checkAchievements(comboCount, solvedCount, correctCount);
+        checkAchievements();
       } else {
         comboCount = 0;
         currentLives--;
         updateLivesUI();
 
-        if (!wrongList.some(w => w.khmer === currentQuestion.target.khmer)) {
+        if (!wrongList.some(w => w.id === currentQuestion.target.id)) {
           wrongList.push(currentQuestion.target);
-          saveWrongs();
+          saveSavedData();
         }
 
         playFailFx();
         card.classList.remove('shake');
         void card.offsetWidth;
         card.classList.add('shake');
-        setTimeout(() => card.classList.remove('shake'), 500);
+        setTimeout(() => card.classList.remove('shake'), 450);
 
         if (currentLives <= 0) {
           setTimeout(() => {
@@ -1253,13 +1015,35 @@
       const feedbackTitle = document.getElementById('feedbackTitle');
 
       if (isCorrect) {
-        feedbackTitle.innerHTML = `<span style="color:var(--success);">🎉 정답입니다! (연속 ${comboCount}회 달성 🔥)</span>`;
+        feedbackTitle.innerHTML = `<span style="color:var(--success);">🎉 정답입니다! (연속 ${comboCount}회 🔥)</span>`;
       } else {
         feedbackTitle.innerHTML = `<span style="color:var(--danger);">😢 아쉽습니다! 정답은 [${currentQuestion.target.meaning}] 입니다.</span>`;
       }
 
       feedbackBar.style.display = 'flex';
       updateStats();
+    }
+
+    function checkAchievements() {
+      let isNew = false;
+      if (comboCount > (userStats.bestCombo || 0)) {
+        userStats.bestCombo = comboCount;
+        isNew = true;
+      }
+      [10, 20, 30, 40, 50].forEach(num => {
+        const id = `streak_${num}`;
+        if (comboCount >= num && !userStats.unlockedBadges.includes(id)) {
+          userStats.unlockedBadges.push(id);
+          isNew = true;
+        }
+      });
+      if (solvedCount >= 20 && (correctCount / solvedCount) >= 0.9 && !userStats.unlockedBadges.includes('acc_almost')) {
+        userStats.unlockedBadges.push('acc_almost'); isNew = true;
+      }
+      if (solvedCount >= 100 && (correctCount / solvedCount) >= 0.9 && !userStats.unlockedBadges.includes('acc_master')) {
+        userStats.unlockedBadges.push('acc_master'); isNew = true;
+      }
+      if (isNew) saveSavedData();
     }
 
     function goNext() {
@@ -1306,72 +1090,53 @@
       comboCount = 0;
       document.getElementById('gameOverModal').classList.remove('open');
       initQuizPool();
-      showToast('💖 생명이 3개로 완충되었습니다! 다시 도전해보세요!');
+      showToast('💖 생명이 3개로 완충되었습니다! 힘내세요!');
     }
 
     /* ==========================================================================
-       7. 대사전 검색 엔진
+       6. 명예의 전당 & 대사전 검색
        ========================================================================== */
-    function normalizeSearchKey(str) {
-      if (!str) return '';
-      return str.toLowerCase()
-        .replace(/\s+/g, '')
-        .replace(/[\[\]\(\)\/]/g, '')
-        .replace(/빽/g, '뻭').replace(/빼/g, '뻬').replace(/애/g, '에').replace(/개/g, '게')
-        .replace(/배/g, '베').replace(/새/g, '세').replace(/재/g, '제').replace(/채/g, '체')
-        .replace(/태/g, '테').replace(/패/g, '페').replace(/쓰/g, '스').replace(/뜨/g, '트')
-        .replace(/끄/g, '크').replace(/호웁/g, '홉');
-    }
-
-    function renderVocabList(rawQuery = '') {
-      const container = document.getElementById('vocabList');
-      container.innerHTML = '';
-
-      const query = rawQuery.trim();
-      const normQuery = normalizeSearchKey(query);
-
-      let filtered = [];
-
-      if (!query) {
-        filtered = MASTER_DICTIONARY.slice(0, 80);
-      } else {
-        filtered = MASTER_DICTIONARY.filter(item => {
-          const itemKhmer = item.khmer;
-          const itemPronNorm = normalizeSearchKey(item.pron);
-          const itemMeanNorm = normalizeSearchKey(item.meaning);
-          const itemTypeNorm = normalizeSearchKey(item.type);
-
-          if (itemKhmer.includes(query)) return true;
-          if (itemPronNorm.includes(normQuery)) return true;
-          if (itemMeanNorm.includes(normQuery)) return true;
-          if (itemTypeNorm.includes(normQuery)) return true;
-
-          return false;
-        });
-      }
-
-      if (filtered.length === 0 && query) {
-        const isKhmer = /[\u1780-\u17FF]/.test(query);
-        const sl = isKhmer ? 'km' : 'ko';
-        const tl = isKhmer ? 'ko' : 'km';
-        const googleUrl = `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent(query)}&op=translate`;
-
-        container.innerHTML = `
-          <div class="google-live-card">
-            <div style="font-size: 0.95rem; font-weight: 700;">내장 사전에 없는 단어입니다</div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">구글 실시간 번역에서 바로 확인하세요:</div>
-            <a href="${googleUrl}" target="_blank" class="btn-google-translate">
-              🌐 구글 번역기에서 "${query}" 검색하기 ➔
-            </a>
+    function renderHallOfFame() {
+      document.getElementById('hallBestRecord').textContent = `${userStats.bestCombo || 0}회`;
+      const grid = document.getElementById('badgeGrid');
+      grid.innerHTML = '';
+      BADGES.forEach(b => {
+        const isUnlocked = userStats.unlockedBadges.includes(b.id);
+        const card = document.createElement('div');
+        card.className = `badge-card ${isUnlocked ? 'unlocked' : ''}`;
+        card.innerHTML = `
+          <div class="badge-icon">${b.icon}</div>
+          <div class="badge-info">
+            <span class="badge-title">${b.title} ${isUnlocked ? '✓' : '🔒'}</span>
+            <span class="badge-desc">${b.desc}</span>
           </div>
         `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderVocabList(query = '') {
+      const container = document.getElementById('vocabList');
+      container.innerHTML = '';
+      const q = query.trim().toLowerCase();
+
+      let filtered = RAW_DOC_WORDS;
+      if (q) {
+        filtered = RAW_DOC_WORDS.filter(w => 
+          w.khmer.includes(q) || w.pron.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q) || w.type.toLowerCase().includes(q)
+        );
+      } else {
+        filtered = RAW_DOC_WORDS.slice(0, 60);
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:15px; color:#94a3b8;">검색 결과가 없습니다.</div>';
         return;
       }
 
       filtered.forEach(item => {
         const row = document.createElement('div');
         row.className = 'vocab-row';
-
         let typeClass = 'type-badge';
         if (item.type.includes('성경')) typeClass += ' type-bible';
         else if (item.type.includes('동사')) typeClass += ' type-verb';
@@ -1380,16 +1145,14 @@
 
         row.innerHTML = `
           <div>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span class="khmer-font" style="font-size:1.3rem; font-weight:700;">${item.khmer}</span>
-              <span style="color:var(--gold); font-size:0.95rem; font-weight:600;">[${item.pron}]</span>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="khmer-font" style="font-size:1.15rem; font-weight:700;">${item.khmer}</span>
+              <span style="color:var(--gold); font-size:0.85rem; font-weight:600;">[${item.pron}]</span>
               <span class="${typeClass}">${item.type}</span>
             </div>
-            <div style="font-size:0.95rem; color:#f1f5f9; margin-top:3px;">${item.meaning}</div>
+            <div style="font-size:0.88rem; color:#f1f5f9; margin-top:2px;">${item.meaning}</div>
           </div>
-          <button class="btn-opt-tts" onclick="playSmartSpeech('${item.khmer}', '${item.pron}')">
-            🔊 듣기
-          </button>
+          <button class="btn-opt-tts" onclick="playSmartSpeech('${item.khmer}', '${item.pron}')">🔊</button>
         `;
         container.appendChild(row);
       });
@@ -1403,12 +1166,11 @@
     }
 
     /* ==========================================================================
-       8. 초기화 및 리스너
+       7. 초기화 및 이벤트 등록
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('totalDictCount').textContent = MASTER_DICTIONARY.length;
-      loadSavedWrongs();
-      loadGameStats();
+      document.getElementById('totalDictCount').textContent = RAW_DOC_WORDS.length;
+      loadSavedData();
       updateLivesUI();
       initQuizPool();
 
@@ -1458,7 +1220,6 @@
 
       window.addEventListener('keydown', (e) => {
         if (vocabModal.classList.contains('open') || hallModal.classList.contains('open') || document.getElementById('gameOverModal').classList.contains('open')) return;
-
         if (!isAnswered) {
           if (['1', '2', '3', '4'].includes(e.key)) {
             const idx = parseInt(e.key) - 1;
