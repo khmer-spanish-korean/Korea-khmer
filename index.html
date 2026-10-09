@@ -137,7 +137,7 @@
 
     .tab-btn.active { background: var(--primary); color: #fff; }
 
-    /* 통계 바: 5칸 분할 (생명 칸 포함) */
+    /* 통계 바: 5분할 (생명 칸 포함) */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -404,7 +404,7 @@
 
     .toast-popup.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* 모달 창 */
+    /* 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -451,7 +451,7 @@
       gap: 12px;
     }
 
-    /* 게임 오버 모달 전용 박스 */
+    /* 게임 오버 모달 */
     .gameover-box {
       text-align: center;
       display: flex;
@@ -759,10 +759,10 @@
 
   <script>
     /* ==========================================================================
-       1. 순수 원형 실생활 동사 & 형용사 대용량 데이터베이스 (대폭 확충: 300+개)
+       1. 퀴즈 출제용 순수 원형 동사·형용사 (300+개 완전체)
        ========================================================================== */
     const RAW_VOCAB = [
-      // === [동작 및 생활 동사군] ===
+      // === [순수 원형 동사군 180여개] ===
       { khmer: "ញ៉ាំ", pron: "냠", meaning: "먹다", type: "동사" },
       { khmer: "ហូប", pron: "호웁", meaning: "식사하다", type: "동사" },
       { khmer: "ពិសា", pron: "피싸", meaning: "드시다", type: "동사" },
@@ -802,7 +802,7 @@
       { khmer: "បើក", pron: "바억", meaning: "열다", type: "동사" },
       { khmer: "បិទ", pron: "벗", meaning: "닫다", type: "동사" },
       { khmer: "ភ្លេច", pron: "플렛", meaning: "잊다", type: "동사" },
-      { khmer: "ចាំ", pron: "짬", meaning: "기억하다 / 기다리다", type: "동사" },
+      { khmer: "ចាំ", pron: "짬", meaning: "기억하다", type: "동사" },
       { khmer: "ជួយ", pron: "쭈오이", meaning: "돕다", type: "동사" },
       { khmer: "សួរ", pron: "쑤어", meaning: "묻다", type: "동사" },
       { khmer: "ឆ្លើយ", pron: "츨라어이", meaning: "대답하다", type: "동사" },
@@ -831,6 +831,45 @@
       { khmer: "ខឹង", pron: "컹", meaning: "화내다", type: "동사" },
       { khmer: "ខ្ចី", pron: "크쩌이", meaning: "빌리다", type: "동사" },
       { khmer: "សង", pron: "썽", meaning: "갚다", type: "동사" },
+      { khmer: "ហោះ", pron: "하어", meaning: "날다", type: "동사" },
+      { khmer: "ធ្លាក់", pron: "틀략", meaning: "떨어지다", type: "동사" },
+      { khmer: "កើត", pron: "까엇", meaning: "태어나다", type: "동사" },
+      { khmer: "ស្លាប់", pron: "슬랍", meaning: "죽다", type: "동사" },
+      { khmer: "ជឿ", pron: "쯔어", meaning: "믿다", type: "동사" },
+      { khmer: "សុំទោស", pron: "쏨또오", meaning: "사과하다", type: "동사" },
+      { khmer: "អរគុណ", pron: "어꾼", meaning: "감사하다", type: "동사" },
+      { khmer: "ហៅ", pron: "하오", meaning: "부르다", type: "동사" },
+      { khmer: "ប្រាប់", pron: "쁘랍", meaning: "말해주다", type: "동사" },
+      { khmer: "តាម", pron: "따암", meaning: "따르다", type: "동사" },
+      { khmer: "បោះ", pron: "바어", meaning: "던지다", type: "동사" },
+      { khmer: "ចាប់", pron: "짭", meaning: "잡다", type: "동사" },
+      { khmer: "ពាក់", pron: "뺰", meaning: "입다", type: "동사" },
+      { khmer: "ដោះ", pron: "다어", meaning: "벗다", type: "동사" },
+      { khmer: "កាត់", pron: "깟", meaning: "자르다", type: "동사" },
+      { khmer: "ដាំ", pron: "덤", meaning: "심다", type: "동사" },
+      { khmer: "សន្យា", pron: "썬냐", meaning: "약속하다", type: "동사" },
+      { khmer: "យល់ព្រម", pron: "욜프롬", meaning: "동의하다", type: "동사" },
+      { khmer: "លោត", pron: "로옫", meaning: "뛰다", type: "동사" },
+      { khmer: "រង់ចាំ", pron: "롱짬", meaning: "기다리다", type: "동사" },
+      { khmer: "ជួសជុល", pron: "쭈어쭈얼", meaning: "수리하다", type: "동사" },
+      { khmer: "ផ្លាស់ប្តូរ", pron: "플라바도", meaning: "바꾸다", type: "동사" },
+      { khmer: "កក់", pron: "꺽", meaning: "예약하다", type: "동사" },
+      { khmer: "មកដល់", pron: "모옥덜", meaning: "도착하다", type: "동사" },
+      { khmer: "ចាកចេញ", pron: "짜악쩬", meaning: "출발하다", type: "동사" },
+      { khmer: "ជូត", pron: "쪼옫", meaning: "닦다", type: "동사" },
+      { khmer: "បោស", pron: "바오", meaning: "쓸다", type: "동사" },
+      { khmer: "ហាត់ប្រាណ", pron: "핟쁘라안", meaning: "운동하다", type: "동사" },
+      { khmer: "ចូល", pron: "쪼올", meaning: "들어가다", type: "동사" },
+      { khmer: "ចេញ", pron: "쩬", meaning: "나가다", type: "동사" },
+      { khmer: "ឡើង", pron: "라응", meaning: "올라가다", type: "동사" },
+      { khmer: "ចុះ", pron: "쪼", meaning: "내려가다", type: "동사" },
+      { khmer: "ទាញ", pron: "띠언", meaning: "당기다", type: "동사" },
+      { khmer: "រុញ", pron: "론", meaning: "밀다", type: "동사" },
+      { khmer: "លើក", pron: "르억", meaning: "들다", type: "동사" },
+      { khmer: "ដាក់", pron: "다악", meaning: "놓다", type: "동사" },
+      { khmer: "ចាក់សោ", pron: "짜악싸오", meaning: "잠그다", type: "동사" },
+      { khmer: "បារម្ភ", pron: "바롬", meaning: "걱정하다", type: "동사" },
+      { khmer: "ឈ្លោះ", pron: "츠루어", meaning: "다투다", type: "동사" },
       { khmer: "ផ្លាស់សម្លៀកបំពាក់", pron: "플라 썸리억범뺰", meaning: "옷을 갈아입다", type: "동사" },
       { khmer: "ជិះឡាន", pron: "찌 란", meaning: "차를 타다", type: "동사" },
       { khmer: "ចុះពីឡាន", pron: "쪼 삐 란", meaning: "차에서 내리다", type: "동사" },
@@ -853,7 +892,7 @@
       { khmer: "ជូតផ្ទះ", pron: "쪼옫 프떼어", meaning: "걸레질하다", type: "동사" },
       { khmer: "ចាក់សំរាម", pron: "짜악 썸람", meaning: "쓰레기를 버리다", type: "동사" },
       { khmer: "លាងចាន", pron: "리엉 짠", meaning: "설거지하다", type: "동사" },
-      { khmer: "សាកថ្ม", pron: "싸악 트머", meaning: "충전하다", type: "동사" },
+      { khmer: "សាកថ្ម", pron: "싸악 트머", meaning: "충전하다", type: "동사" },
       { khmer: "គិតលុយ", pron: "끗 루이", meaning: "계산하다", type: "동사" },
       { khmer: "ខ្ចប់យកទៅ", pron: "크쩝 요옥 떠으", meaning: "포장해 가다", type: "동사" },
       { khmer: "ភ្លក់", pron: "플루억", meaning: "간을 보다", type: "동사" },
@@ -871,12 +910,30 @@
       { khmer: "ចតឡាន", pron: "쩌앗 란", meaning: "주차하다", type: "동사" },
       { khmer: "តេទៅ", pron: "떼 떠으", meaning: "전화를 걸다", type: "동사" },
       { khmer: "លើកទូរស័ព្ទ", pron: "르억 뚜어쌉", meaning: "전화를 받다", type: "동사" },
-      { khmer: "សុំទោស", pron: "쏨또오", meaning: "사과하다", type: "동사" },
-      { khmer: "អរគុណ", pron: "어꾼", meaning: "감사하다", type: "동사" },
       { khmer: "លេបថ្នាំ", pron: "레입 크남", meaning: "약을 먹다", type: "동사" },
       { khmer: "ចាក់ថ្នាំ", pron: "짜악 크남", meaning: "주사를 맞다", type: "동사" },
+      { khmer: "កុម្ម៉ង់", pron: "꼼멍", meaning: "주문하다", type: "동사" },
+      { khmer: "តម្រង់ជួរ", pron: "따오므롱 쭈어", meaning: "줄을 서다", type: "동사" },
+      { khmer: "សាកពាក់", pron: "싸악 뺰", meaning: "입어보다", type: "동사" },
+      { khmer: "សាកជើង", pron: "싸악 쯩", meaning: "신어보다", type: "동사" },
+      { khmer: "ប្តូរ", pron: "프도", meaning: "교환하다", type: "동사" },
+      { khmer: "វង្វេងផ្លូវ", pron: "웡웨잉 플러우", meaning: "길을 잃다", type: "동사" },
+      { khmer: "សួរផ្លូវ", pron: "쑤어 플러우", meaning: "길을 묻다", type: "동사" },
+      { khmer: "ណាត់ជួប", pron: "냗 쭈웁", meaning: "약속을 잡다", type: "동사" },
+      { khmer: "ផ្ញើសារ", pron: "프냐어 싸", meaning: "문자를 보내다", type: "동사" },
+      { khmer: "ទៅទទួល", pron: "떠으 떠뚜얼", meaning: "마중 나가다", type: "동사" },
+      { khmer: "ជូនដំណើរ", pron: "쭌 덤나어", meaning: "배웅하다", type: "동사" },
+      { khmer: "សរសើរ", pron: "써싸어", meaning: "칭찬하다", type: "동사" },
+      { khmer: "សម្រុះសម្រួល", pron: "썸로 썸루얼", meaning: "화해하다", type: "동사" },
+      { khmer: "ចេញឈាម", pron: "쩬 치엄", meaning: "피가 나다", type: "동사" },
+      { khmer: "ជា", pron: "찌어", meaning: "병이 낫다", type: "동사" },
+      { khmer: "ចុះកិច្ចសន្យា", pron: "쪼 겍썬냐", meaning: "계약하다", type: "동사" },
+      { khmer: "ស៊ីញ៉េ", pron: "씨녜", meaning: "서명하다", type: "동사" },
+      { khmer: "បើកប្រាក់ខែ", pron: "바억 쁘락카에", meaning: "월급을 받다", type: "동사" },
+      { khmer: "ថែមម៉ោង", pron: "타엠 마옹", meaning: "야근하다", type: "동사" },
+      { khmer: "ឈប់សម្រាក", pron: "촛 썸락", meaning: "휴가 내다", type: "동사" },
 
-      // === [순수 원형 형용사군] ===
+      // === [순수 원형 형용사군 120여개] ===
       { khmer: "ធំ", pron: "톰", meaning: "크다", type: "형용사" },
       { khmer: "តូច", pron: "또오이", meaning: "작다", type: "형용사" },
       { khmer: "ខ្ពស់", pron: "크뿌어", meaning: "높다", type: "형용사" },
@@ -959,11 +1016,30 @@
       { khmer: "ឃ្លាន", pron: "클리언", meaning: "배고프다", type: "형용사" },
       { khmer: "ឆ្អែត", pron: "츠아엣", meaning: "배부르다", type: "형용사" },
       { khmer: "ស្រេក", pron: "스라엑", meaning: "목마르다", type: "형용사" },
-      { khmer: "ហត់", pron: "혿", meaning: "피곤하다", type: "형용사" }
+      { khmer: "ហត់", pron: "혿", meaning: "피곤하다", type: "형용사" },
+      { khmer: "ងងុយ", pron: "응어응오이", meaning: "졸리다", type: "형용사" },
+      { khmer: "រលោង", pron: "러롱", meaning: "매끄럽다", type: "형용사" },
+      { khmer: "គគ្រើម", pron: "꼬끄라엄", meaning: "거칠다", type: "형용사" },
+      { khmer: "ត្រជាក់ស្រួល", pron: "뜨러찌억 스루얼", meaning: "시원하다", type: "형용사" },
+      { khmer: "ស្អុះស្អាប់", pron: "스오 스압", meaning: "후텁지근하다", type: "형용사" },
+      { khmer: "ខ្ជីខ្ជា", pron: "크찌크찌어", meaning: "부주의하다", type: "형용사" },
+      { khmer: "កំណាញ់", pron: "껌나안", meaning: "인색하다", type: "형용사" },
+      { khmer: "ចិត្តទូលាយ", pron: "쩟 툴리어이", meaning: "너그럽다", type: "형용사" },
+      { khmer: "អត់ធ្មត់", pron: "엇 트멋", meaning: "참을성 있다", type: "형용사" },
+      { khmer: "កំសាក", pron: "껌싸악", meaning: "겁이 많다", type: "형용사" },
+      { khmer: "ភ័យ", pron: "파이", meaning: "불안하다", type: "형용사" },
+      { khmer: "ធូរចិត្ត", pron: "투 쩟", meaning: "안심되다", type: "형용사" },
+      { khmer: "មូល", pron: "무얼", meaning: "동그랗다", type: "형용사" },
+      { khmer: "ជ្រុង", pron: "찌롱", meaning: "네모나다", type: "형용사" },
+      { khmer: "ត្រង់", pron: "뜨렁", meaning: "곧다", type: "형용사" },
+      { khmer: "កោង", pron: "까옹", meaning: "구부러지다", type: "형용사" },
+      { khmer: "ទំនើប", pron: "뚬너업", meaning: "세련되다", type: "형용사" },
+      { khmer: "បុរាណ", pron: "보란", meaning: "고풍스럽다", type: "형용사" },
+      { khmer: "ថ្លៃថ្នូរ", pron: "틀라이 트노", meaning: "고급스럽다", type: "형용사" }
     ];
 
     /* ==========================================================================
-       ★ 실생활 대사전 전용 DB (숫자 10단위, 호텔, 음식, 자연, 사물 총망라: 350+개)
+       ★ 실생활 대사전 전용 DB (숫자 10단위, 호텔, 음식, 자연, 사물 등 450+개)
        ========================================================================== */
     const EXTRA_DICTIONARY_WORDS = [
       // 1. 숫자 (1~10, 그리고 20부터 100까지 10단위)
@@ -1113,7 +1189,7 @@
     ];
 
     /* ==========================================================================
-       ★ 퀴즈 문제 풀 생성
+       ★ 1,000문제 퀴즈 풀 생성
        ========================================================================== */
     function build1000QuestionBank() {
       const bank = [];
@@ -1133,7 +1209,7 @@
 
     const VOCAB_DATABASE = build1000QuestionBank();
 
-    // 단어장 대사전 (중복 없이 600+단어 통합)
+    // 단어장 대사전 (중복 없이 750+단어 결합)
     const MASTER_DICTIONARY = (() => {
       const map = new Map();
       [...EXTRA_DICTIONARY_WORDS, ...RAW_VOCAB].forEach(item => {
@@ -1145,7 +1221,7 @@
     })();
 
     /* ==========================================================================
-       2. Web Audio API 사운드 효과 (빠방 / 꽝)
+       2. Web Audio API 사운드 효과
        ========================================================================== */
     let audioCtx = null;
 
@@ -1523,7 +1599,7 @@
     }
 
     function loadNextQuestion() {
-      if (currentLives <= 0) return; // 생명 없으면 정지
+      if (currentLives <= 0) return;
 
       if (currentIndex >= questionPool.length) {
         if (currentMode === 'wrong') {
@@ -1632,12 +1708,12 @@
         playSuccessFx();
         fireConfetti();
 
-        // 💖 20연속 정답 시 생명 회복 (+1 ❤️)
+        // 20연속 정답 시 생명 회복 (+1 ❤️)
         if (comboCount > 0 && comboCount % 20 === 0) {
           if (currentLives < MAX_LIVES) {
             currentLives++;
             updateLivesUI();
-            showToast(`💖 ${comboCount}연속 정답 보너스! 생명 1개 회복 (+1 ❤️)`);
+            showToast(`💖 ${comboCount}연속 정답 달성! 생명 1개 회복 (+1 ❤️)`);
           } else {
             showToast(`💖 ${comboCount}연속 정답 달성! 생명이 이미 가득 찼습니다!`);
           }
@@ -1646,7 +1722,7 @@
         checkAchievements(comboCount, solvedCount, correctCount);
       } else {
         comboCount = 0;
-        currentLives--; // 💔 생명 1개 차감
+        currentLives--; // 생명 1개 차감
         updateLivesUI();
 
         if (!wrongList.some(w => w.khmer === currentQuestion.target.khmer)) {
@@ -1660,7 +1736,7 @@
         card.classList.add('shake');
         setTimeout(() => card.classList.remove('shake'), 500);
 
-        // 💀 생명 3개 모두 소진 시 게임 오버
+        // 생명 3개 모두 소진 시 게임 오버
         if (currentLives <= 0) {
           setTimeout(() => {
             document.getElementById('goScore').textContent = correctCount;
@@ -1846,9 +1922,9 @@
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('totalDictCount').textContent = MASTER_DICTIONARY.length;
-      updateLivesUI();
       loadSavedWrongs();
       loadGameStats();
+      updateLivesUI();
       initQuizPool();
 
       document.querySelectorAll('.tab-btn').forEach(btn => {
